@@ -1,7 +1,8 @@
 import { NextAuthOptions } from "next-auth";
-import CustomMongoDBAdaptor from "./db/adaptor";
 import GitHubProvider from "next-auth/providers/github";
-import { UserModel } from "./db/schemas/user-schema";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import clientPromise from "./db/connect";
+import { AdapterUser } from "next-auth/adapters";
 
 function GitHubAuthOptions() {
 	const clientId = process.env.GITHUB_CLIENT_ID;
@@ -18,13 +19,16 @@ function GitHubAuthOptions() {
 }
 
 export const authOptions: NextAuthOptions = {
-	secret: process.env.NEXT_AUTH_SECRET,
-	adapter: CustomMongoDBAdaptor(),
+	secret: process.env.NEXTAUTH_SECRET,
+	adapter: MongoDBAdapter(clientPromise, {
+		databaseName: "code-library-engine",
+	}),
 	session: {
 		strategy: "jwt",
 	},
 	pages: {
 		signIn: "/auth/login",
+		signOut: "/",
 	},
 	providers: [
 		GitHubProvider({
@@ -34,17 +38,17 @@ export const authOptions: NextAuthOptions = {
 	],
 	callbacks: {
 		async jwt({ token, user }) {
-			const u = await UserModel.findOne({ id: token.id });
+			const authUser = (await clientPromise)
+				.db("code-library-engine")
+				.collection<AdapterUser>("users");
 
-			if (!u) {
-				if (user) {
-					token.id = user.id;
-				}
+			if (!authUser) {
+				if (user) token.id = user.id;
 
 				return token;
 			}
 
-			return { id: u.id, name: u.name, email: u.email, picture: u.image };
+			return token;
 		},
 		async session({ session, token }) {
 			if (token) {
@@ -56,8 +60,8 @@ export const authOptions: NextAuthOptions = {
 
 			return session;
 		},
-		async redirect() {
-			return "/account";
+		redirect() {
+			return "/search";
 		},
 	},
 };

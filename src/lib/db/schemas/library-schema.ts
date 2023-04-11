@@ -1,4 +1,4 @@
-import { SearchResults, SearchFilterOptions, SearchLanguages, SearchIndexes, SearchPaths } from "@/types/search-types";
+import { SearchResults, SearchFilterOptions, SearchLanguages, SearchIndexes, SearchPaths, SearchTags } from "@/types/search-types";
 import {
 	prop,
 	getModelForClass,
@@ -68,7 +68,7 @@ class Library {
 	 */
 	public static async searchByTags(
 		this: ReturnModelType<typeof Library>,
-		list: string[],
+		list: string[] | SearchTags[],
 		filters?: SearchFilterOptions
 	): Promise<SearchResults[]> {
 		// Find all the libraries that have the same tags.

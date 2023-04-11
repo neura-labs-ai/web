@@ -8,6 +8,7 @@
     "headlessui",
     "hookform",
     "lucide",
+    "NEXTAUTH",
     "tailwindcss",
     "upvotes"
   ]

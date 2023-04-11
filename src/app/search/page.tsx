@@ -1,5 +1,7 @@
 import Button from "@/components/ui/Button";
-import { FC, useState } from "react";
+import { FC } from "react";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
 
 export const metadata = {
 	title: "Search",
@@ -7,8 +9,15 @@ export const metadata = {
 
 interface pageProps {}
 
-const page: FC<pageProps> = ({}) => {
-	return <Button>Search Something...</Button>
+const page = async ({}) => {
+	const session = await getServerSession();
+
+	return (
+		<>
+			<pre>{JSON.stringify(session, null, 2)}</pre>
+			<Button>Search Something...</Button>
+		</>
+	);
 };
 
 export default page;

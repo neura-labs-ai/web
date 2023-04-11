@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Button from "@/components/ui/Button";
 import { FC, useState } from "react";
@@ -13,15 +13,16 @@ export const metadata = {
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
+
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	async function loginWithGitHub() {
 		setIsLoading(true);
 		try {
 			await signIn("github");
-		} catch (error) {
+		} catch (error: any) {
 			// display error message to user
-			toast.error("Something went wrong with your login.");
+			toast.error("There was a problem logging in.");
 		} finally {
 			setIsLoading(false);
 		}

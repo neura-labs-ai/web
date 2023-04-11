@@ -1,4 +1,4 @@
-import { IComment } from "@/lib/db/schemas/search/library-schema";
+import { IComment } from "@/lib/db/schemas/library-schema";
 
 export interface SearchFilterOptions {
 	comments?: {
@@ -9,10 +9,10 @@ export interface SearchFilterOptions {
 	/** Library's with over 100 stars. (This logic will most likely change as the engine grows.) */
 	popular?: {
 		amount: number;
-	}
+	};
 	limits?: {
 		amount: number;
-	}
+	};
 	score?: boolean;
 }
 
@@ -73,4 +73,25 @@ export type SearchResults = {
 	comments?: IComment[];
 } & {
 	score?: number;
+};
+
+/** 
+ * Some default tags that can be used on a search
+ * @example
+ * ```ts
+ * let tag: SearchTags = "NextJs"; // This will be "next.js"
+ * ```
+ * 
+ * This can be helpful for querying tags in the database, but it does not restrict the user from using any tag.
+ */
+export const DefaultSearchTags = {
+	"NextJs": "next.js",
+	"ReactJs": "react.js",
+	"VueJs": "vue.js",
+	"AngularJs": "angular.js",
+	"Angular": "angular",
+	"Vue": "vue",
+	"React": "react",
 }
+
+export type SearchTags = keyof typeof DefaultSearchTags;

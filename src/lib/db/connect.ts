@@ -1,35 +1,34 @@
-import mongoose from "mongoose";
+// This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
+import { MongoDBAdapterOptions } from "@next-auth/mongodb-adapter";
+import { MongoClient } from "mongodb";
 
-let isConnected: number = 0; // 0 = disconnected, 1 = connected
-
-/** Connects to the mongodb database. If already connected, does nothing. */
-export async function connect() {
-	if (isConnected === 1) return;
-
-	if (!process.env.MONGO_DB_CONNECTION_URL) {
-		throw new Error(
-			"MONGO_DB_CONNECTION_URL is not defined in the environment variables"
-		);
-	}
-	try {
-		const db = await mongoose.connect(process.env.MONGO_DB_CONNECTION_URL);
-
-		isConnected = db.connections[0].readyState;
-
-		console.log("DB is connected!");
-	} catch (error) {
-		console.log("Something went wrong");
-	}
+if (!process.env.MONGO_DB_CONNECTION_URL) {
+	throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
 }
 
-/** Gets the mongodb client from the mongoose connection */
-export async function getClient() {
-	if (isConnected === 0) {
-		await connect();
-		
-	}
+const uri = process.env.MONGO_DB_CONNECTION_URL!;
+const options = {}
 
-	return mongoose.connection.getClient();
+let client;
+let clientPromise: Promise<MongoClient>;
+
+if (process.env.NODE_ENV === "development") {
+	// In development mode, use a global variable so that the value
+	// is preserved across module reloads caused by HMR (Hot Module Replacement).
+	//@ts-ignore
+	if (!global._mongoClientPromise) {
+		client = new MongoClient(uri, options);
+		//@ts-ignore
+		global._mongoClientPromise = client.connect();
+	}
+	//@ts-ignore
+	clientPromise = global._mongoClientPromise;
+} else {
+	// In production mode, it's best to not use a global variable.
+	client = new MongoClient(uri, options);
+	clientPromise = client.connect();
 }
 
-export default connect;
+// Export a module-scoped MongoClient promise. By doing this in a
+// separate module, the client can be shared across functions.
+export default clientPromise;
