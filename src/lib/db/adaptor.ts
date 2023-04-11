@@ -10,6 +10,7 @@ import { UserModel } from "./schemas/user-schema";
 import { AccountModel } from "./schemas/accounts-schema";
 import { SessionsModel } from "./schemas/sessions-schema";
 import { VerificationTokenModel } from "./schemas/v-token-schema";
+import connect from "./connect";
 
 /**
  * Our custom adapter for NextAuth using mongoose ORM.
@@ -18,6 +19,7 @@ import { VerificationTokenModel } from "./schemas/v-token-schema";
  * @returns
  */
 export default function CustomMongoDBAdaptor(): Adapter {
+	connect().then(() => console.log("DB is connected!"));
 	return {
 		//@ts-ignore
 		async createUser(user: AdapterUser) {

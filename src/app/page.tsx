@@ -1,4 +1,6 @@
+import Button from "@/components/ui/Button";
 import Image from "next/image";
+import Link from 'next/link';
 
 export default function Home() {
 	return (
@@ -9,6 +11,8 @@ export default function Home() {
 							The <span className="text-teal-500">Code</span> Library
 						</p>
 					</div>
+
+					<Button><Link href="/search">Search a Library</Link></Button>
 
 					<div>
 						<p className="code-block">

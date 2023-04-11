@@ -1,7 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import CustomMongoDBAdaptor from "./db/adaptor";
 import GitHubProvider from "next-auth/providers/github";
-import connect from "./db/connect";
 import { UserModel } from "./db/schemas/user-schema";
 
 function GitHubAuthOptions() {
