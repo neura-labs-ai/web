@@ -19,6 +19,7 @@ function GitHubAuthOptions() {
 }
 
 export const authOptions: NextAuthOptions = {
+	secret: process.env.NEXT_AUTH_SECRET,
 	adapter: CustomMongoDBAdaptor(),
 	session: {
 		strategy: "jwt",
