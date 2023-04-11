@@ -1,5 +1,5 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-	return new Response(JSON.stringify({ message: "Hello World!" }));
+	return NextResponse.json({ message: "hello world" });
 }
