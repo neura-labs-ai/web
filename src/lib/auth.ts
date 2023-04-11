@@ -4,8 +4,6 @@ import GitHubProvider from "next-auth/providers/github";
 import connect from "./db/connect";
 import { UserModel } from "./db/schemas/user-schema";
 
-connect();
-
 function GitHubAuthOptions() {
 	const clientId = process.env.GITHUB_CLIENT_ID;
 	const clientSecret = process.env.GITHUB_CLIENT_SECRET;
