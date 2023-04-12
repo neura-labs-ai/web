@@ -12,17 +12,30 @@ interface AuthButtonProps {
 	buttonName: string;
 	session: Session | null;
 	redirectTo: string;
+	hidden?: boolean;
 }
 
 /**
  * Component checks if the user if authenticated, if they are they continue to the page, if not they are redirected to the login page
  * @returns
  */
-const AuthButton = ({ redirectTo, session, buttonName }: AuthButtonProps) => {
+const AuthButton = ({
+	redirectTo,
+	session,
+	buttonName,
+	hidden,
+}: AuthButtonProps) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
+	let isAuth = isAuthenticated(session);
+
+	// hide the button if the user is not authenticated
+	if (hidden && !isAuth) {
+		return null;
+	}
+
 	// If the user is found, they can continue to the page
-	if (isAuthenticated(session)) {
+	if (isAuth) {
 		return (
 			<Button>
 				<Link href={redirectTo}>{buttonName}</Link>

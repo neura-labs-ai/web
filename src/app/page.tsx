@@ -21,6 +21,7 @@ export default async function Home() {
 						session={session}></AuthButton>
 
 					<AuthButton
+						hidden={true}
 						buttonName="Account Viewer"
 						redirectTo={`/account/${session?.user?.name}`}
 						session={session}></AuthButton>
