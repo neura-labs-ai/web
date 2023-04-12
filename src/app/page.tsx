@@ -1,23 +1,30 @@
-import Button from "@/components/ui/Button";
+import AuthButton from "@/components/ui/AuthButton";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
-import Link from 'next/link';
 
-export default function Home() {
+export default async function Home() {
+	const session = await getServerSession();
+
 	return (
 		<>
-			<main className="center-and-justify">
+			<div className="center-and-justify">
 				<div className="italic text-6xl">
 					<p>
 						The <span className="text-teal-500">Code</span> Library
 					</p>
 				</div>
 
-				<Button>
-					<Link href="/search">Search a Library</Link>
-				</Button>
-				<Button>
-					<Link href="/auth/login">Login</Link>
-				</Button>
+				<div className="align-items">
+					<AuthButton
+						buttonName="Search a library"
+						redirectTo="/search"
+						session={session}></AuthButton>
+
+					<AuthButton
+						buttonName="Account Viewer"
+						redirectTo={`/account/${session?.user?.name}`}
+						session={session}></AuthButton>
+				</div>
 
 				<div>
 					<p className="code-block">
@@ -44,7 +51,7 @@ export default function Home() {
 						/>
 					</a>
 				</div>
-			</main>
+			</div>
 		</>
 	);
 }

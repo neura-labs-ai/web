@@ -2,19 +2,18 @@
 
 import Button from "@/components/ui/Button";
 import { FC, useState } from "react";
-import { signIn } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { toast } from "react-hot-toast";
 
 interface LoginProps {}
 
-const Login: FC<LoginProps> = () => {
+const Logout: FC<LoginProps> = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
-	async function loginWithGitHub() {
+	async function logoutFromGitHub() {
 		setIsLoading(true);
 		try {
-			await signIn("github");
-			toast.success("You have successfully logged in.");
+			await signOut()
 		} catch (error: any) {
 			// display error message to user
 			toast.error("There was a problem logging in.");
@@ -28,13 +27,18 @@ const Login: FC<LoginProps> = () => {
 			<main>
 				<div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 					<div className="w-full flex flex-col items-center max-w-md space-y-8">
-						<div className="flex flex-col items-center gap-8">App Logo Here</div>
+						<div className="flex flex-col items-center gap-8">
+							App Logo Here
+							<h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-teal-500">
+								Sign in to your account
+							</h2>
+						</div>
 
 						<Button
 							isLoading={isLoading}
 							type="button"
 							className="max-w-sm mx-auto w-full"
-							onClick={loginWithGitHub}>
+							onClick={logoutFromGitHub}>
 							{isLoading ? null : (
 								<div className="pr-2">
 									<svg
@@ -46,7 +50,7 @@ const Login: FC<LoginProps> = () => {
 									</svg>
 								</div>
 							)}
-							<h2 className="text-teal-500">Login with GitHub</h2>
+							Logout
 						</Button>
 					</div>
 				</div>
@@ -55,4 +59,4 @@ const Login: FC<LoginProps> = () => {
 	);
 };
 
-export default Login;
+export default Logout;

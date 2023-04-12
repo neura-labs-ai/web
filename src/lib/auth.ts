@@ -1,8 +1,8 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "./db/connect";
-import { AdapterUser } from "next-auth/adapters";
+import { DATABASE_NAME } from "@/helpers/constants";
 
 function GitHubAuthOptions() {
 	const clientId = process.env.GITHUB_CLIENT_ID;
@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
 	},
 	pages: {
 		signIn: "/auth/login",
-		signOut: "/",
+		signOut: "/auth/logout",
 	},
 	providers: [
 		GitHubProvider({
@@ -39,8 +39,8 @@ export const authOptions: NextAuthOptions = {
 	callbacks: {
 		async jwt({ token, user }) {
 			const authUser = (await clientPromise)
-				.db("code-library-engine")
-				.collection<AdapterUser>("users");
+				.db(DATABASE_NAME)
+				.collection<User>("users").findOne({ id: token.id })
 
 			if (!authUser) {
 				if (user) token.id = user.id;
@@ -61,7 +61,7 @@ export const authOptions: NextAuthOptions = {
 			return session;
 		},
 		redirect() {
-			return "/search";
+			return "/home";
 		},
 	},
 };

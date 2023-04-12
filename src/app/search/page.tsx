@@ -1,23 +1,33 @@
-import Button from "@/components/ui/Button";
-import { FC } from "react";
-import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
+import Button from '@/components/ui/Button';
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { FC } from 'react'
 
-export const metadata = {
-	title: "Search",
-};
+export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
+  // todo - add dynamic metadata
 
-interface pageProps {}
+	return {
+		title: "Search A Library",
+		description:
+			"Search through our amazing engine of library's made by the community.",
+	};
+}
 
-const page = async ({}) => {
-	const session = await getServerSession();
+interface SearchPageProps {
+  
+}
 
+const page: FC<SearchPageProps> = ({}) => {
 	return (
 		<>
-			<pre>{JSON.stringify(session, null, 2)}</pre>
-			<Button>Search Something...</Button>
+			<h1>Some Amazing Search Engine</h1>
+
+			<br />
+			<Button>
+				<Link href={"/"}>Back</Link>
+			</Button>
 		</>
-	);
+	)
 };
 
-export default page;
+export default page
