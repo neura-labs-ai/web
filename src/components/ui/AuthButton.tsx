@@ -1,17 +1,19 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import Button from "./Button";
+import Button, { ButtonProps } from "./Button";
 import { Session } from "next-auth";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { isAuthenticated } from "@/helpers/utils";
 
-interface AuthButtonProps {
+interface AuthButtonProps extends ButtonProps {
 	buttonName: string;
 	session: Session | null;
+	/** The page to send the user to after hitting this button */
 	redirectTo: string;
+	/** Hides the button from unauthorized users. */
 	hidden?: boolean;
 }
 
@@ -24,6 +26,7 @@ const AuthButton = ({
 	session,
 	buttonName,
 	hidden,
+	variant,
 }: AuthButtonProps) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -37,7 +40,7 @@ const AuthButton = ({
 	// If the user is found, they can continue to the page
 	if (isAuth) {
 		return (
-			<Button>
+			<Button variant={variant}>
 				<Link href={redirectTo}>{buttonName}</Link>
 			</Button>
 		);
@@ -59,6 +62,7 @@ const AuthButton = ({
 	return (
 		<>
 			<Button
+				variant={variant}
 				isLoading={isLoading}
 				type="button"
 				className="max-w-sm mx-auto w-full"
