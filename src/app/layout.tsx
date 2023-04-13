@@ -1,21 +1,25 @@
 import "../styles/globals.css";
-import Providers from "@/components/Providers";
+import ErrorProvider from "@/components/ErrorProvider";
+import { SITE } from "@/helpers/constants";
+import AuthProvider from "@/components/AuthProvider";
 
 export const metadata = {
-	title: "Code Library | Search Engine",
-	description:
-		"A search engine for programers, powered by Artificial Intelligence and Amazing Programers all over the world.",
+	title: SITE.META.TITLE,
+	description: SITE.META.DESCRIPTION,
 };
 
-export default function RootLayout({
-	children,
-}: {
+interface RootLayoutProps {
 	children: React.ReactNode;
-}) {
+	params: any;
+}
+
+export default function RootLayout({ children, params }: RootLayoutProps) {
 	return (
 		<html lang="en">
 			<body>
-				<Providers>{children}</Providers>
+				<ErrorProvider>
+					<AuthProvider>{children}</AuthProvider>
+				</ErrorProvider>
 			</body>
 		</html>
 	);

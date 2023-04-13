@@ -2,13 +2,21 @@
 
 import Button from "@/components/ui/Button";
 import { FC, useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
+import { isAuthenticated } from "@/helpers/utils";
+import { redirect } from "next/navigation";
 
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	const session = useSession();
+
+	if (isAuthenticated(session.data)) {
+		redirect("/home");
+	}
 
 	async function loginWithGitHub() {
 		setIsLoading(true);

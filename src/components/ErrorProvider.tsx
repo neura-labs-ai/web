@@ -8,7 +8,7 @@ interface ProvidersProps {
 }
 
 // Handles Errors on the UI
-const Providers: FC<ProvidersProps> = ({ children }) => {
+const ErrorProvider: FC<ProvidersProps> = ({ children }) => {
 	return (
 		<>
 			<Toaster position="top-center" reverseOrder={false} />
@@ -17,4 +17,4 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
 	);
 };
 
-export default Providers;
+export default ErrorProvider;

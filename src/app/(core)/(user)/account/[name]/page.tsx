@@ -1,15 +1,26 @@
-import Button from "@/components/ui/Button";
-// import { getUserFromDatabase } from "@/helpers/utils";
-import { isNullOrUndefinedOrEmpty } from "@sapphire/utilities";
+import NotAuthorized from "@/components/NotAuthorized";
+import TempNav from "@/components/ui/TempNav";
+import { isAuthenticated, returnToLogin } from "@/helpers/utils";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth";
-import Link from "next/link";
 
-interface pageProps {
-	slug: string;
+interface pageProps {}
+
+export async function generateMetadata({}: pageProps): Promise<Metadata> {
+	const session = await getServerSession();
+
+	if (!isAuthenticated(session)) return returnToLogin();
+
+	return {
+		title: `${session?.user?.name} Account`,
+		description: `${session?.user?.name}'s Account information`,
+	};
 }
 
-const page = async ({}) => {
+const page = async ({}: pageProps) => {
 	const session = await getServerSession();
+
+	if (!isAuthenticated(session)) return <NotAuthorized />;
 
 	// todo - get the user from the search slug and fetch from them from the database and display their account information
 	let name;
@@ -35,15 +46,7 @@ const page = async ({}) => {
 			</div>
 
 			<br />
-			<Button>
-				<Link href={"/"}>Back</Link>
-			</Button>
-			<Button>
-				<Link href={`/home`}>Home</Link>
-			</Button>
-			<Button>
-				<Link href={`/account/${session?.user.name}/settings`}>Settings</Link>
-			</Button>
+			<TempNav session={session} />
 		</>
 	);
 };

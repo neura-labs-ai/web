@@ -11,8 +11,8 @@ A list of tools I want to use when making this project
 5. https://github.com/octokit/octokit.js
 6. https://railway.app/
 7. https://github.com/shadcn/ui
-8.
-9.
+8. https://swr.vercel.app/
+9. https://tanstack.com/query/v4
 10.
 
 ## Docs 

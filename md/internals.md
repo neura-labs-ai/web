@@ -21,3 +21,9 @@ When the user accepts the login they are sent to the `/api/auth/callback/github`
 - `/auth` - 
     - `/login` - 
     - `/logout` - 
+
+## Color Theme
+
+## Tailwind
+
+- Main - teal-500
