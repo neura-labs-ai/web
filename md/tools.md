@@ -13,7 +13,9 @@ A list of tools I want to use when making this project
 7. https://github.com/shadcn/ui
 8. https://swr.vercel.app/
 9. https://tanstack.com/query/v4
-10.
+10. https://ui.shadcn.com/
+11. https://authjs.dev/ (https://next-auth.js.org/)
+12. https://github.com/typegoose/typegoose
 
 ## Docs 
 

@@ -22,7 +22,8 @@ export const SITE = {
     }
 };
 
-export const LOGO_URL = "https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600";
+export const LOGO_URL =
+	"https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600";
 
 /** Links used for the navbar */
 export const NAV_LINKS = [
