@@ -19,7 +19,12 @@ const TempNav = ({ session }: TempNavProps) => {
 				<Link href={`/account/${session?.user.name}`}>Account</Link>
 			</Button>
 			<Button>
-				<Link href={`/account/${session?.user.name}/settings`}>Account Settings</Link>
+				<Link href={`/account/${session?.user.name}/settings`}>
+					Account Settings
+				</Link>
+			</Button>
+			<Button>
+				<Link href={"/search"}>Search a Library</Link>
 			</Button>
 		</>
 	);

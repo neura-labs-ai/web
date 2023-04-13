@@ -1,10 +1,14 @@
-import Button from '@/components/ui/Button';
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { FC } from 'react'
+import NotAuthorized from "@/components/NotAuthorized";
+import Button from "@/components/ui/Button";
+import TempNav from "@/components/ui/TempNav";
+import { isAuthenticated, returnToLogin } from "@/helpers/utils";
+import { Metadata } from "next";
+import { getServerSession } from "next-auth";
 
 export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
-  // todo - add dynamic metadata
+	const session = await getServerSession();
+
+	if (!isAuthenticated(session)) return returnToLogin();
 
 	return {
 		title: "Search A Library",
@@ -13,21 +17,21 @@ export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
 	};
 }
 
-interface SearchPageProps {
-  
-}
+interface SearchPageProps {}
 
-const page: FC<SearchPageProps> = ({}) => {
+const page = async ({}: SearchPageProps) => {
+	const session = await getServerSession();
+
+	if (!isAuthenticated(session)) return <NotAuthorized />;
+
 	return (
 		<>
 			<h1>Some Amazing Search Engine</h1>
 
 			<br />
-			<Button>
-				<Link href={"/"}>Back</Link>
-			</Button>
+			<TempNav session={session}/>
 		</>
-	)
+	);
 };
 
-export default page
+export default page;

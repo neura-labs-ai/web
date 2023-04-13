@@ -25,7 +25,7 @@ const page = async ({}) => {
 
 	return (
 		<>
-			<h1>Welcome Home {session?.user?.name}!</h1>
+			<h1>Welcome home {session?.user?.name}!</h1>
 			<p>It seams your pocking around this development site... 😜</p>
 			<p>Stay tunned for more!</p>
 

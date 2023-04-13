@@ -1,54 +1,77 @@
+import DisplayAccount from "@/components/accounts/DisplayAccount";
 import NotAuthorized from "@/components/NotAuthorized";
-import TempNav from "@/components/ui/TempNav";
+import { COLLECTIONS, DATABASE_NAME, HOST_URL } from "@/helpers/constants";
 import { isAuthenticated, returnToLogin } from "@/helpers/utils";
+import clientPromise from "@/lib/db/connect";
+import { isNullOrUndefinedOrEmpty } from "@sapphire/utilities";
 import { Metadata } from "next";
-import { getServerSession } from "next-auth";
+import { getServerSession, User } from "next-auth";
 
-interface pageProps {}
+interface pageProps {
+	params: {
+		// The name of the user to display
+		name: string;
+	};
+}
 
-export async function generateMetadata({}: pageProps): Promise<Metadata> {
+export async function generateMetadata({
+	params,
+}: pageProps): Promise<Metadata> {
 	const session = await getServerSession();
 
 	if (!isAuthenticated(session)) return returnToLogin();
 
 	return {
-		title: `${session?.user?.name} Account`,
-		description: `${session?.user?.name}'s Account information`,
+		title: `${params.name}` ?? `Account Not found`,
+		description: `${params.name}'s Account information`,
 	};
 }
 
-const page = async ({}: pageProps) => {
+async function getUser(name: string): Promise<User | null> {
+	// todo - fix failed to parse url error when a name is something other than the session.user.name
+	const response = await fetch(`${HOST_URL}/api/account/${name}`, {
+		next: {
+			revalidate: 6 * 5,
+		}
+	});
+
+	const user = await response.json();
+
+	// const user = await(await clientPromise)
+	// .db(DATABASE_NAME)
+	// .collection<User>(COLLECTIONS.USERS)
+	// .findOne({ name });
+	
+	console.log("getUser", user);
+	return user;
+}
+
+const page = async ({ params }: pageProps) => {
+	console.log("params", params);
+
 	const session = await getServerSession();
 
 	if (!isAuthenticated(session)) return <NotAuthorized />;
 
-	// todo - get the user from the search slug and fetch from them from the database and display their account information
-	let name;
+	// If the user is the same as the session user, display the account, we don't need to fetch the user
+	if (session?.user.name === params.name) {
+		return <DisplayAccount session={session} user={session.user} />;
+	}
 
-	// if (isNullOrUndefinedOrEmpty(name) || name !== typeof "string") {
-	// 	return (
-	// 		<>
-	// 			<h1>Account does not exist...</h1>
-	// 		</>
-	// 	);
-	// }
+	let fetchedUser = await getUser(params.name);
 
-	// const user = await getUserFromDatabase({ name: name });
+	// console.log('fetchedUser', fetchedUser);
 
-	return (
-		<>
-			<h1>{session?.user.name} Account information</h1>
-			<br />
-			<div>
-				<div className="code-block">
-					<pre>{JSON.stringify(session?.user, null, 2)}</pre>
-				</div>
-			</div>
+	// If the user does not exist, display an error
+	if (isNullOrUndefinedOrEmpty(fetchedUser)) {
+		return (
+			<>
+				<h1>"{params.name}" doesn't exist in our system...</h1>
+			</>
+		);
+	}
 
-			<br />
-			<TempNav session={session} />
-		</>
-	);
+	return <DisplayAccount session={session} user={fetchedUser} />;
 };
 
 export default page;
