@@ -37,12 +37,6 @@ async function getUser(name: string): Promise<User | null> {
 
 	const user = await response.json();
 
-	// const user = await(await clientPromise)
-	// .db(DATABASE_NAME)
-	// .collection<User>(COLLECTIONS.USERS)
-	// .findOne({ name });
-	
-	console.log("getUser", user);
 	return user;
 }
 
@@ -60,13 +54,11 @@ const page = async ({ params }: pageProps) => {
 
 	let fetchedUser = await getUser(params.name);
 
-	// console.log('fetchedUser', fetchedUser);
-
 	// If the user does not exist, display an error
 	if (isNullOrUndefinedOrEmpty(fetchedUser)) {
 		return (
 			<>
-				<h1>"{params.name}" doesn't exist in our system...</h1>
+				<h1>{params.name} doesn't exist in our system...</h1>
 			</>
 		);
 	}

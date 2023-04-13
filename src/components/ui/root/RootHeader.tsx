@@ -3,6 +3,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { LOGO_URL, NAV_LINKS } from "@/helpers/constants";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const navigation = NAV_LINKS;
 const loginUrl = "/auth/login";
@@ -21,7 +22,7 @@ export default function RootHeader() {
 					<div className="flex lg:flex-1">
 						<a href="/" className="-m-1.5 p-1.5">
 							<span className="sr-only">Your Company</span>
-							<img className="h-8 w-auto" src={LOGO_URL} alt="Logo" />
+							<Image className="h-8 w-auto" src={LOGO_URL} alt="Logo" />
 						</a>
 					</div>
 					<div className="flex lg:hidden">
@@ -69,9 +70,9 @@ export default function RootHeader() {
 						<div className="flex items-center justify-between">
 							<a href="#" className="-m-1.5 p-1.5">
 								<span className="sr-only">Your Company</span>
-								<img
+								<Image
 									className="h-8 w-auto"
-									src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+									src={LOGO_URL}
 									alt=""
 								/>
 							</a>

@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { isAuthenticated } from "@/helpers/utils";
 import { redirect } from "next/navigation";
 import { LOGO_URL } from "@/helpers/constants";
+import Image from "next/image";
 
 interface LoginProps {}
 
@@ -39,7 +40,7 @@ const Login: FC<LoginProps> = () => {
 				<div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 					<div className="w-full flex flex-col items-center max-w-md space-y-8">
 						<div className="flex flex-col items-center gap-8">
-							<img src={LOGO_URL} alt={"Logo"} width={150} height={150}/>
+							<Image src={LOGO_URL} alt={"Logo"} width={150} height={150}/>
 						</div>
 
 						<Button

@@ -33,9 +33,11 @@ if (
 	process.env.NODE_ENV === "production" &&
 	HOST_URL === "https://code-library-engine-dev.vercel.app"
 ) {
-	throw new Error(
-		"HOST_URL is still in dev incorrect. Change it to https://code-library-engine.vercel.app"
-	);
+	// ? throw  for now until we push stable builds to prod
+	// throw new Error(
+	// 	"HOST_URL is still in dev incorrect. Change it to https://code-library-engine.vercel.app"
+	// );
+	console.log(`[WARNING] - HOST_URL is still pointing to the dev preview build!`)
 }
 
 export const LOGO_URL =
