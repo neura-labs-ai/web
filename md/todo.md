@@ -7,5 +7,6 @@
 5. Update nav links in root page for mobile support
 6. convert Code%20Library%20Search%20Engine search params to valid name so we can fetch the user in the backend
 7. remove mongoose deps as they conflict with mongodb core driver
+7. protect account/name/settings from being accessed by other users other than the owner
 
 *This is not the full todo, its only current things im working on atm step by step...*

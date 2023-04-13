@@ -65,6 +65,8 @@ export default function RootContent() {
 							className="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
 							src={STICKY_IMAGE}
 							alt=""
+							width={150}
+							height={150}
 						/>
 					</div>
 					<div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">

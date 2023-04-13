@@ -1,8 +1,7 @@
 import DisplayAccount from "@/components/accounts/DisplayAccount";
 import NotAuthorized from "@/components/NotAuthorized";
-import { COLLECTIONS, DATABASE_NAME, HOST_URL } from "@/helpers/constants";
+import { HOST_URL } from "@/helpers/constants";
 import { isAuthenticated, returnToLogin } from "@/helpers/utils";
-import clientPromise from "@/lib/db/connect";
 import { isNullOrUndefinedOrEmpty } from "@sapphire/utilities";
 import { Metadata } from "next";
 import { getServerSession, User } from "next-auth";
@@ -32,7 +31,7 @@ async function getUser(name: string): Promise<User | null> {
 	const response = await fetch(`${HOST_URL}/api/account/${name}`, {
 		next: {
 			revalidate: 6 * 5,
-		}
+		},
 	});
 
 	const user = await response.json();
@@ -41,7 +40,7 @@ async function getUser(name: string): Promise<User | null> {
 }
 
 const page = async ({ params }: pageProps) => {
-	console.log("params", params);
+	// console.log("params", params);
 
 	const session = await getServerSession();
 

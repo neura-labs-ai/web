@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { LOGO_URL, NAV_LINKS } from "@/helpers/constants";
+import {  NAV_LINKS } from "@/helpers/constants";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -22,7 +22,13 @@ export default function RootHeader() {
 					<div className="flex lg:flex-1">
 						<a href="/" className="-m-1.5 p-1.5">
 							<span className="sr-only">Your Company</span>
-							<Image className="h-8 w-auto" src={LOGO_URL} alt="Logo" />
+							<Image
+								className="h-8 w-auto"
+								src={"https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"}
+								alt="Logo"
+								width={150}
+								height={150}
+							/>
 						</a>
 					</div>
 					<div className="flex lg:hidden">
@@ -47,7 +53,7 @@ export default function RootHeader() {
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
 						{session?.user ? (
 							<a
-								href={loginUrl}
+								href={"/home"}
 								className="text-sm font-semibold leading-6 text-gray-900">
 								Get Started <span aria-hidden="true">&rarr;</span>
 							</a>
@@ -72,8 +78,12 @@ export default function RootHeader() {
 								<span className="sr-only">Your Company</span>
 								<Image
 									className="h-8 w-auto"
-									src={LOGO_URL}
+									src={
+										"https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+									}
 									alt=""
+									width={150}
+									height={150}
 								/>
 							</a>
 							<button
@@ -97,11 +107,19 @@ export default function RootHeader() {
 									))}
 								</div>
 								<div className="py-6">
-									<a
-										href="#"
-										className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-										Log in
-									</a>
+									{session?.user ? (
+										<a
+											href="/home"
+											className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+											Get Started
+										</a>
+									) : (
+										<a
+											href={loginUrl}
+											className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+											Log in
+										</a>
+									)}
 								</div>
 							</div>
 						</div>
