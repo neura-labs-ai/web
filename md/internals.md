@@ -33,3 +33,7 @@ When the user accepts the login they are sent to the `/api/auth/callback/github`
 - MongoDB x Prisma are used for the database. The database is hosted on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). The database is accessed using [Prisma](https://www.prisma.io/).
 
 The main ready we only use atlas and not a local server is because is [this](https://www.prisma.io/docs/concepts/database-connectors/mongodb#example).
+
+## Building the project
+
+Read [Building.md](./build.md)
