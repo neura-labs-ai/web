@@ -9,7 +9,6 @@ interface DisplayAccountProps {
 }
 
 const DisplayAccount: FC<DisplayAccountProps> = ({ user, session }) => {
-	console.log("user", user);
 	return (
 		<>
 			<Image
