@@ -4,7 +4,7 @@ export const revalidate = false;
 export const fetchCache = "auto";
 export const preferredRegion = "auto";
 
-import { isAuthenticated } from "@/helpers/utils";
+import { isAuthenticated } from "@/lib/utils";
 import { prisma } from "@/server/db";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";

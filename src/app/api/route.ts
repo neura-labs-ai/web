@@ -1,4 +1,4 @@
-import { isAuthenticated } from "@/helpers/utils";
+import { isAuthenticated } from "@/lib/utils";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 

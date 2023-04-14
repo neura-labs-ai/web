@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 import { FC, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
-import { isAuthenticated } from "@/helpers/utils";
+import { isAuthenticated } from "@/lib/utils";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 

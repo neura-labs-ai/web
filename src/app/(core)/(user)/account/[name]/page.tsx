@@ -1,6 +1,6 @@
 import DisplayAccount from "@/components/accounts/DisplayAccount";
 import NotAuthorized from "@/components/NotAuthorized";
-import { isAuthenticated, returnToLogin } from "@/helpers/utils";
+import { isAuthenticated, returnToLogin } from "@/lib/utils";
 import { prisma } from "@/server/db";
 import { isNullOrUndefinedOrEmpty } from "@sapphire/utilities";
 import { Metadata } from "next";

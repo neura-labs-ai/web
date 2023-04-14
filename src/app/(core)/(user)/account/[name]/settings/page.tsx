@@ -1,6 +1,6 @@
 import NotAuthorized from "@/components/NotAuthorized";
 import TempNav from "@/components/ui/TempNav";
-import { isAuthenticated, returnToLogin } from "@/helpers/utils";
+import { isAuthenticated, returnToLogin } from "@/lib/utils";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 

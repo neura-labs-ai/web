@@ -6,7 +6,7 @@ import { Session } from "next-auth";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { isAuthenticated } from "@/helpers/utils";
+import { isAuthenticated } from "@/lib/utils";
 
 interface AuthButtonProps extends ButtonProps {
 	buttonName: string;
