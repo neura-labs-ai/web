@@ -1,8 +1,8 @@
 // todo - fetch this data. This is just a placeholder
 const stats = [
-	{ id: 1, name: "Transactions every 24 hours", value: "44 million" },
-	{ id: 2, name: "Assets under holding", value: "$119 trillion" },
-	{ id: 3, name: "New users annually", value: "46,000" },
+	{ id: 1, name: "Trusted by many developers", value: "7000+" },
+	{ id: 3, name: "Monthly Users", value: "1,000+" },
+	{ id: 2, name: "GitHub Stars", value: "4,000+" },
 ];
 
 export default function RootStats() {

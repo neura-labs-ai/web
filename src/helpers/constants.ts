@@ -14,7 +14,9 @@ export const SITE = {
 			process.env.NODE_ENV === "development"
 				? "Code Library (dev build)"
 				: "Code Library",
-		DESCRIPTION: "A search engine for programmers, by programmers.",
+		DESCRIPTION: "Search for developers, by developers.",
+		DETAILED_DESCRIPTION:
+			"Code Library aim's to provide developers of any level the research and tools required for proficiency in various programming languages and frameworks.",
 	},
 	SOCIALS: {
 		GITHUB: "",
@@ -29,14 +31,22 @@ export const HOST_URL =
 		? "http://localhost:3000"
 		: "https://code-library-engine.vercel.app";
 
+export const ROOT_SUB_PAGES = {
+	ABOUT: "/about",
+	CONTACT: "/contact",
+	PRIVACY: "/privacy",
+	TERMS: "/terms",
+	CONTRIBUTE: "/contributing",
+};
+
 export const LOGO_URL =
 	"https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600";
 
 /** Links used for the navbar */
 export const NAV_LINKS = [
-	{ name: "Product", href: "#" },
-	{ name: "Features", href: "#" },
-	{ name: "Marketplace", href: "#" },
+	{ name: "Documentation", href: "#" },
+	{ name: "Research Goals", href: "#" },
+	{ name: "Community", href: "#" },
 	{ name: "Company", href: "#" },
 ];
 

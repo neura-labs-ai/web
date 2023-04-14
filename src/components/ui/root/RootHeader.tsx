@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import {  NAV_LINKS } from "@/helpers/constants";
+import {  NAV_LINKS, SITE } from "@/helpers/constants";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -21,7 +21,7 @@ export default function RootHeader() {
 					aria-label="Global">
 					<div className="flex lg:flex-1">
 						<a href="/" className="-m-1.5 p-1.5">
-							<span className="sr-only">Your Company</span>
+							<span className="sr-only">{SITE.NAME}</span>
 							<Image
 								className="h-8 w-auto"
 								src={"https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"}
@@ -66,6 +66,8 @@ export default function RootHeader() {
 						)}
 					</div>
 				</nav>
+
+				{/* Mobile Assets */}
 				<Dialog
 					as="div"
 					className="lg:hidden"
