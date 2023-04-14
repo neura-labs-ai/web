@@ -5,10 +5,11 @@ import TempNav from "../ui/TempNav";
 
 interface DisplayAccountProps {
 	session: Session | null;
-	user: User;
+	user: User | null;
 }
 
 const DisplayAccount: FC<DisplayAccountProps> = ({ user, session }) => {
+	console.log("user", user);
 	return (
 		<>
 			<Image
@@ -19,11 +20,8 @@ const DisplayAccount: FC<DisplayAccountProps> = ({ user, session }) => {
 			/>
 			<h1>{user?.name} Account information</h1>
 			<br />
-			<div>
-				<div className="code-block">
-					<pre>Name: {user.name} (More info soon)</pre>
-				</div>
-					<p>This data was fetched from our servers not cache...</p>
+			<div className="code-block">
+				<pre>Name: {user?.name ?? "@Error"} (More info soon)</pre>
 			</div>
 			<br />
 			<TempNav session={session} />
