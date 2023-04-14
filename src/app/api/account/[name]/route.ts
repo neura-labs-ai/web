@@ -4,10 +4,9 @@ export const revalidate = false;
 export const fetchCache = "auto";
 export const preferredRegion = "auto";
 
-import { COLLECTIONS, DATABASE_NAME } from "@/helpers/constants";
 import { isAuthenticated } from "@/helpers/utils";
-import clientPromise from "@/lib/db/connect";
-import { getServerSession, User } from "next-auth";
+import { prisma } from "@/server/db";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface ContextParams {
@@ -19,23 +18,22 @@ interface ContextParams {
 export async function GET(request: NextRequest, context: ContextParams) {
 	const session = await getServerSession();
 
-	console.log("context", context);
+	if (!isAuthenticated(session)) {
+		return NextResponse.json(
+			{
+				error: "Unauthorized access",
+			},
+			{
+				status: 401,
+			}
+		);
+	}
 
-	// if (!isAuthenticated(session)) {
-	// 	return NextResponse.json(
-	// 		{
-	// 			error: "Unauthorized access",
-	// 		},
-	// 		{
-	// 			status: 401,
-	// 		}
-	// 	);
-	// }
-
-	const user = await (await clientPromise)
-		.db(DATABASE_NAME)
-		.collection<User>(COLLECTIONS.USERS)
-		.findOne({ name: context.params.name });
+	const user = await prisma.user.findUnique({
+		where: {
+			id: context.params.name,
+		},
+	});
 
 	console.log("user", user);
 
