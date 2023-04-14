@@ -37,3 +37,7 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# Yarn files
+.yarn/install-state.gz
+.yarn/build-state.yml

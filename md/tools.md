@@ -1,8 +1,8 @@
-# Tools 
+# Tools
 
 A list of tools I want to use when making this project
 
-*In no particular order* 
+_In no particular order_
 
 1. https://mongoosejs.com/
 2. https://github.com/vercel/next.js/tree/canary/examples/api-routes-rate-limit
@@ -16,8 +16,9 @@ A list of tools I want to use when making this project
 10. https://ui.shadcn.com/
 11. https://authjs.dev/ (https://next-auth.js.org/)
 12. https://github.com/typegoose/typegoose
+13. https://react-hook-form.com/
 
-## Docs 
+## Docs
 
 1. https://beta.nextjs.org/docs/ (Next.js v13 beta)
 2. https://docs.railway.app/getting-started
