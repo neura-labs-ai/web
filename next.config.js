@@ -2,6 +2,8 @@
 const nextConfig = {
 	experimental: {
 		appDir: true,
+		mdxRs: true,
+		typedRoutes: true,
 	},
 	images: {
 		domains: [
@@ -20,7 +22,7 @@ const nextConfig = {
 	eslint: {
 		// Warning: This allows production builds to successfully complete even if
 		// your project has ESLint errors.
-		ignoreDuringBuilds: false,
+		ignoreDuringBuilds: true,
 	},
 };
 

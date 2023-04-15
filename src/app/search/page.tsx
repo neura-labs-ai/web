@@ -3,6 +3,7 @@ import LibrarySearchInput from "@/components/search/LibrarySearchInput";
 import SearchPreloader from "@/components/search/SearchPreloader";
 import SearchProviders from "@/components/search/SearchProvider";
 import TempNav from "@/components/ui/TempNav";
+import { HOST_URL } from "@/helpers/constants";
 import { isAuthenticated, returnToLogin } from "@/lib/utils";
 import { searchStore } from "@/redux/search";
 import { setStartupLibrary } from "@/redux/search/searchSlice";
@@ -24,7 +25,7 @@ export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
 interface SearchPageProps {}
 
 async function search() {
-	const res = await fetch("http://localhost:3000/api/search", {
+	const res = await fetch(`${HOST_URL}/api/search`, {
 		cache: "no-store",
 		next: {
 			revalidate: 10,

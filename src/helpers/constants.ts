@@ -29,7 +29,7 @@ export const SITE = {
 export const HOST_URL =
 	process.env.NODE_ENV === "development"
 		? "http://localhost:3000"
-		: "https://code-library-engine.vercel-dev.app";
+		: "https://code-library-engine-dev.vercel.app";
 
 export const ROOT_SUB_PAGES = {
 	ABOUT: "/about",

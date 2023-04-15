@@ -16,13 +16,20 @@ const LibraryTable: FC<LibraryTableProps> = ({ libs }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{libs.map((lib) => (
-						<tr key={lib.id}>
-							<Link href={lib.homepage!} target={"_blank"}>
-								<td>{lib.name}</td>
-							</Link>
+					{libs.length ? (
+						libs.map((lib) => (
+							<tr key={lib.id}>
+								{/* Ignore the route types for these custom links */}
+								<Link href={lib.homepage! as any} target={"_blank"}>
+									<td>{lib.name}</td>
+								</Link>
+							</tr>
+						))
+					) : (
+						<tr>
+							<td>No library&apos;s found</td>
 						</tr>
-					))}
+					)}
 				</tbody>
 			</table>
 		</>

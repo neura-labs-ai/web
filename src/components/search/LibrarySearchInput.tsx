@@ -11,9 +11,9 @@ import LibraryTable from "./LibraryTable";
 import { libraryApi } from "@/redux/search/libraryApi";
 import type { TypedUseSelectorHook } from "react-redux";
 
-interface SearchInputProps {}
+interface LibrarySearchInput {}
 
-const SearchInput: FC<SearchInputProps> = ({}) => {
+const LibrarySearchInput: FC<LibrarySearchInput> = ({}) => {
 	const useAppDispatch: () => AppDispatch = useDispatch;
 	const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 	const dispatch = useAppDispatch();
@@ -44,4 +44,4 @@ const SearchInput: FC<SearchInputProps> = ({}) => {
 	);
 };
 
-export default SearchInput;
+export default LibrarySearchInput;
