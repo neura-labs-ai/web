@@ -13,40 +13,35 @@ import type { TypedUseSelectorHook } from "react-redux";
 
 interface SearchInputProps {}
 
-export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-
 const SearchInput: FC<SearchInputProps> = ({}) => {
-	try {
-		const dispatch = useAppDispatch();
-		const search = useAppSelector((state) => state.search.search);
-		const startupLibrary = useAppSelector((state) => state.search.startupLibrary);
+	const useAppDispatch: () => AppDispatch = useDispatch;
+	const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+	const dispatch = useAppDispatch();
+	const search = useAppSelector((state) => state.search.search);
+	const startupLibrary = useAppSelector((state) => state.search.startupLibrary);
 
-		const data = useAppSelector(
-			(state) => state.libraryApi.queries[`search("${search}")`]?.data as Library[]
-		);
+	const data = useAppSelector(
+		(state) => state.libraryApi.queries[`search("${search}")`]?.data as Library[]
+	);
 
-		useEffect(() => {
-			dispatch(libraryApi.endpoints.search.initiate(search));
-		}, [dispatch, search]);
+	useEffect(() => {
+		dispatch(libraryApi.endpoints.search.initiate(search));
+	}, [dispatch, search]);
 
-		return (
-			<>
+	return (
+		<>
+			<div className="grid w-full max-w-sm items-center gap-1.5">
 				<Input
 					type="text"
 					placeholder="Search a library"
 					value={search}
 					onChange={(e) => dispatch(setSearch(e.target.value))}
 				/>
-				<br />
-				<LibraryTable libs={search.length ? data ?? [] : startupLibrary} />
-			</>
-		);
-	} catch (error) {
-		console.log(error);
-
-		return <>null</>;
-	}
+			</div>
+			<br />
+			<LibraryTable libs={search.length ? data ?? [] : startupLibrary} />
+		</>
+	);
 };
 
 export default SearchInput;

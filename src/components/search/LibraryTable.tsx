@@ -12,7 +12,7 @@ const LibraryTable: FC<LibraryTableProps> = ({ libs }) => {
 			<table>
 				<thead>
 					<tr>
-						<th>Active library's</th>
+						<th>Available library&apos;s</th>
 					</tr>
 				</thead>
 				<tbody>
