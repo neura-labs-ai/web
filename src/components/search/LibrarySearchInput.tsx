@@ -30,16 +30,23 @@ const LibrarySearchInput: FC<LibrarySearchInput> = ({}) => {
 
 	return (
 		<>
-			<div className="grid w-full max-w-sm items-center gap-1.5">
-				<Input
-					type="text"
-					placeholder="Search a library"
-					value={search}
-					onChange={(e) => dispatch(setSearch(e.target.value))}
+			<div className="flex flex-row-reverse justify-center w-full sticky top-0">
+				<div className="grid w-full max-w-sm items-center gap-1.5">
+					<Input
+						type="text"
+						placeholder="Search a library"
+						value={search}
+						onChange={(e) => {
+							let s = e.target.value.slice(0, 35); // Limit the search to 50 characters
+							dispatch(setSearch(s));
+						}}
+					/>
+				</div>
+				<br />
+				<LibraryTable
+					libs={search.length ? data ?? [] : startupLibrary}
 				/>
 			</div>
-			<br />
-			<LibraryTable libs={search.length ? data ?? [] : startupLibrary} />
 		</>
 	);
 };

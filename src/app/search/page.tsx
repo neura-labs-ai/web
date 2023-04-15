@@ -26,9 +26,9 @@ interface SearchPageProps {}
 
 async function search() {
 	const res = await fetch(`${HOST_URL}/api/search`, {
-		cache: "no-store",
+		cache: "force-cache",
 		next: {
-			revalidate: 10,
+			revalidate: 5,
 		},
 	});
 

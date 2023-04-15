@@ -24,8 +24,6 @@ const page = async ({}: SettingsProps) => {
 
 	return (
 		<>
-			<TempNav session={session} />
-			<br />
 			<br />
 			<h1>Account Settings</h1>
 			<p>Under development...</p>

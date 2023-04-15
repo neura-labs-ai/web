@@ -9,10 +9,10 @@ generator client {
 
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
+  name          String
+  email         String   @unique
   emailVerified DateTime?
-  image         String?
+  image         String
   role          Role      @default(USER)
   accounts      Account[]
   sessions      Session[]
@@ -59,14 +59,14 @@ model VerificationToken {
 model Library {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String    @unique
-  description String?
-  language    String?
-  tags        String[]  @default([])
+  description String
+  language    SupportedLanguage
+  tags        SupportedTags[]  @default([])
   imageIcon   String?
   homepage    String?
   repository  String?
-  openSource  Boolean?  @default(false)
-  stars       Int?      @default(0)
+  openSource  Boolean  @default(false)
+  stars       Int      @default(0)
   comments    Comment[]
 
   authorId String @db.ObjectId
@@ -93,4 +93,78 @@ enum Role {
   ADMIN
   SYSTEM
   TEST
+}
+
+enum SupportedTags {
+  Web
+  UI
+  Mobile
+  DataScience
+  Mathematics
+  Statistics
+  Desktop
+  Game
+  Database
+  DevOps
+  Security
+  Testing
+  Framework
+  Library
+  Tool
+  ArtificialIntelligence
+  MachineLearning
+  DeepLearning
+  NaturalLanguageProcessing
+  ComputerVision
+  Editor
+  Language
+  Platform
+  Backend
+  Frontend
+  API
+  REST
+  GraphQL
+  Other
+}
+
+enum SupportedLanguage {
+  JavaScript
+  TypeScript
+  Python
+  Java
+  C
+  CPP
+  CSharp
+  Go
+  Ruby
+  PHP
+  Swift
+  Kotlin
+  Rust
+  Scala
+  Dart
+  Lua
+  Perl
+  R
+  Haskell
+  Clojure
+  Elixir
+  Elm
+  Erlang
+  Julia
+  OCaml
+  Pascal
+  Prolog
+  Racket
+  Scheme
+  SQL
+  VisualBasic
+  Fortran
+  Groovy
+  Lisp
+  ObjectiveC
+  Assembly
+  COBOL
+  FSharp
+  MATLAB
 }

@@ -1,7 +1,6 @@
 import { Session, User } from "next-auth";
 import Image from "next/image";
 import { FC } from "react";
-import TempNav from "../ui/TempNav";
 
 interface DisplayAccountProps {
 	session: Session | null;
@@ -11,8 +10,6 @@ interface DisplayAccountProps {
 const DisplayAccount: FC<DisplayAccountProps> = ({ user, session }) => {
 	return (
 		<>
-			<TempNav session={session} />
-			<br />
 			<br />
 			<Image
 				src={session?.user.image!}
