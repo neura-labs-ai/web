@@ -77,7 +77,8 @@ model Comment {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   text  String
   stars Int
-
+  createdAt  DateTime   @default(now())
+  
   libraryId String  @db.ObjectId
   library   Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
 
