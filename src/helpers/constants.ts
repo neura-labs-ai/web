@@ -31,6 +31,10 @@ export const HOST_URL =
 		? "http://localhost:3000"
 		: "https://code-library-engine-dev.vercel.app";
 
+export const LOCAL_STORAGE_KEYS = {
+	TELEMETRY: "telemetry",
+};
+
 export const ROOT_SUB_PAGES = {
 	ABOUT: "/about",
 	CONTACT: "/contact",

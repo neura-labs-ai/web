@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import ErrorProvider from "@/components/ErrorProvider";
 import { SITE } from "@/helpers/constants";
 import AuthProvider from "@/components/AuthProvider";
-import Analytics from "@/components/utils/Analytics";
+import Analytics from "@/components/telemetry/VercelAnalytics";
 
 export const metadata = {
 	title: SITE.META.TITLE,
@@ -17,8 +17,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html lang="en">
 			<body>
+				<Analytics />
 				<ErrorProvider>
-					<Analytics />
 					<AuthProvider>{children}</AuthProvider>
 				</ErrorProvider>
 			</body>
