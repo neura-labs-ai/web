@@ -17,30 +17,36 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const SearchInput: FC<SearchInputProps> = ({}) => {
-	const dispatch = useAppDispatch();
-	const search = useAppSelector((state) => state.search.search);
-	const startupLibrary = useAppSelector((state) => state.search.startupLibrary);
+	try {
+		const dispatch = useAppDispatch();
+		const search = useAppSelector((state) => state.search.search);
+		const startupLibrary = useAppSelector((state) => state.search.startupLibrary);
 
-	const data = useAppSelector(
-		(state) => state.libraryApi.queries[`search("${search}")`]?.data as Library[]
-	);
+		const data = useAppSelector(
+			(state) => state.libraryApi.queries[`search("${search}")`]?.data as Library[]
+		);
 
-	useEffect(() => {
-		dispatch(libraryApi.endpoints.search.initiate(search));
-	}, [dispatch, search]);
+		useEffect(() => {
+			dispatch(libraryApi.endpoints.search.initiate(search));
+		}, [dispatch, search]);
 
-	return (
-		<>
-			<Input
-				type="text"
-				placeholder="Search a library"
-				value={search}
-				onChange={(e) => dispatch(setSearch(e.target.value))}
-			/>
-			<br />
-			<LibraryTable libs={search.length ? data ?? [] : startupLibrary} />
-		</>
-	);
+		return (
+			<>
+				<Input
+					type="text"
+					placeholder="Search a library"
+					value={search}
+					onChange={(e) => dispatch(setSearch(e.target.value))}
+				/>
+				<br />
+				<LibraryTable libs={search.length ? data ?? [] : startupLibrary} />
+			</>
+		);
+	} catch (error) {
+		console.log(error);
+
+		return <>null</>;
+	}
 };
 
 export default SearchInput;

@@ -10,16 +10,16 @@ import { twMerge } from "tailwind-merge";
  * @returns
  */
 export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs));
 }
 
 export function toPusherKey(key: string) {
-	return key.replace(/:/g, "__");
+  return key.replace(/:/g, "__");
 }
 
 export function chatHrefConstructor(id1: string, id2: string) {
-	const sortedIds = [id1, id2].sort();
-	return `${sortedIds[0]}--${sortedIds[1]}`;
+  const sortedIds = [id1, id2].sort();
+  return `${sortedIds[0]}--${sortedIds[1]}`;
 }
 
 /**
@@ -28,15 +28,15 @@ export function chatHrefConstructor(id1: string, id2: string) {
  * @returns {boolean} true if the session is authenticated, false otherwise
  */
 export function isAuthenticated(session: Session | null): boolean {
-	if(isNullOrUndefined(session)) {
-        return false;
-    }
+  if (isNullOrUndefined(session)) {
+    return false;
+  }
 
-    return !isNullOrUndefined(session.user);
+  return !isNullOrUndefined(session.user);
 }
 
 export function returnToLogin(): never {
-	redirect("/auth/login");
+  redirect("/auth/login");
 }
 
 export async function getUserFromDatabase() {}

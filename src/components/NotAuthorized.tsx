@@ -1,17 +1,15 @@
-import { FC } from 'react'
+import { FC } from "react";
 
-interface NotAuthorizedProps {
-  
-}
+interface NotAuthorizedProps {}
 
 const NotAuthorized: FC<NotAuthorizedProps> = ({}) => {
   return (
     <>
-        <div>
-            <h1>Not Authorized</h1>
-        </div>
+      <div>
+        <h1>Not Authorized</h1>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default NotAuthorized
+export default NotAuthorized;

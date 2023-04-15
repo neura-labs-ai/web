@@ -5,11 +5,11 @@ import LibraryTable from "./LibraryTable";
 interface SSRLibraryTableProps {}
 
 const SSRLibraryTable: FC<SSRLibraryTableProps> = ({}) => {
-	return (
-		<>
-			<LibraryTable libs={searchStore.getState().search.startupLibrary} />
-		</>
-	);
+  return (
+    <>
+      <LibraryTable libs={searchStore.getState().search.startupLibrary} />
+    </>
+  );
 };
 
 export default SSRLibraryTable;

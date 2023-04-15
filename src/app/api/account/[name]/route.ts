@@ -10,32 +10,32 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface ContextParams {
-	params: {
-		name: string;
-	};
+  params: {
+    name: string;
+  };
 }
 
 export async function GET(request: NextRequest, context: ContextParams) {
-	const session = await getServerSession();
+  const session = await getServerSession();
 
-	if (!isAuthenticated(session)) {
-		return NextResponse.json(
-			{
-				error: "Unauthorized access",
-			},
-			{
-				status: 401,
-			}
-		);
-	}
+  if (!isAuthenticated(session)) {
+    return NextResponse.json(
+      {
+        error: "Unauthorized access",
+      },
+      {
+        status: 401,
+      }
+    );
+  }
 
-	const user = await prisma.user.findUnique({
-		where: {
-			id: context.params.name,
-		},
-	});
+  const user = await prisma.user.findUnique({
+    where: {
+      id: context.params.name,
+    },
+  });
 
-	console.log("user", user);
+  console.log("user", user);
 
-	return NextResponse.json(user);
+  return NextResponse.json(user);
 }

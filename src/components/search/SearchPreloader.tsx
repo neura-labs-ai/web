@@ -7,18 +7,18 @@ import { FC } from "react";
 import { useRef } from "react";
 
 interface SearchPreloaderProps {
-	libs: Library[];
+  libs: Library[];
 }
 
 const SearchPreloader: FC<SearchPreloaderProps> = ({ libs }) => {
-	const loaded = useRef(false);
+  const loaded = useRef(false);
 
-	if (!loaded.current) {
-		searchStore.dispatch(setStartupLibrary(libs));
-		loaded.current = true;
-	}
+  if (!loaded.current) {
+    searchStore.dispatch(setStartupLibrary(libs));
+    loaded.current = true;
+  }
 
-	return null;
+  return null;
 };
 
 export default SearchPreloader;

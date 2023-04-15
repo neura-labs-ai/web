@@ -7,39 +7,38 @@ import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 
 interface pageProps {
-	params: {
-	};
+  params: {};
 }
 
 export async function generateMetadata({
-	params,
+  params,
 }: pageProps): Promise<Metadata> {
-	const session = await getServerSession();
+  const session = await getServerSession();
 
-	if (!isAuthenticated(session)) return returnToLogin();
+  if (!isAuthenticated(session)) return returnToLogin();
 
-	return {
-		title: `${session?.user.name}` ?? `Account Not found`,
-		description: `${session?.user.name}'s Account information`,
-	};
+  return {
+    title: `${session?.user.name}` ?? `Account Not found`,
+    description: `${session?.user.name}'s Account information`,
+  };
 }
 
 async function getUser(name: string) {
-	return await prisma.user.findFirst({
-		where: {
-			name: name,
-		},
-	});
+  return await prisma.user.findFirst({
+    where: {
+      name: name,
+    },
+  });
 }
 
 const page = async ({ params }: pageProps) => {
-	// console.log("params", params);
+  // console.log("params", params);
 
-	const session = await getServerSession();
+  const session = await getServerSession();
 
-	if (!isAuthenticated(session)) return <NotAuthorized />;
+  if (!isAuthenticated(session)) return <NotAuthorized />;
 
-	return <DisplayAccount session={session} user={session!.user} />;
+  return <DisplayAccount session={session} user={session!.user} />;
 };
 
 export default page;

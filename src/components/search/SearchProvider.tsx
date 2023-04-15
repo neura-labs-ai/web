@@ -3,9 +3,9 @@ import { searchStore } from "@/redux/search";
 import { Provider } from "react-redux";
 
 export default function SearchProviders({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return <Provider store={searchStore}>{children}</Provider>;
+  return <Provider store={searchStore}>{children}</Provider>;
 }
