@@ -23,7 +23,7 @@ const DisplayAccount: FC<DisplayAccountProps> = ({ user, session }) => {
 			<h1>{user?.name} Account information</h1>
 			<br />
 			<div className="code-block">
-				<pre>Name: {user?.name ?? "@Error"} (More info soon)</pre>
+				<pre>Name: {user?.name ?? "Uknown"} | Role: {user?.role ?? "Unknown"}</pre>
 			</div>
 		</>
 	);
