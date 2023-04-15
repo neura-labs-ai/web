@@ -1,8 +1,7 @@
-import { getServerSession, NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "./db";
-import { GetServerSidePropsContext } from "next";
 
 function GitHubAuthOptions() {
 	const clientId = process.env.GITHUB_CLIENT_ID;

@@ -1,7 +1,11 @@
 import NotAuthorized from "@/components/NotAuthorized";
-import Button from "@/components/ui/Button";
+import LibrarySearchInput from "@/components/search/LibrarySearchInput";
+import SearchPreloader from "@/components/search/SearchPreloader";
+import SearchProviders from "@/components/search/SearchProvider";
 import TempNav from "@/components/ui/TempNav";
 import { isAuthenticated, returnToLogin } from "@/lib/utils";
+import { searchStore } from "@/redux/search";
+import { setStartupLibrary } from "@/redux/search/searchSlice";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 
@@ -19,17 +23,36 @@ export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
 
 interface SearchPageProps {}
 
+async function search() {
+	const res = await fetch("http://localhost:3000/api/search", {
+		cache: "no-store",
+		next: {
+			revalidate: 10,
+		},
+	});
+
+	const data = await res.json();
+
+	return data;
+}
+
 const page = async ({}: SearchPageProps) => {
 	const session = await getServerSession();
 
 	if (!isAuthenticated(session)) return <NotAuthorized />;
 
+	const data = await search();
+
+	searchStore.dispatch(setStartupLibrary(data));
+
 	return (
 		<>
-			<h1>Some Amazing Search Engine</h1>
-
+			<SearchPreloader libs={data} />
+			<SearchProviders>
+				<LibrarySearchInput />
+			</SearchProviders>
 			<br />
-			<TempNav session={session}/>
+			<TempNav session={session} />
 		</>
 	);
 };

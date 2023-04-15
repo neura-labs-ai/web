@@ -11,18 +11,15 @@ export const metadata = {
 
 interface RootLayoutProps {
 	children: React.ReactNode;
-	params: any;
 }
 
-export default function RootLayout({ children, params }: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html lang="en">
 			<body>
 				<ErrorProvider>
-					<AuthProvider>
-						{children}
-						<Analytics />
-					</AuthProvider>
+					<Analytics />
+					<AuthProvider>{children}</AuthProvider>
 				</ErrorProvider>
 			</body>
 		</html>

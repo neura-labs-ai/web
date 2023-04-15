@@ -13,10 +13,11 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role          Role      @default(USER)
   accounts      Account[]
   sessions      Session[]
-  Library       Library[]
-  Comment       Comment[]
+  librarys      Library[]
+  comments      Comment[]
 }
 
 model Account {
@@ -62,11 +63,14 @@ model Library {
   language    String?
   tags        String[]  @default([])
   imageIcon   String?
-  stars       Int       @default(0)
+  homepage    String?
+  repository  String?
+  openSource  Boolean?  @default(false)
+  stars       Int?      @default(0)
   comments    Comment[]
 
   authorId String @db.ObjectId
-  owner     User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }
 
 model Comment {
@@ -76,6 +80,16 @@ model Comment {
 
   libraryId String  @db.ObjectId
   library   Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
-  authorId  String  @db.ObjectId
-  owner      User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  authorId String @db.ObjectId
+  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  CONTRIBUTOR
+  MODERATOR
+  ADMIN
+  SYSTEM
+  TEST
 }
