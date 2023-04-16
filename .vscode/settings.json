@@ -1,4 +1,19 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"cSpell.words": [
+		"autosize",
+		"clsx",
+		"contentlayer",
+		"downvotes",
+		"headlessui",
+		"heroicons",
+		"hookform",
+		"lucide",
+		"NEXTAUTH",
+		"qlib",
+		"reduxjs",
+		"tailwindcss",
+		"upvotes"
+	]
 }

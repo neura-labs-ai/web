@@ -1,0 +1,170 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String   @unique
+  emailVerified DateTime?
+  image         String
+  role          Role      @default(USER)
+  accounts      Account[]
+  sessions      Session[]
+  librarys      Library[]
+  comments      Comment[]
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Library {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String    @unique
+  description String
+  language    SupportedLanguage
+  tags        SupportedTags[]  @default([])
+  imageIcon   String?
+  homepage    String?
+  repository  String?
+  openSource  Boolean  @default(false)
+  stars       Int      @default(0)
+  comments    Comment[]
+
+  ownerId String @db.ObjectId
+  owner    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+model Comment {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  text  String
+  stars Int
+  createdAt  DateTime   @default(now())
+  
+  libraryId String  @db.ObjectId
+  library   Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+
+  ownerId String @db.ObjectId
+  owner    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  CONTRIBUTOR
+  MODERATOR
+  ADMIN
+  SYSTEM
+  TEST
+}
+
+enum SupportedTags {
+  Web
+  UI
+  Mobile
+  DataScience
+  Mathematics
+  Statistics
+  Desktop
+  Game
+  Database
+  DevOps
+  Security
+  Testing
+  Framework
+  Library
+  Tool
+  ArtificialIntelligence
+  MachineLearning
+  DeepLearning
+  NaturalLanguageProcessing
+  ComputerVision
+  Editor
+  Language
+  Platform
+  Backend
+  Frontend
+  API
+  REST
+  GraphQL
+  Other
+}
+
+enum SupportedLanguage {
+  JavaScript
+  TypeScript
+  Python
+  Java
+  C
+  CPP
+  CSharp
+  Go
+  Ruby
+  PHP
+  Swift
+  Kotlin
+  Rust
+  Scala
+  Dart
+  Lua
+  Perl
+  R
+  Haskell
+  Clojure
+  Elixir
+  Elm
+  Erlang
+  Julia
+  OCaml
+  Pascal
+  Prolog
+  Racket
+  Scheme
+  SQL
+  VisualBasic
+  Fortran
+  Groovy
+  Lisp
+  ObjectiveC
+  Assembly
+  COBOL
+  FSharp
+  MATLAB
+}
