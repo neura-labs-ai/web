@@ -29,10 +29,9 @@ const nextConfig = {
 module.exports = {
 	...nextConfig,
 	env: {
-		DATABASE_URL: process.env.DATABASE_URL,
 		NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
 		NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-		MONGO_DB_CONNECTION_URL: process.env.MONGO_DB_CONNECTION_URL,
+		DATABASE_URL: process.env.DATABASE_URL,
 		GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
 		GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
 		GITHUB_CALLBACK_URL: process.env.GITHUB_CALLBACK_URL,

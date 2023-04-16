@@ -10,9 +10,11 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 
 	if (!isAuthenticated(session)) return returnToLogin();
 
+	const userName = decodeURI(session?.user?.name!);
+
 	return {
-		title: `${session?.user?.name} - Home`,
-		description: `Welcome home ${session?.user?.name}!`,
+		title: `${userName} - Home`,
+		description: `Welcome home ${userName}!`,
 	};
 }
 
@@ -21,10 +23,12 @@ const page = async ({}) => {
 
 	if (!isAuthenticated(session)) return <NotAuthorized />;
 
+	const userName = decodeURI(session?.user?.name!);
+
 	return (
 		<>
 			<br />
-			<h1>Welcome home {session?.user?.name}!</h1>
+			<h1>Welcome home {userName}!</h1>
 			<p>It seams your pocking around this development site... 😜</p>
 			<p>Stay tunned for more!</p>
 		</>

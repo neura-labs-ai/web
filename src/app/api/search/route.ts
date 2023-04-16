@@ -11,15 +11,15 @@ export async function GET(request: NextRequest) {
 
 	// console.log("searchParams", searchParams);
 
-	const name = searchParams.get("name"); // example: ?name=react
+	const libQuery = searchParams.get("q"); // example: ?q=react
 	// Used for search submit
 
-	// The name controls the search bar autocomplete. If there is a name, we will return the first 10 results, else everything will be displayed.
+	// The libQuery controls the search bar autocomplete. If there is a name, we will return the first 10 results, else everything will be displayed.
 	// We load json from the static db for better performance.
 	// A new solution will be found later.
-	if (name) {
+	if (libQuery) {
 		const filteredLibs = libs.filter((lib) =>
-			lib.name.toLowerCase().includes(name.toLowerCase())
+			lib.name.toLowerCase().includes(libQuery.toLowerCase())
 		);
 		return NextResponse.json(filteredLibs.slice(0, 10)); // return first 10 results
 	}

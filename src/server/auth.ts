@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
 
 			if (user) {
 				token.id = user.id;
-				token.name = encodeURI(user.name!);
+				token.name = encodeURI(user.name!)
 				token.email = user.email;
 				token.picture = user.image;
 				token.role = user.role;
@@ -54,10 +54,9 @@ export const authOptions: NextAuthOptions = {
 		async session({ session, token }) {
 			// console.log("session", session);
 			// console.log("token", token);
-
 			if (token) {
 				session.user.id = token.id;
-				session.user.name = token.name;
+				session.user.name = token.name
 				session.user.email = token.email;
 				session.user.image = token.picture;
 				session.user.role = token.role;

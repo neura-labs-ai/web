@@ -8,19 +8,22 @@ interface DisplayAccountProps {
 }
 
 const DisplayAccount: FC<DisplayAccountProps> = ({ user, session }) => {
+	const userName = decodeURI(user?.name!);
+
 	return (
 		<>
-			<br />
 			<Image
 				src={session?.user.image!}
-				alt={`${session?.user.name} account image`}
+				alt={`${userName} account image`}
 				width={20}
 				height={20}
 			/>
-			<h1>{user?.name} Account information</h1>
+			<h1>{userName} Account information</h1>
 			<br />
 			<div className="code-block">
-				<pre>Name: {user?.name ?? "Uknown"} | Role: {user?.role ?? "Unknown"}</pre>
+				<pre>
+					Name: {userName ?? "Unknown"} | Role: {user?.role ?? "Unknown"}
+				</pre>
 			</div>
 		</>
 	);

@@ -29,7 +29,7 @@ export const SITE = {
 export const HOST_URL =
 	process.env.NODE_ENV === "development"
 		? "http://localhost:3000"
-		: "https://code-library-engine-dev.vercel.app";
+		: "the-code-library-preview.vercel.app";
 
 export const LOCAL_STORAGE_KEYS = {
 	TELEMETRY: "telemetry",
@@ -54,42 +54,42 @@ export const NAV_LINKS = [
 	{ name: "Company", href: "#" },
 ];
 
-const gith_link = "https://github.com";
+const gh_url = "https://github.com";
 export const TEAM_MEMBERS = [
 	{
 		name: "ThatGuyJamal",
 		role: "CEO",
 		imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-		github: `${gith_link}/ThatGuyJamal`,
+		github: `${gh_url}/ThatGuyJamal`,
 	},
 	{
 		name: "ThatGuyJamal",
 		role: "CEO",
 		imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-		github: `${gith_link}/ThatGuyJamal`,
+		github: `${gh_url}/ThatGuyJamal`,
 	},
 	{
 		name: "ThatGuyJamal",
 		role: "CEO",
 		imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-		github: `${gith_link}/ThatGuyJamal`,
+		github: `${gh_url}/ThatGuyJamal`,
 	},
 	{
 		name: "ThatGuyJamal",
 		role: "CEO",
 		imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-		github: `${gith_link}/ThatGuyJamal`,
+		github: `${gh_url}/ThatGuyJamal`,
 	},
 	{
 		name: "ThatGuyJamal",
 		role: "CEO",
 		imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-		github: `${gith_link}/ThatGuyJamal`,
+		github: `${gh_url}/ThatGuyJamal`,
 	},
 	{
 		name: "ThatGuyJamal",
 		role: "CEO",
 		imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-		github: `${gith_link}/ThatGuyJamal`,
+		github: `${gh_url}/ThatGuyJamal`,
 	},
 ];

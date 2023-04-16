@@ -1,10 +1,10 @@
 "use client";
 
-import RootContent from "@/components/ui/root/RootContent";
-import RootHero from "@/components/ui/root/RootHero";
-import RootStats from "@/components/ui/root/RootStats";
-import RootTeam from "@/components/ui/root/RootTeam";
-import RootTestimonials from "@/components/ui/root/RootTestimonials";
+import RootContent from "@/components/root/RootContent";
+import RootHero from "@/components/root/RootHero";
+import RootStats from "@/components/root/RootStats";
+import RootTeam from "@/components/root/RootTeam";
+import RootTestimonials from "@/components/root/RootTestimonials";
 
 export default function Root() {
   return (

@@ -7,7 +7,6 @@ import { searchStore } from "@/redux/search";
 import { setStartupLibrary } from "@/redux/search/searchSlice";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
-import { useSearchParams } from "next/navigation";
 
 export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
 	const session = await getServerSession();
@@ -40,11 +39,6 @@ const page = async ({}: SearchPageProps) => {
 	const session = await getServerSession();
 
 	if (!isAuthenticated(session)) return returnToLogin();
-
-	// const search = useSearchParams()
-	// const searchQuery = search ? search.get("q") : null;
-
-	// const encodedSearch = encodeURIComponent(searchQuery || "");
 
 	const data = await getSearchResults();
 

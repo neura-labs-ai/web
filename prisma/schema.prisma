@@ -69,8 +69,8 @@ model Library {
   stars       Int      @default(0)
   comments    Comment[]
 
-  authorId String @db.ObjectId
-  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  ownerId String @db.ObjectId
+  owner    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }
 
 model Comment {
@@ -82,8 +82,8 @@ model Comment {
   libraryId String  @db.ObjectId
   library   Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
 
-  authorId String @db.ObjectId
-  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  ownerId String @db.ObjectId
+  owner    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }
 
 enum Role {
