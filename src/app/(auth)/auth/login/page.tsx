@@ -22,7 +22,9 @@ const Login: FC<LoginProps> = () => {
   async function loginWithGitHub() {
     setIsLoading(true);
     try {
-      await signIn("github").then(() => {
+      await signIn("github", {
+        callbackUrl: "/home",
+      }).then(() => {
         toast.success("You have successfully logged in.");
       });
     } catch (error: any) {

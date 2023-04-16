@@ -30,6 +30,9 @@ const TempNav = ({ session }: TempNavProps) => {
 						<Button>
 							<Link href={"/search"}>Search a Library</Link>
 						</Button>
+						<Button>
+							<Link href={"/auth/logout"}>Logout</Link>
+						</Button>
 					</div>
 				</div>
 			</>

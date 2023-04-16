@@ -4,6 +4,7 @@ import Button from "@/components/ui/Button";
 import { FC, useState } from "react";
 import { signOut } from "next-auth/react";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
 
 interface LoginProps {}
 
@@ -13,12 +14,14 @@ const Logout: FC<LoginProps> = () => {
 	async function logoutFromGitHub() {
 		setIsLoading(true);
 		try {
-			await signOut().then(() => {
+			await signOut({
+				callbackUrl: "/",
+			}).then(() => {
 				toast.success("Logged out successfully.");
 			});
 		} catch (error: any) {
 			// display error message to user
-			toast.error("There was a problem logging in.");
+			toast.error("There was a problem logging out.");
 		} finally {
 			setIsLoading(false);
 		}
@@ -30,10 +33,12 @@ const Logout: FC<LoginProps> = () => {
 				<div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 					<div className="w-full flex flex-col items-center max-w-md space-y-8">
 						<div className="flex flex-col items-center gap-8">
-							App Logo Here
-							<h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-teal-500">
-								Sign in to your account
-							</h2>
+							<Image
+								src={"https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"}
+								alt={"Logo"}
+								width={150}
+								height={150}
+							/>
 						</div>
 
 						<Button
