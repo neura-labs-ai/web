@@ -29,7 +29,7 @@ export const SITE = {
 export const HOST_URL =
 	process.env.NODE_ENV === "development"
 		? "http://localhost:3000"
-		: "the-code-library-preview.vercel.app";
+		: "http://the-code-library-preview.vercel.app";
 
 export const LOCAL_STORAGE_KEYS = {
 	TELEMETRY: "telemetry",

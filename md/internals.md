@@ -37,3 +37,7 @@ The main ready we only use atlas and not a local server is because is [this](htt
 ## Building the project
 
 Read [Building.md](./build.md)
+
+## env 
+
+https://nextjs.org/docs/basic-features/environment-variables
