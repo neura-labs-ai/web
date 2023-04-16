@@ -26,7 +26,10 @@ When the user accepts the login they are sent to the `/api/auth/callback/github`
 
 ## Tailwind
 
-- Main - teal-500
+- main color theme = teal-500 | rgb(20 184 166) | #14b8a6
+- sub ascents = pink-400 | rgb(244 114 182) | #f472b6
+- main text = text-zinc-300 | rgb(244 244 245) | #f4f4f5
+- Background color = bg-zinc-950 | rgb(9 9 11) | #09090b
 
 ## Database
 

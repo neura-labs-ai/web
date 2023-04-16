@@ -19,7 +19,7 @@ export const SITE = {
 			"Code Library aim's to provide developers of any level the research and tools required for proficiency in various programming languages and frameworks.",
 	},
 	SOCIALS: {
-		GITHUB: "",
+		GITHUB: "https://github.com/ThatGuyJamal/The-Code-Library",
 		TWITTER: "",
 		DISCORD: "",
 		EMAIL: "",
@@ -41,10 +41,11 @@ export const ROOT_SUB_PAGES = {
 	PRIVACY: "/privacy",
 	TERMS: "/terms",
 	CONTRIBUTE: "/contributing",
+	LOGIN: "/auth/login",
 };
 
 export const LOGO_URL =
-	"https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600";
+	"https://tailwindui.com/img/logos/mark.svg?color=teal&shade=400";
 
 /** Links used for the navbar */
 export const NAV_LINKS = [

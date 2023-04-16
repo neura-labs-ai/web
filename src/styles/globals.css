@@ -2,59 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
+
+/* Disable scroll bar on chrome and Safari */
+body::-webkit-scrollbar {
+	display: none;
 }
 
-.scrollbar-w-2::-webkit-scrollbar {
-	width: 0.25rem;
-	height: 0.25rem;
+Style the scrollbar track
+::-webkit-scrollbar-track {
+  background-color: #14b8a6;
 }
 
-.scrollbar-track-blue-lighter::-webkit-scrollbar-track {
-	--bg-opacity: 1;
-	background-color: #f7fafc;
-	background-color: rgba(247, 250, 252, var(--bg-opacity));
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #14b8a6;
+  border-radius: 10px;
 }
 
-.scrollbar-thumb-blue::-webkit-scrollbar-thumb {
-	--bg-opacity: 1;
-	background-color: #edf2f7;
-	background-color: rgba(237, 242, 247, var(--bg-opacity));
-}
-
-.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
-	border-radius: 0.25rem;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 0, 0, 0;
-		--background-end-rgb: 0, 0, 0;
-	}
+/* Style the scrollbar corner */
+::-webkit-scrollbar-corner {
+  background-color: #14b8a6;
 }
 
 body {
-	color: rgb(var(--foreground-rgb));
-	background: linear-gradient(
+	/* color: rgb(var(--foreground-rgb)); */
+	/* background: linear-gradient(
 			to bottom,
 			transparent,
 			rgb(var(--background-end-rgb))
 		)
-		rgb(var(--background-start-rgb));
-}
-
-.code-block {
-	@apply fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30;
-}
-
-.code-block-content {
-	@apply font-mono font-bold;
-}
-
-.center-and-justify {
-	@apply flex min-h-screen flex-col items-center justify-between p-24;
+		rgb(var(--background-start-rgb)); */
+	background-color: rgb(9 9 11);
+	color: rgb(244 244 245);
 }
