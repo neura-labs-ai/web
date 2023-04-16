@@ -17,6 +17,8 @@ _In no particular order_
 11. https://authjs.dev/ (https://next-auth.js.org/)
 12. https://github.com/typegoose/typegoose
 13. https://react-hook-form.com/
+14. https://typescript-eslint.io/
+15. 
 
 ## Docs
 
