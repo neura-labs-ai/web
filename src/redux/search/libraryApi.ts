@@ -8,12 +8,8 @@ export const libraryApi = createApi({
 	tagTypes: ["library", "libraryData"],
 	endpoints: (builder) => ({
 		search: builder.query<Library[], string>({
-			query: (q) => `search?name=${q}`,
+			query: (query) => `search?q=${query}`,
 			providesTags: (result, error, search) => [{ type: "library", search }],
 		}),
-		searchUnique: builder.query<Library, string>({
-			query: (q) => `search?nameUnique=${q}`,
-			providesTags: (result, error, search) => [{ type: "libraryData", search }],
-		})
 	}),
 });

@@ -1,3 +1,5 @@
+"use client"
+
 import { getServerSession, Session } from "next-auth";
 import Link from "next/link";
 import Button from "./Button";

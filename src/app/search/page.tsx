@@ -1,14 +1,13 @@
-import NotAuthorized from "@/components/NotAuthorized";
 import LibrarySearchInput from "@/components/search/LibrarySearchInput";
 import SearchPreloader from "@/components/search/SearchPreloader";
 import SearchProviders from "@/components/search/SearchProvider";
-import TempNav from "@/components/ui/TempNav";
 import { HOST_URL } from "@/helpers/constants";
 import { isAuthenticated, returnToLogin } from "@/lib/utils";
 import { searchStore } from "@/redux/search";
 import { setStartupLibrary } from "@/redux/search/searchSlice";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
+import { useSearchParams } from "next/navigation";
 
 export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
 	const session = await getServerSession();
@@ -24,7 +23,7 @@ export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
 
 interface SearchPageProps {}
 
-async function search() {
+async function getSearchResults() {
 	const res = await fetch(`${HOST_URL}/api/search`, {
 		cache: "force-cache",
 		next: {
@@ -40,16 +39,19 @@ async function search() {
 const page = async ({}: SearchPageProps) => {
 	const session = await getServerSession();
 
-	if (!isAuthenticated(session)) return <NotAuthorized />;
+	if (!isAuthenticated(session)) return returnToLogin();
 
-	const data = await search();
+	// const search = useSearchParams()
+	// const searchQuery = search ? search.get("q") : null;
+
+	// const encodedSearch = encodeURIComponent(searchQuery || "");
+
+	const data = await getSearchResults();
 
 	searchStore.dispatch(setStartupLibrary(data));
 
 	return (
 		<>
-			<TempNav session={session} />
-			<br />
 			<br />
 			<SearchPreloader libs={data} />
 			<SearchProviders>
