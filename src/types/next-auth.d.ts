@@ -9,6 +9,7 @@ declare module "next-auth/jwt" {
 		id: UserId;
 		role: Role | null | undefined;
 		bio: string | null | undefined;
+		username: string | null | undefined;
 	}
 }
 
