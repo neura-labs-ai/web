@@ -61,7 +61,7 @@ declare module "next-auth" {
 /**
  * Custom profile object returned when a user account
  * is saved into the database on sign-in.
- * The full profile object can be found in ./server/gh_profile.json
+ * The full profile object can be found in ./assets/json/gh_profile.json
  */
 export interface GitHubProfile {
 	id: number;

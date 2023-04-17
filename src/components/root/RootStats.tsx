@@ -1,8 +1,10 @@
 // todo - fetch this data. This is just a placeholder
 const stats = [
-  { id: 1, name: "A resource developers all around the world", value: "7000+" },
-  { id: 3, name: "Thousands of monthly active users", value: "1,000+" },
-  { id: 2, name: "Stars On GitHub", value: "4,000+" },
+	{ id: 1, name: "A resource developers all around the world", value: "7000+" },
+	{ id: 3, name: "Thousands of monthly active users", value: "1,000+" },
+
+	// Use react query to fetch from https://api.github.com/repos/ThatGuyJamal/Audio-Lion/The-Code-Library/stargazers
+	{ id: 2, name: "Stars On GitHub", value: "4,000+" },
 ];
 
 export default function RootStats() {
