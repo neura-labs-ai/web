@@ -37,7 +37,7 @@ export default function RootTeam() {
 										<p className="text-sm font-semibold leading-6 text-pink-400">
 											{person.role}
 										</p>
-										<a className="text-black" href={person.github} target="_blank">
+										<a className="text-zinc-400" href={person.github} target="_blank">
 											GitHub
 										</a>
 									</div>
