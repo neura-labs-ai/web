@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "./db";
+import { Role } from "@prisma/client";
 
 function GitHubAuthOptions() {
 	const clientId = process.env.GITHUB_CLIENT_ID;
@@ -26,43 +27,59 @@ export const authOptions: NextAuthOptions = {
 	pages: {
 		signIn: "/auth/login",
 		signOut: "/auth/logout",
+		error: "/auth/login", // Error code passed in query string as ?error=
 	},
 	providers: [
 		GitHubProvider({
 			clientId: GitHubAuthOptions().clientId,
 			clientSecret: GitHubAuthOptions().clientSecret,
+			// see ./types/next-auth.d.ts
+			profile(profile) {
+				return {
+					id: profile.id.toString(),
+					name: profile.name || profile.login,
+					username: profile.login,
+					email: profile.email,
+					image: profile.avatar_url,
+					bio: profile.bio,
+					role: Role.USER,
+				};
+			},
 		}),
 	],
 	callbacks: {
-		async signIn({}) {
-			return true;
-		},
-		async jwt({ token, user }) {
-			// console.log("token", token);
-			// console.log("user", user);
-
+		// async signIn({}) {
+		// 	return true;
+		// },
+		async jwt({ token, user, session }) {
 			if (user) {
 				token.id = user.id;
 				token.name = encodeURI(user.name!);
 				token.email = user.email;
 				token.picture = user.image;
 				token.role = user.role;
+				token.bio = user.bio;
 			}
 
 			return token;
 		},
-		async session({ session, token }) {
-			// console.log("session", session);
-			// console.log("token", token);
+		async session({ session, token, user }) {
 			if (token) {
 				session.user.id = token.id;
 				session.user.name = token.name;
+				session.user.username = token.username;
 				session.user.email = token.email;
 				session.user.image = token.picture;
+				session.user.bio = token.bio;
 				session.user.role = token.role;
 			}
-
-			return session;
+			return {
+				...session,
+				user: {
+					...session.user,
+					...token,
+				},
+			};
 		},
 		redirect({ url, baseUrl }) {
 			// Allows relative callback URLs

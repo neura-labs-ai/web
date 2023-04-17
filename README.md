@@ -1,18 +1,16 @@
 # Engine
 
-The Code library search engine is a web application that allows users to search for code snippets and libraries from various sources. The engine is built using Next.js and Elasticsearch.
+The Code Library is a search engine for code snippets. It is built using Next.js and Tailwind CSS. It is currently in development.
+
+![Image](https://cdn.discordapp.com/attachments/1055666441103360011/1097325787385962546/e36c7c5f-618d-4c35-9469-318307922478.png)
 
 ## Getting Started
 
-The Code library search engine is currently in development. To run the application locally, follow these steps:
+Coming soon...
 
-1. Clone the repository to your local machine.
-2. Install the dependencies using `npm install`.
-3. Run the development server using `npm run dev`.
+## Local Development
 
-For information about Next.js read [here](./md/next-dev.md).
-
-You can read the project Road-map information [here](./md/ROADMAP.md).
+Coming soon...
 
 ## Live Sites
 
