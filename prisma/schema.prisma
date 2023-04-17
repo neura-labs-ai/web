@@ -7,11 +7,14 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// The user model is based off the github API data.
+// see - https://api.github.com/users/GitHub for an example user.
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  username      String? 
-  email         String   @unique
+  name          String?
+  username      String?
+  bio           String?
+  email         String    @unique
   emailVerified DateTime?
   image         String
   role          Role      @default(USER)
@@ -58,33 +61,33 @@ model VerificationToken {
 }
 
 model Library {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  name        String    @unique
+  id          String            @id @default(auto()) @map("_id") @db.ObjectId
+  name        String            @unique
   description String
   language    SupportedLanguage
-  tags        SupportedTags[]  @default([])
+  tags        SupportedTags[]   @default([])
   imageIcon   String?
   homepage    String?
   repository  String?
-  openSource  Boolean  @default(false)
-  stars       Int      @default(0)
+  openSource  Boolean           @default(false)
+  stars       Int               @default(0)
   comments    Comment[]
 
   ownerId String @db.ObjectId
-  owner    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }
 
 model Comment {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  text  String
-  stars Int
-  createdAt  DateTime   @default(now())
-  
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  text      String
+  stars     Int
+  createdAt DateTime @default(now())
+
   libraryId String  @db.ObjectId
   library   Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
 
   ownerId String @db.ObjectId
-  owner    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }
 
 enum Role {
