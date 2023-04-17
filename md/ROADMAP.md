@@ -14,7 +14,7 @@
 
 ## Phase 3: Back-End Development
 - [ ] Set up API endpoints to handle requests from the front-end.
-- [ ] Create a MongoDB database to store and manage your data.
+- [x] Create a MongoDB database to store and manage your data.
 - [ ] Develop web scraping tools to collect code snippets and libraries from various sources.
 - [ ] Implement a way to cache code snippets and libraries to reduce the load on the web scraping tools.
 
