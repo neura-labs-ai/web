@@ -29,8 +29,8 @@ export async function test_lib_populate(enabled: boolean = false) {
 						create: {
 							name: encodeURI(lib.owner.name),
 							email: lib.owner.email,
-							role: "TEST",
 							image: "https://cdn.discordapp.com/embed/avatars/0.png",
+							roles: ["TEST"]
 						},
 					},
 				},

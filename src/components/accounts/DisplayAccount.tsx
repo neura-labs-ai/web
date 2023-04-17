@@ -22,7 +22,7 @@ const DisplayAccount: FC<DisplayAccountProps> = ({ user, session }) => {
 			<br />
 			<div className="code-block">
 				<pre>
-					Name: {userName ?? "Unknown"} | Role: {user?.role ?? "Unknown"}
+					Name: {userName ?? "Unknown"} | Role: {user?.roles?.map((r) => r).join(", ") ?? "Unknown"}
 				</pre>
 			</div>
 		</>

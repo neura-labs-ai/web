@@ -49,7 +49,7 @@ export function hasPermission(session: Session | null, role: Role): boolean {
 
 	if (!exist) return false;
 
-	return session?.user.role === role ?? false;
+	return session?.user.roles?.includes(role) ?? false;
 }
 
 export function returnToLogin(): never {
@@ -66,7 +66,7 @@ export async function getUserFromDatabase() {}
  * @returns Nothing if the user is allowed, a NextResponse if the user is not allowed
  */
 export function notAllowedReply(req: NextRequestWithAuth, role: Role) {
-	if (req.nextauth.token?.role === role) return;
+	if (req.nextauth.token?.role && role.includes(role)) return;
 
 	return NextResponse.json(
 		{

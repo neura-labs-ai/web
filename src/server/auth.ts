@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
 					email: profile.email,
 					image: profile.avatar_url,
 					bio: profile.bio,
-					role: Role.USER,
+					roles: [Role.USER],
 				};
 			},
 		}),
@@ -58,13 +58,13 @@ export const authOptions: NextAuthOptions = {
 				token.name = encodeURI(user.name!);
 				token.email = user.email;
 				token.picture = user.image;
-				token.role = user.role;
+				token.roles = user.roles;
 				token.bio = user.bio;
 			}
 
 			return token;
 		},
-		async session({ session, token, user }) {
+		async session({ session, token }) {
 			if (token) {
 				session.user.id = token.id;
 				session.user.name = token.name;
@@ -72,7 +72,7 @@ export const authOptions: NextAuthOptions = {
 				session.user.email = token.email;
 				session.user.image = token.picture;
 				session.user.bio = token.bio;
-				session.user.role = token.role;
+				session.user.roles = token.roles;
 			}
 			return {
 				...session,

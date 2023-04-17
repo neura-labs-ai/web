@@ -1,4 +1,4 @@
-import { Library } from "@prisma/client";
+import { Library, Role } from "@prisma/client";
 
 interface Mock extends Library {
 	comments: {
@@ -11,6 +11,7 @@ interface Mock extends Library {
 	owner: {
 		name: string;
 		email: string;
+		roles: Role[];
 	};
 }
 
