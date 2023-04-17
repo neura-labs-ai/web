@@ -33,7 +33,8 @@ export const authOptions: NextAuthOptions = {
 		GitHubProvider({
 			clientId: GitHubAuthOptions().clientId,
 			clientSecret: GitHubAuthOptions().clientSecret,
-			// see ./types/next-auth.d.ts
+			// This callback returns the data thats passed into prisma create when a user is created
+			// see ./types/next-auth.d.ts  for types
 			profile(profile) {
 				return {
 					id: profile.id.toString(),
