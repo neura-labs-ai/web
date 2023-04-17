@@ -10,13 +10,14 @@
 - [ ] Design and develop a user interface for the Code library search engine using Next.js.
 - [ ] Implement search functionality using Elasticsearch or another search engine technology.
 - [ ] Develop a dashboard for authenticated users to manage their account and saved libraries.
-- [ ] Implement Github authentication to allow users to sign in using their Github accounts.
+- [x] Implement Github authentication to allow users to sign in using their Github accounts.
 
 ## Phase 3: Back-End Development
 - [ ] Set up API endpoints to handle requests from the front-end.
 - [x] Create a MongoDB database to store and manage your data.
 - [ ] Develop web scraping tools to collect code snippets and libraries from various sources.
 - [ ] Implement a way to cache code snippets and libraries to reduce the load on the web scraping tools.
+- [ ] Add API caching using redis and upStash on things like user information.
 
 ## Phase 4: Testing and Deployment
 - [ ] Develop a testing strategy and test the Code library search engine thoroughly.
