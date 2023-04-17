@@ -70,7 +70,7 @@ export function notAllowedReply(req: NextRequestWithAuth, role: Role) {
 
 	return NextResponse.json(
 		{
-			error: `Unauthorized access (${req.nextauth.token?.role ?? "Unknown"})!`,
+			error: `Unauthorized access (${req.nextauth.token?.roles?.map((r) => r).join(", ") ?? "Unknown"})!`,
 		},
 		{
 			status: 401,
