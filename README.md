@@ -1,6 +1,6 @@
 # Engine
 
-Mission: To provide developers of any level the research and tools required for proficiency in various programming languages and frameworks.
+I created this as a tool for developers to view and explore analytics on the software development ecosystem. The main goal is to provide developers of any level the research and tools required for proficiency in various programming languages and frameworks.
 
 ![Image](https://cdn.discordapp.com/attachments/1055666441103360011/1097325787385962546/e36c7c5f-618d-4c35-9469-318307922478.png)
 
