@@ -2,26 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Poor+Story&display=swap");
 
 /* Disable scroll bar on chrome and Safari */
 body::-webkit-scrollbar {
 	display: none;
 }
-
-/* ::-webkit-scrollbar-track {
-  background-color: #14b8a6;
-} */
-
-/* Style the scrollbar thumb */
-/* ::-webkit-scrollbar-thumb {
-  background-color: #14b8a6;
-  border-radius: 10px;
-} */
-
-/* Style the scrollbar corner */
-/* ::-webkit-scrollbar-corner {
-  background-color: #14b8a6;
-} */
 
 body {
 	/* color: rgb(var(--foreground-rgb)); */
@@ -33,4 +19,9 @@ body {
 		rgb(var(--background-start-rgb)); */
 	background-color: rgb(9 9 11);
 	color: rgb(244 244 245);
+	font-family: "Heebo", sans-serif;
+}
+
+h1 {
+	font-family: "Poor Story", cursive;
 }
