@@ -1,6 +1,9 @@
 import "../styles/globals.css";
-import ErrorProvider from "@/components/ErrorProvider";
+
+import Font from "next/font/google";
+
 import { SITE } from "@/helpers/constants";
+import ErrorProvider from "@/components/ErrorProvider";
 import AuthProvider from "@/components/AuthProvider";
 import Analytics from "@/components/telemetry/VercelAnalytics";
 

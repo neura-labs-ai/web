@@ -66,14 +66,36 @@ export async function getUserFromDatabase() {}
  * @returns Nothing if the user is allowed, a NextResponse if the user is not allowed
  */
 export function notAllowedReply(req: NextRequestWithAuth, role: Role) {
-	if (req.nextauth.token?.role && role.includes(role)) return;
+	if (req.nextauth.token?.role && role.includes(role)) return NextResponse.next();
 
 	return NextResponse.json(
 		{
-			error: `Unauthorized access (${req.nextauth.token?.roles?.map((r) => r).join(", ") ?? "Unknown"})!`,
+			error: `Unauthorized access (${
+				req.nextauth.token?.roles?.map((r) => r).join(", ") ?? "Unknown"
+			})!`,
 		},
 		{
 			status: 401,
 		}
 	);
+}
+
+/**
+ * Halt the execution of the code for a given amount of time
+ * @param ms The amount of time to halt the execution of the code
+ * @returns Nothing
+ */
+export function delay(ms: number) {
+	return new Promise((resolve) => {
+		setTimeout(resolve, ms);
+	});
+}
+
+/**
+ * Delays the execution of a callback function for a given amount of time
+ * @param ms The amount of time to delay the execution of the callback function
+ * @param cb The callback function to execute after the delay
+ */
+export function delayWithCB(ms: number, cb: () => any) {
+	setTimeout(cb, ms);
 }
