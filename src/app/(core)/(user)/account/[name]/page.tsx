@@ -1,6 +1,4 @@
 import DisplayAccount from "@/components/accounts/DisplayAccount";
-import NotAuthorized from "@/components/NotAuthorized";
-import { isAuthenticated, returnToLogin } from "@/lib/utils";
 import { prisma } from "@/server/db";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
@@ -13,8 +11,6 @@ export async function generateMetadata({
   params,
 }: pageProps): Promise<Metadata> {
   const session = await getServerSession();
-
-  if (!isAuthenticated(session)) return returnToLogin();
 
   return {
 			title: `${decodeURI(session?.user.name!)}` ?? `Account Not found`,
@@ -32,8 +28,6 @@ async function getUser(name: string) {
 
 const page = async ({ params }: pageProps) => {
   const session = await getServerSession();
-
-  if (!isAuthenticated(session)) return <NotAuthorized />;
 
   return <DisplayAccount session={session} user={session!.user} />;
 };

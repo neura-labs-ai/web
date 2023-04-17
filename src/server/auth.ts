@@ -33,7 +33,8 @@ export const authOptions: NextAuthOptions = {
 		GitHubProvider({
 			clientId: GitHubAuthOptions().clientId,
 			clientSecret: GitHubAuthOptions().clientSecret,
-			// see ./types/next-auth.d.ts
+			// This callback returns the data thats passed into prisma create when a user is created
+			// see ./types/next-auth.d.ts  for types
 			profile(profile) {
 				return {
 					id: profile.id.toString(),
@@ -42,7 +43,7 @@ export const authOptions: NextAuthOptions = {
 					email: profile.email,
 					image: profile.avatar_url,
 					bio: profile.bio,
-					role: Role.USER,
+					roles: [Role.USER],
 				};
 			},
 		}),
@@ -57,13 +58,13 @@ export const authOptions: NextAuthOptions = {
 				token.name = encodeURI(user.name!);
 				token.email = user.email;
 				token.picture = user.image;
-				token.role = user.role;
+				token.roles = user.roles;
 				token.bio = user.bio;
 			}
 
 			return token;
 		},
-		async session({ session, token, user }) {
+		async session({ session, token }) {
 			if (token) {
 				session.user.id = token.id;
 				session.user.name = token.name;
@@ -71,7 +72,7 @@ export const authOptions: NextAuthOptions = {
 				session.user.email = token.email;
 				session.user.image = token.picture;
 				session.user.bio = token.bio;
-				session.user.role = token.role;
+				session.user.roles = token.roles;
 			}
 			return {
 				...session,
