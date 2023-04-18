@@ -1,7 +1,6 @@
 import LibrarySearchInput from "@/components/search/LibrarySearchInput";
 import { HOST_URL } from "@/helpers/constants";
-import { delay } from "@/lib/utils";
-import { Metadata } from "next";
+import { Metadata } from "next/types";
 
 export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
   return {
@@ -36,8 +35,6 @@ async function getLibs() {
 
 const page = async ({}: SearchPageProps) => {
   const data = await getLibs();
-
-  // await delay(500);
 
   return (
     <>

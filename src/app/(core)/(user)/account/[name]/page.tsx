@@ -1,12 +1,12 @@
 import DisplayAccount from "@/components/accounts/DisplayAccount";
 import { delay } from "@/lib/utils";
 import { prisma } from "@/server/db";
-import { Metadata } from "next";
 import { getServerSession } from "next-auth";
+import { Metadata } from "next/types";
 
 interface pageProps {}
 
-export async function generateMetadata({}: pageProps): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const session = await getServerSession();
 
   return {
