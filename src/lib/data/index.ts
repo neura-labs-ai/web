@@ -8,11 +8,13 @@
 import javascript from "./javascript";
 import python from "./python";
 import ruby from "./ruby";
+import { SupportedLanguage } from "@prisma/client";
 
 /** The structure of our json used to store the library data. */
 export type JsonSearchData = {
 	id: string;
 	name: string;
+	lang: SupportedLanguage
 }[];
 
 // eslint-disable-next-line import/no-anonymous-default-export

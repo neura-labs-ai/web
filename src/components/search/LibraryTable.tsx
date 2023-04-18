@@ -7,12 +7,13 @@ interface LibraryTableProps {
 }
 
 const LibraryTable: FC<LibraryTableProps> = ({ data }) => {
+	console.log(data);
 	return (
 		<>
 			<table>
 				<thead>
 					<tr>
-						<th>Available library&apos;s</th>
+						<th className={"text-2xl"}>Available library&apos;s</th>
 					</tr>
 				</thead>
 				<tbody>
