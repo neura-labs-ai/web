@@ -10,7 +10,7 @@ import python from "./python";
 import ruby from "./ruby";
 
 /** The structure of our json used to store the library data. */
-export type JsonData = {
+export type JsonSearchData = {
 	id: string;
 	name: string;
 }[];

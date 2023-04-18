@@ -1,5 +1,6 @@
 "use client";
 
+import { JsonSearchData } from "@/lib/data";
 import { searchStore } from "@/lib/redux";
 import { setStartupLibrary } from "@/lib/redux/searchSlice";
 import { Library } from "@prisma/client";
@@ -7,7 +8,7 @@ import { FC } from "react";
 import { useRef } from "react";
 
 interface SearchPreloaderProps {
-	libs: Library[];
+	libs: JsonSearchData;
 }
 
 const SearchPreloader: FC<SearchPreloaderProps> = ({ libs }) => {

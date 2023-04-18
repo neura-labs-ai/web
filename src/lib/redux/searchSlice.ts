@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Library } from "@prisma/client";
+import { JsonSearchData } from "../data";
 
 export interface SearchState {
 	search: string;
-	startupLibrary: Library[];
+	startupLibrary: JsonSearchData;
 }
 
 const initialState: SearchState = {
@@ -19,7 +19,7 @@ const searchSlice = createSlice({
 		setSearch: (state, action: PayloadAction<string>) => {
 			state.search = action.payload;
 		},
-		setStartupLibrary: (state, action: PayloadAction<Library[]>) => {
+		setStartupLibrary: (state, action: PayloadAction<JsonSearchData>) => {
 			state.startupLibrary = action.payload;
 		},
 	},

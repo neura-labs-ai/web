@@ -1,6 +1,6 @@
-import { JsonData } from "@/lib/data/index";
+import { JsonSearchData } from "@/lib/data/index";
 
-const data: JsonData = [
+const data: JsonSearchData = [
 	{
 		id: "643de5c0ac8c1d3a72951dae",
 		name: "NumPy",
