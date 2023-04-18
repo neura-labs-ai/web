@@ -83,7 +83,7 @@ export default [
   },
   {
     id: "3",
-    name: "Express",
+    name: "Express.js",
     description: "A fast, un-opinionated, minimalist web framework for Node.js",
     language: "JavaScript",
     tags: ["Library", "Backend", "API"],
