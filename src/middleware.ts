@@ -35,6 +35,6 @@ export const config = {
 		"/account/:path*",
 		"/search/:path*",
 		"/auth/logout",
-		"/api/:path*",
+		// "/api/:path*",
 	],
 };

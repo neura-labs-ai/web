@@ -3,10 +3,10 @@ import Link from "next/link";
 import { FC } from "react";
 
 interface LibraryTableProps {
-	libs: JsonSearchData;
+	data: JsonSearchData;
 }
 
-const LibraryTable: FC<LibraryTableProps> = ({ libs }) => {
+const LibraryTable: FC<LibraryTableProps> = ({ data }) => {
 	return (
 		<>
 			<table>
@@ -16,11 +16,11 @@ const LibraryTable: FC<LibraryTableProps> = ({ libs }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{libs.length ? (
-						libs.map((lib) => (
+					{data.length ? (
+						data.map((lib) => (
 							<tr key={lib.id}>
 								{/* Ignore the route types for these custom links */}
-								<Link href={`/search/${lib.id}`} target={"_blank"}>
+								<Link href={`/search/${lib.id}`}>
 									<td>{lib.name}</td>
 								</Link>
 							</tr>

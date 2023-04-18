@@ -14,6 +14,8 @@ interface SearchPreloaderProps {
 const SearchPreloader: FC<SearchPreloaderProps> = ({ libs }) => {
 	const loaded = useRef(false);
 
+	console.log("SearchPreloader: ", libs);
+
 	if (!loaded.current) {
 		searchStore.dispatch(setStartupLibrary(libs));
 		loaded.current = true;

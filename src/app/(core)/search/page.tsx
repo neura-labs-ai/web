@@ -1,12 +1,9 @@
 import LibrarySearchInput from "@/components/search/LibrarySearchInput";
-import SearchPreloader from "@/components/search/SearchPreloader";
-import SearchProviders from "@/components/search/SearchProvider";
 import { HOST_URL } from "@/helpers/constants";
-import { JsonSearchData } from "@/lib/data";
-import { delay } from "@/lib/utils";
 import { Metadata } from "next";
-
-import libraryData from "../../../lib/data";
+import { delay } from "@/lib/utils";
+import SearchProviders from "@/components/search/SearchProvider";
+import SearchPreloader from "@/components/search/SearchPreloader";
 
 export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
 	return {
@@ -21,22 +18,19 @@ interface SearchPageProps {}
 async function getLibs() {
 	try {
 		const res = await fetch(`${HOST_URL}/api/search`, {
+			method: "GET",
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			cache: "force-cache",
+			next: {
+				revalidate: 60,
 			}
 		});
 
-		// console.log("res", res);
+		return await res.json();
 
-		console.log('data.text', await res.text());
-
-		const json = await res.json();
-
-		console.log('json', json);
-
-		return json;
-
-		// return libraryData;
 	} catch (error) {
 		console.log(error);
 		throw error;
@@ -46,17 +40,15 @@ async function getLibs() {
 const page = async ({}: SearchPageProps) => {
 	const data = await getLibs();
 
-	// await delay(500);
+	await delay(500);
 
 	return (
 		<>
-			<h1>Search</h1>
-			<br />
-			{JSON.stringify(data)}
-			<SearchPreloader libs={data} />
-			<SearchProviders>
-				<LibrarySearchInput />
-			</SearchProviders>
+			{/*{JSON.stringify(data, null, 2)}*/}
+				<LibrarySearchInput libs={data} />
+			{/*<SearchProviders>*/}
+			{/*	<SearchPreloader libs={data} />*/}
+			{/*</SearchProviders>*/}
 		</>
 	);
 };
