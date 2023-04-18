@@ -6,44 +6,57 @@ import { JsonSearchData } from "@/lib/data";
 import { delay } from "@/lib/utils";
 import { Metadata } from "next";
 
-// export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
-// 	return {
-// 		title: "Search A Library",
-// 		description:
-// 			"Search through our amazing engine of library's made by the community.",
-// 	};
-// }
+import libraryData from "../../../lib/data";
+
+export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
+	return {
+		title: "Search A Library",
+		description:
+			"Search through our amazing engine of library's made by the community.",
+	};
+}
 
 interface SearchPageProps {}
 
-async function getLibs(): Promise<JsonSearchData> {
-	const res = await fetch(`${HOST_URL}/api/search`);
+async function getLibs() {
+	try {
+		const res = await fetch(`${HOST_URL}/api/search`, {
+			headers: {
+				"Content-Type": "application/json",
+			}
+		});
 
-	if (!res.ok) {
-		// This will activate the closest `error.js` Error Boundary
-		throw new Error("Failed to fetch data");
+		// console.log("res", res);
+
+		console.log('data.text', await res.text());
+
+		const json = await res.json();
+
+		console.log('json', json);
+
+		return json;
+
+		// return libraryData;
+	} catch (error) {
+		console.log(error);
+		throw error;
 	}
-
-	const json = await res.json();
-
-	console.log(json)
-
-	return json;
 }
 
 const page = async ({}: SearchPageProps) => {
-	// const data = await getLibs();
+	const data = await getLibs();
 
-	await delay(500);
+	// await delay(500);
 
 	return (
 		<>
 			<h1>Search</h1>
 			<br />
-			{/* <SearchPreloader libs={data} />
+			{JSON.stringify(data)}
+			<SearchPreloader libs={data} />
 			<SearchProviders>
 				<LibrarySearchInput />
-			</SearchProviders> */}
+			</SearchProviders>
 		</>
 	);
 };

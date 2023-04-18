@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { AppDispatch, RootState } from "@/lib/redux";
 import { libraryApi } from "@/lib/redux/libraryApi";
 import { setSearch } from "@/lib/redux/searchSlice";
+import LibraryTable from "./LibraryTable";
 
 interface LibrarySearchInput {}
 
@@ -61,7 +62,7 @@ const LibrarySearchInput: FC<LibrarySearchInput> = ({}) => {
 					</form>
 				</div>
 				<br />
-				{/* <LibraryTable libs={search.length ? data ?? [] : startupLibrary} /> */}
+				<LibraryTable libs={search.length ? data ?? [] : startupLibrary} />
 			</div>
 		</>
 	);

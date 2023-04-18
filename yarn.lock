@@ -1684,7 +1684,7 @@ __metadata:
     eslint: 8.37.0
     eslint-config-next: 13.2.4
     lucide-react: ^0.129.0
-    next: latest
+    next: v13.3.0
     next-auth: ^4.22.0
     postcss: ^8.4.21
     prettier: ^2.8.7
@@ -3463,7 +3463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:latest":
+"next@npm:v13.3.0":
   version: 13.3.0
   resolution: "next@npm:13.3.0"
   dependencies:
