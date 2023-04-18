@@ -1,51 +1,34 @@
-import LibrarySearchInput from "@/components/search/LibrarySearchInput";
-import SearchPreloader from "@/components/search/SearchPreloader";
-import SearchProviders from "@/components/search/SearchProvider";
 import { HOST_URL } from "@/helpers/constants";
 import { delay } from "@/lib/utils";
-import { searchStore } from "@/redux/search";
-import { setStartupLibrary } from "@/redux/search/searchSlice";
 import { Metadata } from "next";
 
 export async function generateMetadata({}: SearchPageProps): Promise<Metadata> {
-  return {
-    title: "Search A Library",
-    description:
-      "Search through our amazing engine of library's made by the community.",
-  };
+	return {
+		title: "Search A Library",
+		description:
+			"Search through our amazing engine of library's made by the community.",
+	};
 }
 
 interface SearchPageProps {}
 
-async function getSearchResults() {
-  const res = await fetch(`${HOST_URL}/api/search`, {
-    cache: "force-cache",
-    next: {
-      revalidate: 5,
-    },
-  });
+async function getLibs() {
+	const data = await fetch(`${HOST_URL}/api`)
 
-  const data = await res.json();
-
-  return data;
+	return await data.json();
 }
 
 const page = async ({}: SearchPageProps) => {
-  await delay(500);
 
-  const data = await getSearchResults();
+	const libs = await getLibs();
 
-  searchStore.dispatch(setStartupLibrary(data));
+	await delay(500);
 
-  return (
-    <>
-      <br />
-      <SearchPreloader libs={data} />
-      <SearchProviders>
-        <LibrarySearchInput />
-      </SearchProviders>
-    </>
-  );
+	return (
+		<>
+				<pre>{JSON.stringify(libs, null, 2)}</pre>
+		</>
+	);
 };
 
 export default page;

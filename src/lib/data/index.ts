@@ -7,15 +7,13 @@
 
 import javascript from "./javascript";
 import python from "./python";
+import ruby from "./ruby";
 
 /** The structure of our json used to store the library data. */
 export type JsonData = {
-  id: string;
-  name: string;
+	id: string;
+	name: string;
 }[];
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default {
-  ...javascript,
-  ...python,
-};
+export default [...javascript, ...python, ...ruby];

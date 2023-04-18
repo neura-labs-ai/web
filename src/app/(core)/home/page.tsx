@@ -1,5 +1,3 @@
-import NotAuthorized from "@/components/NotAuthorized";
-import { isAuthenticated } from "@/lib/utils";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 
