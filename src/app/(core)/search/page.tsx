@@ -38,11 +38,7 @@ const page = async ({}: SearchPageProps) => {
 
   return (
     <>
-      {/*{JSON.stringify(data, null, 2)}*/}
       <LibrarySearchInput libs={data} />
-      {/*<SearchProviders>*/}
-      {/*	<SearchPreloader libs={data} />*/}
-      {/*</SearchProviders>*/}
     </>
   );
 };

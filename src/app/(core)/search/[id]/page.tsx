@@ -3,6 +3,7 @@
 import { Library } from "@prisma/client";
 import { HOST_URL } from "@/helpers/constants";
 import { redirect, useParams } from "next/navigation";
+import Link from "next/link";
 
 interface pageProps {}
 
@@ -38,15 +39,28 @@ const Page = async ({}) => {
 
   if (!params) redirect("/search");
 
-  console.log("params", params);
-
   const searchId = params.id;
 
-  const libData = await getSearchResults(searchId);
+  const libData = await getSearchResults(decodeURI(searchId));
 
-  console.log("libData", libData);
+  // console.log("libData", libData);
 
-  if (!libData) return <h1>Library not found</h1>;
+  if (!libData) {
+    return (
+      <>
+        <h1>Library not found</h1>
+        <p>
+          We couldn&apos;t find the library you were looking for on this url.
+          Please try again later or{" "}
+          <span className={"underline text-pink-400"}>
+            {/* @ts-ignore */}
+            <Link href={"/contact"}>contact</Link>
+          </span>{" "}
+          us if you think this is a mistake.
+        </p>
+      </>
+    );
+  }
 
   return (
     <>
