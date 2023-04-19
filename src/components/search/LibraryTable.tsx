@@ -21,7 +21,7 @@ const LibraryTable: FC<LibraryTableProps> = ({ data }) => {
           data.map((lib) => (
             <tr key={lib.id}>
               {/* @ts-ignore - todo fix type error */}
-              <Link href={"href={`/search/${lib.id}`}"}>
+              <Link href={`/search/${encodeURI(lib.id)}`}>
                 <td>{lib.name}</td>
               </Link>
             </tr>
