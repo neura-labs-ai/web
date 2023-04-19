@@ -1,10 +1,14 @@
-import NotAuthorized from "@/components/NotAuthorized";
-import { isAuthenticated } from "@/lib/utils";
-import { getServerSession } from "next-auth";
+"use client";
+
 import { Library } from "@prisma/client";
 import { HOST_URL } from "@/helpers/constants";
+import { redirect, useParams } from "next/navigation";
 
 interface pageProps {}
+
+type Params = {
+  id: string;
+} | null;
 
 async function getSearchResults(searchId: string): Promise<Library | null> {
   const res = await fetch(`${HOST_URL}/api/search/library`, {
@@ -29,13 +33,14 @@ async function getSearchResults(searchId: string): Promise<Library | null> {
   }
 }
 
-const page = async ({}) => {
-  const session = await getServerSession();
+const Page = async ({}) => {
+  const params = useParams() as Params;
 
-  // todo - get the data from the api so we can use client side rendering (aka hooks)
-  const searchId = "643de5c0ac8c1d3a72951dac";
+  if (!params) redirect("/search");
 
-  if (!isAuthenticated(session)) return <NotAuthorized />;
+  console.log("params", params);
+
+  const searchId = params.id;
 
   const libData = await getSearchResults(searchId);
 
@@ -50,4 +55,4 @@ const page = async ({}) => {
   );
 };
 
-export default page;
+export default Page;

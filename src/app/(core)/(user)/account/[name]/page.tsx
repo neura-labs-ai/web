@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function getUser(userEmail: string | undefined) {
-  return await prisma.user.findUnique({
+  return prisma.user.findUnique({
     where: {
       email: userEmail,
     },

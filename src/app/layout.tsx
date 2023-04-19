@@ -1,7 +1,5 @@
 import "../styles/globals.css";
 
-import Font from "next/font/google";
-
 import { SITE } from "@/helpers/constants";
 import ErrorProvider from "@/components/ErrorProvider";
 import AuthProvider from "@/components/AuthProvider";
@@ -20,6 +18,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
+        {/* Temp fix - https://github.com/vercel/next.js/issues/47024 */}
         <Analytics />
         <ErrorProvider>
           <AuthProvider>{children}</AuthProvider>
