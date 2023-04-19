@@ -1,10 +1,10 @@
 import NotAuthorized from "@/components/NotAuthorized";
 import { isAuthenticated, returnToLogin } from "@/lib/utils";
-import { Metadata } from "next";
 import { getServerSession } from "next-auth";
-import { FC } from "react";
+import { Metadata } from "next/types";
 
-interface pageProps {}
+interface pageProps {
+}
 
 export async function generateMetadata({}: pageProps): Promise<Metadata> {
   const session = await getServerSession();
@@ -13,7 +13,7 @@ export async function generateMetadata({}: pageProps): Promise<Metadata> {
 
   return {
     title: `Search [ID]`, // todo - make the name of the library that was searched
-    description: `Search results for [ID]`,
+    description: `Search results for [ID]`
   };
 }
 

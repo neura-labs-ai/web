@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata } from "next/types";
 import { getServerSession } from "next-auth";
 
 type Props = {};
@@ -10,7 +10,7 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 
   return {
     title: `${userName} - Home`,
-    description: `Welcome home ${userName}!`,
+    description: `Welcome home ${userName}!`
   };
 }
 
