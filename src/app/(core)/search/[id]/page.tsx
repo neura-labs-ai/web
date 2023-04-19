@@ -41,7 +41,7 @@ const Page = async ({}) => {
 
   const searchId = params.id;
 
-  const libData = await getSearchResults(decodeURI(searchId));
+  const libData = await getSearchResults(searchId);
 
   // console.log("libData", libData);
 

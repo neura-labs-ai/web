@@ -25,7 +25,7 @@ const DisplayAccount: FC<DisplayAccountProps> = ({ user }) => {
         <ul>
           <li>Name: {userName ?? "Unknown"}</li>
           <li>Roles: {user?.roles?.map((r) => r).join(", ") ?? "Unknown"}</li>
-          {user.bio ? <li>Bio: {user.bio}</li> : <li>No Bio</li>}
+          {user.bio ? <li>Bio: {user.bio}</li> : <li>No Bio configured</li>}
         </ul>
       </div>
     </>

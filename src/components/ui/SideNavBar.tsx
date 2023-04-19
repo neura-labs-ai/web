@@ -1,16 +1,17 @@
 "use client";
 
-import React, { useMemo } from "react";
-import { Home, Library, LogOut, Search, Settings, User } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Home, LogOut, Search, Settings, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import CollapseIcon from "@/components/ui/icons/CollapseIcon";
+import CollapseIcon from "@/components/ui/icons/Collapse-Icon";
+import LibraryIcon from "@/components/ui/icons/library-icon";
 
 export default function SideNavBar() {
-  const [toggleCollapse, setToggleCollapse] = React.useState(false);
-  const [isCollapsible, setIsCollapsible] = React.useState(false);
+  const [toggleCollapse, setToggleCollapse] = useState(false);
+  const [isCollapsible, setIsCollapsible] = useState(false);
 
   const session = useSession();
 
@@ -83,13 +84,15 @@ export default function SideNavBar() {
       <div className="flex flex-col">
         <div className="flex items-center justify-between relative">
           <div className="flex items-center pl-1 gap-4">
-            <Library />
+            <Link href={"/"}>
+              <LibraryIcon />
+            </Link>
             <span
-              className={classNames("mt-2 text-lg font-medium text-text", {
+              className={classNames("mt-1 font-medium text-text", {
                 hidden: toggleCollapse,
               })}
             >
-              {/*The Code Library*/}
+              <span className={"text-teal-500"}>The Code Library</span>
             </span>
           </div>
           {isCollapsible && (
