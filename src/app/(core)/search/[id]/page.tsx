@@ -1,30 +1,32 @@
 import NotAuthorized from "@/components/NotAuthorized";
-import { isAuthenticated, returnToLogin } from "@/lib/utils";
+import { isAuthenticated } from "@/lib/utils";
 import { getServerSession } from "next-auth";
-import { Metadata } from "next/types";
 import { Library } from "@prisma/client";
-import { prisma } from "@/server/db";
+import { HOST_URL } from "@/helpers/constants";
 
-interface pageProps {
-}
-
-export async function generateMetadata({}: pageProps): Promise<Metadata> {
-  const session = await getServerSession();
-
-  if (!isAuthenticated(session)) return returnToLogin();
-
-  return {
-    title: `Search [ID]`, // todo - make the name of the library that was searched
-    description: `Search results for [ID]`
-  };
-}
+interface pageProps {}
 
 async function getSearchResults(searchId: string): Promise<Library | null> {
-  return prisma.library.findUnique({
-    where: {
-      id: searchId
-    }
+  const res = await fetch(`${HOST_URL}/api/search/library`, {
+    method: "POST",
+    cache: "no-store",
+    next: {
+      revalidate: 60,
+    },
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      id: searchId,
+    }),
   });
+
+  if (res.status === 200) {
+    return await res.json();
+  } else {
+    return null;
+  }
 }
 
 const page = async ({}) => {
@@ -37,7 +39,7 @@ const page = async ({}) => {
 
   const libData = await getSearchResults(searchId);
 
-  console.log(libData);
+  console.log("libData", libData);
 
   if (!libData) return <h1>Library not found</h1>;
 
