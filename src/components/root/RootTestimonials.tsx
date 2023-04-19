@@ -1,5 +1,5 @@
-import { LOGO_URL } from "@/helpers/constants";
 import Image from "next/image";
+import AppIcon from "../../public/icons/library-icon-24px.png";
 
 export default function RootTestimonials() {
   return (
@@ -8,13 +8,7 @@ export default function RootTestimonials() {
         <div className="absolute inset-0 -z-10 opacity-20" />
         <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] ring-1 ring-zinc-950 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
         <div className="mx-auto max-w-2xl lg:max-w-4xl">
-          <Image
-            className="mx-auto h-12"
-            src={LOGO_URL}
-            alt=""
-            width={150}
-            height={150}
-          />
+          <Image className="mx-auto h-12" src={AppIcon} alt="App Icon" />
           <figure className="mt-10">
             <blockquote className="text-center text-xl font-semibold leading-8 text-zinc-300 sm:text-2xl sm:leading-9">
               <p>

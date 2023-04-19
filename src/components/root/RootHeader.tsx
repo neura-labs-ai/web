@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { LOGO_URL, NAV_LINKS, ROOT_SUB_PAGES, SITE } from "@/helpers/constants";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import AppIcon from "../../public/icons/library-icon-32px.png";
 
 const navigation = NAV_LINKS;
 
@@ -24,7 +25,7 @@ export default function RootHeader() {
               <span className="sr-only">{SITE.NAME}</span>
               <Image
                 className="h-8 w-auto"
-                src={LOGO_URL}
+                src={AppIcon}
                 alt="Logo"
                 width={150}
                 height={150}

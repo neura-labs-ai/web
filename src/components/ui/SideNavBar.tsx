@@ -84,9 +84,9 @@ export default function SideNavBar() {
       <div className="flex flex-col">
         <div className="flex items-center justify-between relative">
           <div className="flex items-center pl-1 gap-4">
-            <Link href={"/"}>
+            <a href={"/"}>
               <LibraryIcon />
-            </Link>
+            </a>
             <span
               className={classNames("mt-1 font-medium text-text", {
                 hidden: toggleCollapse,

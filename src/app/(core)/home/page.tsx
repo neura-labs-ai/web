@@ -10,7 +10,7 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 
   return {
     title: `${userName} - Home`,
-    description: `Welcome home ${userName}!`
+    description: `Welcome home ${userName}!`,
   };
 }
 
@@ -24,7 +24,7 @@ const page = async ({}) => {
       <br />
       <h1>Welcome home {userName}!</h1>
       <p>It seams your pocking around this development site... 😜</p>
-      <p>Stay tunned for more!</p>
+      <p>Stay tuned for more!</p>
     </>
   );
 };
