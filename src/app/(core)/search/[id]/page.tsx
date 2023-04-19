@@ -14,10 +14,8 @@ type Params = {
 async function getSearchResults(searchId: string): Promise<Library | null> {
   const res = await fetch(`${HOST_URL}/api/search/library`, {
     method: "POST",
+    // cache disabled so that next doesn't cache the response at compile time
     cache: "no-store",
-    next: {
-      revalidate: 60,
-    },
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
