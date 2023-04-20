@@ -1,5 +1,6 @@
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
 import { notAllowedReply } from "./lib/utils";
+import { NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(req: NextRequestWithAuth) {
@@ -14,6 +15,11 @@ export default withAuth(
     if (req.nextUrl.pathname === "/api/search") {
       return notAllowedReply(req, "ADMIN");
     }
+    if (req.nextUrl.pathname === "/api/search/library") {
+      return notAllowedReply(req, "ADMIN");
+    }
+
+    NextResponse.next();
   },
   {
     callbacks: {
@@ -35,6 +41,6 @@ export const config = {
     "/account/:path*",
     "/search/:path*",
     "/auth/logout",
-    // "/api/:path*",
+    "/api/:path*",
   ],
 };
