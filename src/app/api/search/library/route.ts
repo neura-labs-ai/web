@@ -11,7 +11,7 @@ export async function POST(res: NextRequest) {
 
     // Prevents prisma invalid objectId errors.
     // If someone visits /search/1234 (not valid objectId) it will be checked here.
-    // This Regex was pulled from the mongoose source code on github.
+    // This Regex was pulled from the mongoose source code on GitHub.
     const objectIdRegex = /^[a-fA-F0-9]{24}$/;
 
     if (!objectIdRegex.test(body.id)) {

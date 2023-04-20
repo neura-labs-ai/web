@@ -2,7 +2,7 @@
 
 import { Session } from "next-auth";
 import Link from "next/link";
-import Button from "./Button";
+import Button from "../ui/Button";
 
 interface TempNavProps {
   session: Session | null;

@@ -12,7 +12,6 @@ export default async function CoreLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body>
         <div className="h-screen flex justify-start">
-          {/*<TempNav session={session} />*/}
           <SideNavBar />
           <div className={"flex-1 p-4"}>{children}</div>
         </div>

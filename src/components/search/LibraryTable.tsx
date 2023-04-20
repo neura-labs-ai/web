@@ -7,7 +7,7 @@ interface LibraryTableProps {
 }
 
 const LibraryTable: FC<LibraryTableProps> = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   return (
     <>
       <table>
