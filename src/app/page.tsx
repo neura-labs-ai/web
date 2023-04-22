@@ -1,21 +1,5 @@
-"use client";
+import React from "react";
 
-import RootHero from "@/components/root/RootHero";
-import RootStats from "@/components/root/RootStats";
-import RootContent from "@/components/root/RootContent";
-import RootTestimonials from "@/components/root/RootTestimonials";
-import RootTeam from "@/components/root/RootTeam";
+const Page = () => <div>Hello world!</div>;
 
-export default function Root() {
-  return (
-    <div>
-      <main>
-        <RootHero />
-        <RootStats />
-        <RootContent />
-        <RootTestimonials />
-        <RootTeam />
-      </main>
-    </div>
-  );
-}
+export default Page;

@@ -7,23 +7,42 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// The user model is based off the github API data.
+// Used for github oauth
 // see - https://api.github.com/users/GitHub for an example user.
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   username      String?
   bio           String?
-  email         String    @unique
+  email         String
   emailVerified DateTime?
   image         String
-  roles         Role[]    @default([USER])
-  accounts      Account[]
-  sessions      Session[]
-  librarys      Library[]
-  comments      Comment[]
+  roles         UserRole[] @default([USER])
+
+  // handled by authjs
+  accounts Account[]
+  sessions Session[]
+
+  tools         Tool[]
+  reviews       Review[]
+  forms         Form[]
+  submissions   Submission[]
+  SystemReports SystemReport[]
+
+  @@unique([email])
+  @@map("users")
 }
 
+enum UserRole {
+  USER
+  CONTRIBUTOR
+  MODERATOR
+  ADMIN
+  SYSTEM
+  TEST
+}
+
+// Used for github oauth by authjs - do not change this
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
@@ -41,62 +60,134 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
 
+// Used for github oauth by authjs - do not change this
 model Session {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken String   @unique
+  sessionToken String
   userId       String   @db.ObjectId
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionToken])
+  @@map("sessions")
 }
 
+// Used for github oauth by authjs - do not change this
 model VerificationToken {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
-  token      String   @unique
+  token      String
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map("verification_tokens")
 }
 
-model Library {
-  id          String            @id @default(auto()) @map("_id") @db.ObjectId
-  name        String            @unique
+// Toot Document Model.
+// The core of the web-app and what users will be interacting with.
+model Tool {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
   description String
-  language    SupportedLanguage
-  tags        SupportedTags[]   @default([])
   imageIcon   String?
   homepage    String?
   repository  String?
-  openSource  Boolean           @default(false)
-  stars       Int               @default(0)
-  comments    Comment[]
+  openSource  Boolean  @default(false)
+  upvote      Int      @default(0)
+  downvote    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  reviews   Review[]
+  languages SupportedLanguages[]
+  tags      SupportedTags[]      @default([])
 
   ownerId String @db.ObjectId
   owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@unique([name])
+  @@map("tools")
 }
 
-model Comment {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  text      String
-  stars     Int
-  createdAt DateTime @default(now())
+// Review is a comment on a tool
+model Review {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  text       String
+  stars      Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  // If true, the form will not be shown on the website and considered deleted.
+  tomestoned Boolean  @default(false)
 
-  libraryId String  @db.ObjectId
-  library   Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+  toolId String @db.ObjectId
+  tool   Tool   @relation(fields: [toolId], references: [id], onDelete: Cascade)
 
-  ownerId String @db.ObjectId
-  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  authorId String @db.ObjectId
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("tool-reviews")
 }
 
-enum Role {
-  USER
-  CONTRIBUTOR
-  MODERATOR
-  ADMIN
-  SYSTEM
-  TEST
+// User created forms
+// Used for user feedback and contact forms within the web-app.
+model Form {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  // If true, the form will not be shown on the website and considered deleted.
+  tomestoned  Boolean      @default(false)
+  submissions Submission[]
+
+  authorId String @db.ObjectId
+  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@unique([name])
+  @@map("forms")
+}
+
+// Submissions to user created forms
+// A submission is connected to a form and an author.
+model Submission {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  // If true, the form will not be shown on the website and considered deleted.
+  tomestoned Boolean  @default(false)
+
+  formId String @db.ObjectId
+  form   Form   @relation(fields: [formId], references: [id], onDelete: Cascade)
+
+  authorId String @db.ObjectId
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("form-submissions")
+}
+
+// System Reports - Used for reporting bugs and issues with the web-app.
+model SystemReport {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  status      ReportStatus @default(IN_PROGRESS)
+  createdAt   DateTime     @default(now())
+
+  assignedToId String? @db.ObjectId
+  assignedTo   User?   @relation(fields: [assignedToId], references: [id], onDelete: SetNull)
+
+  @@map("system-reports")
+}
+
+// Enum for report status
+enum ReportStatus {
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
 }
 
 enum SupportedTags {
@@ -131,7 +222,7 @@ enum SupportedTags {
   Other
 }
 
-enum SupportedLanguage {
+enum SupportedLanguages {
   JavaScript
   TypeScript
   Python
