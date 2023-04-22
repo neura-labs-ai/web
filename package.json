@@ -11,11 +11,15 @@
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
+    "@heroicons/react": "^2.0.17",
     "@next-auth/prisma-adapter": "^1.0.5",
     "@prisma/client": "^4.12.0",
+    "@radix-ui/react-alert-dialog": "^1.0.3",
     "@sapphire/utilities": "^3.11.1",
     "@tailwindcss/forms": "^0.5.3",
     "@vercel/analytics": "^0.1.11",
+    "class-variance-authority": "^0.5.2",
     "clsx": "^1.2.1",
     "lucide-react": "^0.129.0",
     "next": "canary",

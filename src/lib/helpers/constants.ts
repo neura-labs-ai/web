@@ -40,6 +40,9 @@ export const ROOT_SUB_PAGES = {
 export const LOGO_URL =
   "https://tailwindui.com/img/logos/mark.svg?color=teal&shade=400";
 
+export const APP_ICON =
+  "https://tailwindui.com/img/logos/mark.svg?color=teal&shade=400";
+
 /** Links used for the navbar */
 export const NAV_LINKS = [
   { name: "Documentation", href: "#" },
