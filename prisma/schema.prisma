@@ -18,6 +18,7 @@ model User {
   emailVerified DateTime?
   image         String
   roles         UserRole[] @default([USER])
+  telemetry     Boolean    @default(false)
 
   // handled by authjs
   accounts Account[]
