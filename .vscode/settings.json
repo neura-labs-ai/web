@@ -15,6 +15,8 @@
 		"qlib",
 		"reduxjs",
 		"tailwindcss",
+		"tfjs",
 		"upvotes"
-	]
+	],
+	"git.ignoreLimitWarning": true
 }

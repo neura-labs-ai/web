@@ -12,7 +12,9 @@ import { LOGO_URL, ROOT_SUB_PAGES } from "@/lib/helpers/constants";
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
-	const [callbackUrl, setCallbackUrl] = useState<string>(ROOT_SUB_PAGES.DASHBOARD);
+	const [callbackUrl, setCallbackUrl] = useState<string>(
+		ROOT_SUB_PAGES.DASHBOARD
+	);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const params = useSearchParams();
 	const session = useSession();
@@ -29,6 +31,7 @@ const Login: FC<LoginProps> = () => {
 		}
 	}, [params, callbackUrl]);
 
+	// If the user is already logged in, redirect them to the callback url
 	if (isAuthenticated(session.data)) {
 		redirect(callbackUrl);
 	}

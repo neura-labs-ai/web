@@ -1,0 +1,3 @@
+module.exports = [
+	"you suck"
+];

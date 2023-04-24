@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 	title: SITE.NAME,
 	description: SITE.META.DESCRIPTION,
 	keywords: SITE.META.KEYWORDS,
+	icons: {
+		icon: "/favicon.ico",
+	}
 };
 
 export default function RootLayout({
