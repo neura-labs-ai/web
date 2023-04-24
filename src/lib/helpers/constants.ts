@@ -29,13 +29,18 @@ export const LOCAL_STORAGE_KEYS = {
 };
 
 export const ROOT_SUB_PAGES = {
+  DASHBOARD: "/dashboard",
   ABOUT: "/about",
   CONTACT: "/contact",
   PRIVACY: "/privacy",
   TERMS: "/terms",
   CONTRIBUTE: "/contributing",
-  LOGIN: "/auth/login",
+  LOGIN: "/oauth/login",
 };
+
+export const ROOT_SUB_PAGES_WITHOUT_LEADING_SLASH = Object.values(
+  ROOT_SUB_PAGES
+).map((page) => page.replace("/", ""));
 
 export const LOGO_URL =
   "https://tailwindui.com/img/logos/mark.svg?color=teal&shade=400";

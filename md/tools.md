@@ -19,6 +19,7 @@ _In no particular order_
 13. https://react-hook-form.com/
 14. https://typescript-eslint.io/
 15. https://tanstack.com/query/v3/
+16. https://bun.sh/ (For our CLI)
 
 ## Docs
 

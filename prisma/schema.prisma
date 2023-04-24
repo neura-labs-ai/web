@@ -19,14 +19,16 @@ model User {
   image         String
   roles         UserRole[] @default([USER])
   telemetry     Boolean    @default(false)
+  // If true, the model will not be shown on the web-app and considered deleted.
+  tomestoned    Boolean    @default(false)
 
   // handled by authjs
   accounts Account[]
   sessions Session[]
 
-  tools         Tool[]
-  reviews       Review[]
-  forms         Form[]
+  forms Form[]
+  token Tokens[]
+
   submissions   Submission[]
   SystemReports SystemReport[]
 
@@ -87,49 +89,20 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-// Toot Document Model.
-// The core of the web-app and what users will be interacting with.
-model Tool {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  description String
-  imageIcon   String?
-  homepage    String?
-  repository  String?
-  openSource  Boolean  @default(false)
-  upvote      Int      @default(0)
-  downvote    Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  reviews   Review[]
-  languages SupportedLanguages[]
-  tags      SupportedTags[]      @default([])
-
-  ownerId String @db.ObjectId
-  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-
-  @@unique([name])
-  @@map("tools")
-}
-
-// Review is a comment on a tool
-model Review {
+// API Tokens - Used for API access
+model Tokens {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  text       String
-  stars      Int
+  token      String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  // If true, the form will not be shown on the website and considered deleted.
+  // If true, the model will not be shown on the web-app and considered deleted.
   tomestoned Boolean  @default(false)
 
-  toolId String @db.ObjectId
-  tool   Tool   @relation(fields: [toolId], references: [id], onDelete: Cascade)
-
   authorId String @db.ObjectId
-  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
-  @@map("tool-reviews")
+  @@unique([token])
+  @@map("api-tokens")
 }
 
 // User created forms
@@ -140,7 +113,7 @@ model Form {
   description String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  // If true, the form will not be shown on the website and considered deleted.
+  // If true, the model will not be shown on the web-app and considered deleted.
   tomestoned  Boolean      @default(false)
   submissions Submission[]
 
@@ -158,7 +131,7 @@ model Submission {
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  // If true, the form will not be shown on the website and considered deleted.
+  // If true, the model will not be shown on the web-app and considered deleted.
   tomestoned Boolean  @default(false)
 
   formId String @db.ObjectId
@@ -189,78 +162,4 @@ enum ReportStatus {
   IN_PROGRESS
   RESOLVED
   CLOSED
-}
-
-enum SupportedTags {
-  Web
-  UI
-  Mobile
-  DataScience
-  Mathematics
-  Statistics
-  Desktop
-  Game
-  Database
-  DevOps
-  Security
-  Testing
-  Framework
-  Library
-  Tool
-  ArtificialIntelligence
-  MachineLearning
-  DeepLearning
-  NaturalLanguageProcessing
-  ComputerVision
-  Editor
-  Language
-  Platform
-  Backend
-  Frontend
-  API
-  REST
-  GraphQL
-  Other
-}
-
-enum SupportedLanguages {
-  JavaScript
-  TypeScript
-  Python
-  Java
-  C
-  CPP
-  CSharp
-  Go
-  Ruby
-  PHP
-  Swift
-  Kotlin
-  Rust
-  Scala
-  Dart
-  Lua
-  Perl
-  R
-  Haskell
-  Clojure
-  Elixir
-  Elm
-  Erlang
-  Julia
-  OCaml
-  Pascal
-  Prolog
-  Racket
-  Scheme
-  SQL
-  VisualBasic
-  Fortran
-  Groovy
-  Lisp
-  ObjectiveC
-  Assembly
-  COBOL
-  FSharp
-  MATLAB
 }

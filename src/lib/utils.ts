@@ -3,9 +3,10 @@ import { Session } from "next-auth";
 import { redirect } from "next/navigation";
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { UserRole } from "@prisma/client";
+import { User, UserRole } from "@prisma/client";
 import { NextRequestWithAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
+import { LOCAL_STORAGE_KEYS } from "./helpers/constants";
 
 /**
  * Class Names function
@@ -13,16 +14,16 @@ import { NextResponse } from "next/server";
  * @returns
  */
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+	return twMerge(clsx(inputs));
 }
 
 export function toPusherKey(key: string) {
-  return key.replace(/:/g, "__");
+	return key.replace(/:/g, "__");
 }
 
 export function chatHrefConstructor(id1: string, id2: string) {
-  const sortedIds = [id1, id2].sort();
-  return `${sortedIds[0]}--${sortedIds[1]}`;
+	const sortedIds = [id1, id2].sort();
+	return `${sortedIds[0]}--${sortedIds[1]}`;
 }
 
 /**
@@ -31,11 +32,11 @@ export function chatHrefConstructor(id1: string, id2: string) {
  * @returns {boolean} true if the session is authenticated, false otherwise
  */
 export function isAuthenticated(session: Session | null): boolean {
-  if (isNullOrUndefined(session)) {
-    return false;
-  }
+	if (isNullOrUndefined(session)) {
+		return false;
+	}
 
-  return !isNullOrUndefined(session.user);
+	return !isNullOrUndefined(session.user);
 }
 
 /**
@@ -45,18 +46,18 @@ export function isAuthenticated(session: Session | null): boolean {
  * @returns
  */
 export function hasPermission(
-  session: Session | null,
-  role: UserRole
+	session: Session | null,
+	role: UserRole
 ): boolean {
-  let exist = isAuthenticated(session);
+	let exist = isAuthenticated(session);
 
-  if (!exist) return false;
+	if (!exist) return false;
 
-  return session?.user.roles?.includes(role) ?? false;
+	return session?.user.roles?.includes(role) ?? false;
 }
 
 export function returnToLogin(): never {
-  redirect("/auth/login");
+	redirect("/auth/login");
 }
 
 export async function getUserFromDatabase() {}
@@ -69,22 +70,22 @@ export async function getUserFromDatabase() {}
  * @returns Nothing if the user is allowed, a NextResponse if the user is not allowed
  */
 export function notAllowedReply(req: NextRequestWithAuth, role: UserRole) {
-  if (req.nextauth.token?.roles) {
-    if (req.nextauth.token.roles.includes(role)) {
-      return NextResponse.next();
-    }
-  }
+	if (req.nextauth.token?.roles) {
+		if (req.nextauth.token.roles.includes(role)) {
+			return NextResponse.next();
+		}
+	}
 
-  return NextResponse.json(
-    {
-      error: `Unauthorized access (${
-        req.nextauth.token?.roles?.map((r) => r).join(", ") ?? "Unknown"
-      })!`,
-    },
-    {
-      status: 401,
-    }
-  );
+	return NextResponse.json(
+		{
+			error: `Unauthorized access (${
+				req.nextauth.token?.roles?.map((r) => r).join(", ") ?? "Unknown"
+			})!`,
+		},
+		{
+			status: 401,
+		}
+	);
 }
 
 /**
@@ -93,9 +94,9 @@ export function notAllowedReply(req: NextRequestWithAuth, role: UserRole) {
  * @returns Nothing
  */
 export function delay(ms: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
+	return new Promise((resolve) => {
+		setTimeout(resolve, ms);
+	});
 }
 
 /**
@@ -104,5 +105,25 @@ export function delay(ms: number) {
  * @param cb The callback function to execute after the delay
  */
 export function delayWithCB(ms: number, cb: () => any) {
-  setTimeout(cb, ms);
+	setTimeout(cb, ms);
+}
+
+/**
+ * Validates the state of app telemetry.
+ * If the user has opted out of telemetry, then the telemetry is disabled.
+ * @param user
+ */
+export function createOrValidateTelemetryState(user: User) {
+	const tel = localStorage.getItem(LOCAL_STORAGE_KEYS.TELEMETRY);
+
+	if (tel) return;
+
+	localStorage.setItem(
+		LOCAL_STORAGE_KEYS.TELEMETRY,
+		JSON.stringify({
+			enabled: user.telemetry,
+		})
+	);
+
+	return;
 }

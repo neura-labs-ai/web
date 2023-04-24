@@ -12,11 +12,19 @@ const VercelAnalytics: FC<VercelAnalyticsProps> = ({}) => {
     <Analytics
       debug={process.env.NODE_ENV === "development"}
       beforeSend={(e) => {
-        // Only track events if the user has opted in
-        if (localStorage.getItem(LOCAL_STORAGE_KEYS.TELEMETRY)) {
-          const url = new URL(e.url);
+        const url = new URL(e.url);
+        if (url.pathname.includes("/api/")) return null; // Don't track API requests
 
-          if (url.pathname.includes("/api/")) return null; // Don't track API requests
+        const tel_enabled = localStorage.getItem(LOCAL_STORAGE_KEYS.TELEMETRY)
+        
+        // Only track events if the user has opted in
+        if(tel_enabled) {
+
+          const enabled = JSON.parse(tel_enabled) as {
+            enabled: boolean;
+          }
+
+          if(!enabled.enabled) return null;
 
           return {
             ...e,
