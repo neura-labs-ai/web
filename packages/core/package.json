@@ -1,17 +1,31 @@
 {
-  "name": "core",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "commonjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@tensorflow-models/toxicity": "^1.2.2",
-    "@tensorflow/tfjs-node": "^4.4.0"
-  }
+	"name": "core",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./dist/index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node ./dist/index.js",
+		"watch": "tsc -w",
+		"build": "tsc -p tsconfig.json",
+		"dev": "ts-node ./src/index.ts",
+		"clean-build": "rimraf tsconfig.tsbuildinfo dist/ && tsc -p tsconfig.json",
+		"create-change-log": "node ./scripts/create-change-log.js",
+		"format": "prettier --write \"src/**/*.ts\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@tensorflow-models/toxicity": "^1.2.2",
+		"@tensorflow/tfjs-node": "^4.4.0"
+	},
+	"devDependencies": {
+		"@total-typescript/ts-reset": "^0.4.2",
+		"@types/node": "^18.16.2",
+		"rimraf": "^5.0.0",
+		"ts-node": "^10.9.1",
+		"ts-watch": "^1.0.8",
+		"typescript": "^5.0.4"
+	}
 }
