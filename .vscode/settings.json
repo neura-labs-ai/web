@@ -5,6 +5,7 @@
 		"autosize",
 		"clsx",
 		"contentlayer",
+		"daisyui",
 		"downvotes",
 		"headlessui",
 		"heroicons",
@@ -14,6 +15,8 @@
 		"qlib",
 		"reduxjs",
 		"tailwindcss",
+		"tfjs",
 		"upvotes"
-	]
+	],
+	"git.ignoreLimitWarning": true
 }

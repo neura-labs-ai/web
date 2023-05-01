@@ -1,12 +1,10 @@
-# Engine
+# The Code Library
 
-I created this as a tool for developers to view and explore analytics on the software development ecosystem. The main goal is to provide developers of any level the research and tools required for proficiency in various programming languages and frameworks.
-
-![Image](https://cdn.discordapp.com/attachments/1055666441103360011/1097325787385962546/e36c7c5f-618d-4c35-9469-318307922478.png)
+A collection of API's and tools for developers to build amazing applications using Machine Learning, Natural Language Processing, and the love for technology.
 
 ## Getting Started
 
-To get started visit the [website](https://the-code-library.vercel.app) and sign in with your GitHub account. Once you have signed in you will be able to explore the engine and research topics.
+To get started visit the [website](https://the-code-library.vercel.app) and sign in with your GitHub account. Once you have signed in you will be able to explore the engine and apis.
 
 You can learn more about us on our [website](https://the-code-library.vercel.app/about).
 
