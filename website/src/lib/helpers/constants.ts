@@ -1,22 +1,22 @@
 /** Common static site data */
 export const SITE = {
-  NAME: "The Code Library",
-  META: {
-    TITLE:
-      process.env.NODE_ENV === "development"
-        ? "Code Library (dev build)"
-        : "Code Library",
-    DESCRIPTION: "Search for developers, by developers.",
-    DETAILED_DESCRIPTION:
-      "Code Library aim's to provide developers of any level the research and tools required for proficiency in various programming languages and frameworks.",
-    KEYWORDS: ["library", "code tools", "programming", "AI"],
-  },
-  SOCIALS: {
-    GITHUB: "https://github.com/ThatGuyJamal/The-Code-Library",
-    TWITTER: "",
-    DISCORD: "https://discord.gg/MSTrBrNaGn",
-    EMAIL: "",
-  },
+	NAME: "The Code Library",
+	META: {
+		TITLE:
+			process.env.NODE_ENV === "development"
+				? "Code Library (dev build)"
+				: "Code Library",
+		DESCRIPTION: "Machine Learning API's for developers",
+		DETAILED_DESCRIPTION:
+			"A collection of API's and tools for developers to build amazing applications using Machine Learning, Natural Language Processing, and the love for technology.",
+		KEYWORDS: ["library", "code tools", "programming", "AI"],
+	},
+	SOCIALS: {
+		GITHUB: "https://github.com/neura-labs-ai/web",
+		TWITTER: "",
+		DISCORD: "https://discord.gg/MSTrBrNaGn",
+		EMAIL: "",
+	},
 };
 
 export const HOST_URL =
