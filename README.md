@@ -1,6 +1,8 @@
-# The Code Library
+# Website
 
-A collection of API's and tools for developers to build amazing applications using Machine Learning, Natural Language Processing, and the love for technology.
+The official website for Neura-Labs.
+
+Neura-Labs is a collection of API's and tools for developers to build amazing applications using Machine Learning, Natural Language Processing, and the love for technology.
 
 ## Getting Started
 
