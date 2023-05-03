@@ -35,3 +35,9 @@ Read [Building.md](./build.md)
 ## env
 
 https://nextjs.org/docs/basic-features/environment-variables
+
+## icons
+
+- https://game-icons.net/1x1/lorc/processor.html
+- https://game-icons.net/1x1/lorc/circuitry.html
+- https://game-icons.net/1x1/lorc/techno-heart.html
