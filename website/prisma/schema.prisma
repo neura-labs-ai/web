@@ -1,0 +1,165 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Used for github oauth
+// see - https://api.github.com/users/GitHub for an example user.
+model User {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  username      String?
+  bio           String?
+  email         String
+  emailVerified DateTime?
+  image         String
+  roles         UserRole[] @default([USER])
+  telemetry     Boolean    @default(false)
+  // If true, the model will not be shown on the web-app and considered deleted.
+  tomestoned    Boolean    @default(false)
+
+  // handled by authjs
+  accounts Account[]
+  sessions Session[]
+
+  forms Form[]
+  token Tokens[]
+
+  submissions   Submission[]
+  SystemReports SystemReport[]
+
+  @@unique([email])
+  @@map("users")
+}
+
+enum UserRole {
+  USER
+  CONTRIBUTOR
+  MODERATOR
+  ADMIN
+  SYSTEM
+  TEST
+}
+
+// Used for github oauth by authjs - do not change this
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// Used for github oauth by authjs - do not change this
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionToken])
+  @@map("sessions")
+}
+
+// Used for github oauth by authjs - do not change this
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// API Tokens - Used for API access
+model Tokens {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  token      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  // If true, the model will not be shown on the web-app and considered deleted.
+  tomestoned Boolean  @default(false)
+
+  authorId String @db.ObjectId
+  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("api-tokens")
+}
+
+// User created forms
+// Used for user feedback and contact forms within the web-app.
+model Form {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  // If true, the model will not be shown on the web-app and considered deleted.
+  tomestoned  Boolean      @default(false)
+  submissions Submission[]
+
+  authorId String @db.ObjectId
+  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@unique([name])
+  @@map("forms")
+}
+
+// Submissions to user created forms
+// A submission is connected to a form and an author.
+model Submission {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  // If true, the model will not be shown on the web-app and considered deleted.
+  tomestoned Boolean  @default(false)
+
+  formId String @db.ObjectId
+  form   Form   @relation(fields: [formId], references: [id], onDelete: Cascade)
+
+  authorId String @db.ObjectId
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("form-submissions")
+}
+
+// System Reports - Used for reporting bugs and issues with the web-app.
+model SystemReport {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  status      ReportStatus @default(IN_PROGRESS)
+  createdAt   DateTime     @default(now())
+
+  assignedToId String? @db.ObjectId
+  assignedTo   User?   @relation(fields: [assignedToId], references: [id], onDelete: SetNull)
+
+  @@map("system-reports")
+}
+
+// Enum for report status
+enum ReportStatus {
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}

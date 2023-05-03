@@ -5,15 +5,20 @@
 		"autosize",
 		"clsx",
 		"contentlayer",
+		"daisyui",
 		"downvotes",
 		"headlessui",
 		"heroicons",
 		"hookform",
 		"lucide",
+		"Neura",
+		"NEURALABS",
 		"NEXTAUTH",
 		"qlib",
 		"reduxjs",
 		"tailwindcss",
+		"tfjs",
 		"upvotes"
-	]
+	],
+	"git.ignoreLimitWarning": true
 }

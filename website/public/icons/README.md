@@ -1,0 +1,1 @@
+Icons used for branding. Each folder describes a theme and contains the svg files for the icons.
