@@ -9,7 +9,6 @@ import {
   NAV_LINKS,
   SITE,
   ROOT_SUB_PAGES,
-  LOGO_URL,
   APP_ICON,
 } from "@/lib/helpers/constants";
 
@@ -30,11 +29,11 @@ export default function RootHeader() {
 							<a href="/" className="-m-1.5 p-1.5">
 								<span className="sr-only">{SITE.NAME}</span>
 								<Image
-									className="h-8 w-auto"
+									className="h-8 w-auto w-500"
 									src={APP_ICON}
 									alt="Logo"
-									width={150}
-									height={150}
+									width={500}
+									height={500}
 								/>
 							</a>
 						</div>
@@ -86,11 +85,11 @@ export default function RootHeader() {
 								<a href="#" className="-m-1.5 p-1.5">
 									<span className="sr-only">{SITE.NAME}</span>
 									<Image
-										className="h-8 w-auto"
-										src={LOGO_URL}
+										className="h-8 w-auto w-500"
+										src={APP_ICON}
 										alt=""
-										width={150}
-										height={150}
+										width={500}
+										height={500}
 									/>
 								</a>
 								<button

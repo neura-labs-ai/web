@@ -11,6 +11,7 @@ const nextConfig = {
 			"tailwindui.com",
 			"images.unsplash.com",
 		],
+		disableStaticImages: false,
 		dangerouslyAllowSVG: true,
 		contentDispositionType: "attachment",
 		contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

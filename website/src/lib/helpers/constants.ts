@@ -42,11 +42,8 @@ export const ROOT_SUB_PAGES_WITHOUT_LEADING_SLASH = Object.values(
   ROOT_SUB_PAGES
 ).map((page) => page.replace("/", ""));
 
-export const LOGO_URL =
-  "https://tailwindui.com/img/logos/mark.svg?color=teal&shade=400";
 
-export const APP_ICON =
-  "https://tailwindui.com/img/logos/mark.svg?color=teal&shade=400";
+export const APP_ICON = "/processor.svg";
 
 /** Links used for the navbar */
 export const NAV_LINKS = [

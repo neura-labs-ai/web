@@ -5,7 +5,7 @@ import { FC, useState } from "react";
 import { signOut } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
-import { LOGO_URL } from "@/lib/helpers/constants";
+import { APP_ICON } from "@/lib/helpers/constants";
 
 interface LoginProps {}
 
@@ -34,7 +34,7 @@ const Logout: FC<LoginProps> = () => {
 				<div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 					<div className="w-full flex flex-col items-center max-w-md space-y-8">
 						<div className="flex flex-col items-center gap-8">
-							<Image src={LOGO_URL} alt={"Logo"} width={150} height={150} />
+							<Image src={APP_ICON} alt={"Logo"} width={150} height={150} />
 						</div>
 
 						<Button
