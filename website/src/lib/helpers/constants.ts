@@ -1,11 +1,9 @@
 /** Common static site data */
 export const SITE = {
-	NAME: "The Code Library",
+	NAME: "NeuraLabs",
 	META: {
 		TITLE:
-			process.env.NODE_ENV === "development"
-				? "Code Library (dev build)"
-				: "Code Library",
+			process.env.NODE_ENV === "development" ? "NeuraLabs (Preview)" : "NeuraLabs",
 		DESCRIPTION: "Machine Learning API's for developers",
 		DETAILED_DESCRIPTION:
 			"A collection of API's and tools for developers to build amazing applications using Machine Learning, Natural Language Processing, and the love for technology.",
@@ -19,10 +17,12 @@ export const SITE = {
 	},
 };
 
+export const EXTERNAL_API_URL = process.env.NODE_ENV === "development" ? "http://127.0.0.1:8080" : ""; // todo - add prod url
+
 export const HOST_URL =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
-    : "http://the-code-library-preview.vercel.app";
+	process.env.NODE_ENV === "development"
+		? "http://localhost:3000"
+		: "https://neuralabs.vercel.app";
 
 export const LOCAL_STORAGE_KEYS = {
   TELEMETRY: "telemetry-opt-in",

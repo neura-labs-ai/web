@@ -14,6 +14,7 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 	};
 }
 
+
 const page = async ({}: Props) => {
 	const session = await getServerSession();
 
@@ -23,7 +24,8 @@ const page = async ({}: Props) => {
 		<>
 			<br />
 			<h1>Welcome to your Dashboard {userName}!</h1>
-            <p>Here you can access our services and API information.</p>
+			<p>Here you can access our services and API information.</p>
+			<br />
 		</>
 	);
 };
