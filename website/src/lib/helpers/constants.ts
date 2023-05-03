@@ -47,10 +47,10 @@ export const APP_ICON = "/processor.svg";
 
 /** Links used for the navbar */
 export const NAV_LINKS = [
-  { name: "Documentation", href: "#" },
-  { name: "Research Goals", href: "#" },
-  { name: "Community", href: "#" },
-  { name: "Company", href: "#" },
+	{ name: "Documentation", href: `${ROOT_SUB_PAGES.DASHBOARD}/docs` },
+	{ name: "Research Goals", href: "#" },
+	{ name: "Community", href: "#" },
+	{ name: "Company", href: "#" },
 ];
 
 const gh_url = "https://github.com";

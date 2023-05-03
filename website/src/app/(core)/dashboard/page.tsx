@@ -1,5 +1,8 @@
 import { Metadata } from "next/types";
 import { getServerSession } from "next-auth";
+import TopCards from "@/components/ui/cards/TopCards";
+import BarChart from "@/components/ui/charts/BarChart";
+import RecentOrders from "@/components/ui/charts/RecentOrders";
 
 type Props = {};
 
@@ -16,16 +19,13 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 
 
 const page = async ({}: Props) => {
-	const session = await getServerSession();
-
-	const userName = decodeURI(session?.user?.name!);
-
 	return (
 		<>
-			<br />
-			<h1>Welcome to your Dashboard {userName}!</h1>
-			<p>Here you can access our services and API information.</p>
-			<br />
+			<TopCards />
+			<div className="p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
+				<BarChart />
+				<RecentOrders />
+			</div>
 		</>
 	);
 };
