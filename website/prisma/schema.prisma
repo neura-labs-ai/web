@@ -26,11 +26,9 @@ model User {
   accounts Account[]
   sessions Session[]
 
-  forms Form[]
   token Tokens[]
 
-  submissions   Submission[]
-  SystemReports SystemReport[]
+  userReports UserReport[]
 
   @@unique([email])
   @@map("users")
@@ -105,42 +103,30 @@ model Tokens {
   @@map("api-tokens")
 }
 
-// User created forms
-// Used for user feedback and contact forms within the web-app.
-model Form {
-  id          String       @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  description String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  // If true, the model will not be shown on the web-app and considered deleted.
-  tomestoned  Boolean      @default(false)
-  submissions Submission[]
+model Statistics {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+  usage      Usage?
+  payments   Payment[]
 
-  authorId String @db.ObjectId
-  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
-
-  @@unique([name])
-  @@map("forms")
+  @@map("statistics")
 }
 
-// Submissions to user created forms
-// A submission is connected to a form and an author.
-model Submission {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+type Usage {
+  api_calls         Int?
+  api_calls_day     Int?
+  api_calls_week    Int?
+  api_calls_month   Int?
+  api_calls_year    Int?
+  api_calls_success Int?
+  api_calls_fail    Int?
+}
 
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  // If true, the model will not be shown on the web-app and considered deleted.
-  tomestoned Boolean  @default(false)
-
-  formId String @db.ObjectId
-  form   Form   @relation(fields: [formId], references: [id], onDelete: Cascade)
-
-  authorId String @db.ObjectId
-  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
-
-  @@map("form-submissions")
+type Payment {
+  active            Boolean
+  subscription_id   String
+  subscription_date DateTime
 }
 
 // System Reports - Used for reporting bugs and issues with the web-app.
@@ -148,18 +134,28 @@ model SystemReport {
   id          String       @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
-  status      ReportStatus @default(IN_PROGRESS)
+  status      ReportStatus @default(InProgress)
+  createdAt   DateTime     @default(now())
+
+  @@map("system-reports")
+}
+
+model UserReport {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  status      ReportStatus @default(InProgress)
   createdAt   DateTime     @default(now())
 
   assignedToId String? @db.ObjectId
   assignedTo   User?   @relation(fields: [assignedToId], references: [id], onDelete: SetNull)
 
-  @@map("system-reports")
+  @@map("user-reports")
 }
 
 // Enum for report status
 enum ReportStatus {
-  IN_PROGRESS
+  InProgress
   RESOLVED
   CLOSED
 }

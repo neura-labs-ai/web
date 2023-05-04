@@ -37,7 +37,7 @@ declare module "next-auth" {
 		image?: string | null;
 
 		/**
-		 * The user's custom name
+		 * The user's name
 		 */
 		name?: string | null;
 
