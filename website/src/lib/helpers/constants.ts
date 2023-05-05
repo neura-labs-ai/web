@@ -17,7 +17,8 @@ export const SITE = {
 	},
 };
 
-export const EXTERNAL_API_URL = process.env.NODE_ENV === "development" ? "http://127.0.0.1:8080" : ""; // todo - add prod url
+export const EXTERNAL_API_URL =
+	process.env.NODE_ENV === "development" ? "http://127.0.0.1:8080" : ""; // todo - add prod url
 
 export const HOST_URL =
 	process.env.NODE_ENV === "development"
@@ -25,70 +26,46 @@ export const HOST_URL =
 		: "https://neuralabs.vercel.app";
 
 export const LOCAL_STORAGE_KEYS = {
-  TELEMETRY: "telemetry-opt-in",
+	TELEMETRY: "telemetry-opt-in",
 };
 
 export const ROOT_SUB_PAGES = {
-  DASHBOARD: "/dashboard",
-  ABOUT: "/about",
-  CONTACT: "/contact",
-  PRIVACY: "/privacy",
-  TERMS: "/terms",
-  CONTRIBUTE: "/contributing",
-  LOGIN: "/oauth/login",
+	DASHBOARD: "/dashboard",
+	ABOUT: "/about",
+	CONTACT: "/contact",
+	PRIVACY: "/privacy",
+	TERMS: "/terms",
+	CONTRIBUTE: "/contributing",
+	LOGIN: "/oauth/login",
 };
 
 export const ROOT_SUB_PAGES_WITHOUT_LEADING_SLASH = Object.values(
-  ROOT_SUB_PAGES
+	ROOT_SUB_PAGES
 ).map((page) => page.replace("/", ""));
-
 
 export const APP_ICON = "/processor.svg";
 
 /** Links used for the navbar */
 export const NAV_LINKS = [
 	{ name: "Documentation", href: `${ROOT_SUB_PAGES.DASHBOARD}/docs` },
-	{ name: "Research Goals", href: "#" },
-	{ name: "Community", href: "#" },
-	{ name: "Company", href: "#" },
+	{ name: "Research Goals", href: "/research-goals" },
+	{ name: "Community", href: "/community" },
+	{ name: "Company", href: "company" },
 ];
 
 const gh_url = "https://github.com";
 export const TEAM_MEMBERS = [
-  {
-    name: "ThatGuyJamal",
-    role: "CEO",
-    imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-    github: `${gh_url}/ThatGuyJamal`,
-  },
-  {
-    name: "ThatGuyJamal",
-    role: "CEO",
-    imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-    github: `${gh_url}/ThatGuyJamal`,
-  },
-  {
-    name: "ThatGuyJamal",
-    role: "CEO",
-    imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-    github: `${gh_url}/ThatGuyJamal`,
-  },
-  {
-    name: "ThatGuyJamal",
-    role: "CEO",
-    imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-    github: `${gh_url}/ThatGuyJamal`,
-  },
-  {
-    name: "ThatGuyJamal",
-    role: "CEO",
-    imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-    github: `${gh_url}/ThatGuyJamal`,
-  },
-  {
-    name: "ThatGuyJamal",
-    role: "CEO",
-    imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
-    github: `${gh_url}/ThatGuyJamal`,
-  },
+	{
+		name: "ThatGuyJamal",
+		role: "CEO",
+		imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
+    twitter: "https://twitter.com/thatguyjamal0",
+		github: `${gh_url}/ThatGuyJamal`,
+	},
+	// {
+	//   name: "ThatGuyJamal",
+	//   role: "CEO",
+	//   imageUrl: "https://avatars.githubusercontent.com/u/43446907?v=4",
+	//   github: `${gh_url}/ThatGuyJamal`,
+	// },
 ];

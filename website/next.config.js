@@ -4,6 +4,7 @@ const nextConfig = {
 		appDir: true,
 		mdxRs: true,
 		typedRoutes: true,
+		serverActions: true,
 	},
 	images: {
 		domains: [

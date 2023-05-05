@@ -1,39 +1,83 @@
+import { EXTERNAL_API_URL } from "@/lib/helpers/constants";
+
 // todo - fetch this data. This is just a placeholder
 const stats = [
-  { id: 1, name: "A resource developers all around the world", value: "7000+" },
-  { id: 3, name: "Thousands of monthly active users", value: "1,000+" },
+	{ id: 1, name: "A resource developers all around the world", value: "7000+" },
+	{ id: 3, name: "Thousands of monthly active users", value: "1,000+" },
 
-  // Use react query to fetch from https://api.github.com/repos/ThatGuyJamal/Audio-Lion/The-Code-Library/stargazers
-  { id: 2, name: "Stars On GitHub", value: "4,000+" },
+	// Use react query to fetch from https://api.github.com/repos/ThatGuyJamal/Audio-Lion/The-Code-Library/stargazers
+	{ id: 2, name: "Stars On GitHub", value: "4,000+" },
 ];
 
-export default function RootStats() {
-  return (
-    <>
-      <div className="bg-zinc-950 py-24 sm:py-32">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl">
-            Global Analytics
-          </h1>
-        </div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-52">
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
-            {stats.map((stat) => (
-              <div
-                key={stat.id}
-                className="mx-auto flex max-w-xs flex-col gap-y-4"
-              >
-                <dt className="text-base leading-7 text-zinc-400">
-                  {stat.name}
-                </dt>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-zinc-300 sm:text-5xl">
-                  {stat.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-    </>
-  );
+type StatsResponse = {
+	customers: number;
+	api_calls: number;
+	github_stars: number;
+};
+
+async function getStats(): Promise<StatsResponse> {
+	// const res = await fetch(
+	// 	`${EXTERNAL_API_URL}/api/v1/stats`,
+	// 	{
+	// 		headers: {
+	// 			Authorization: `bypass`,
+	// 		},
+  //     next: {  
+  //       revalidate: 60 * 5,
+  //     }
+	// 	}
+	// );
+
+  // let json = await res.json();
+
+  // console.log(json)
+
+	// return json
+
+  // todo - fetch this data. This is just a placeholder
+  return {
+    customers: 0,
+    api_calls: 40,
+    github_stars: 2,
+  }
+}
+
+export default async function RootStats() {
+	const data = await getStats();
+
+	const stats = [
+		{
+			id: 1,
+			name: "Global API Usage",
+			value: data.api_calls,
+		},
+		{ id: 3, name: "Active Customers", value: data.customers },
+
+		// Use react query to fetch from https://api.github.com/repos/ThatGuyJamal/Audio-Lion/The-Code-Library/stargazers
+		{ id: 2, name: "Stars On GitHub", value: data.github_stars },
+	];
+
+	return (
+		<>
+			<div className="bg-zinc-950 py-24 sm:py-32">
+				<div className="text-center">
+					<h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl">
+						Trust by thousands of developers
+					</h1>
+				</div>
+				<div className="mx-auto max-w-7xl px-6 lg:px-8 pt-52">
+					<dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+						{stats.map((stat) => (
+							<div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
+								<dt className="text-base leading-7 text-zinc-400">{stat.name}</dt>
+								<dd className="order-first text-3xl font-semibold tracking-tight text-zinc-300 sm:text-5xl">
+									{stat.value}
+								</dd>
+							</div>
+						))}
+					</dl>
+				</div>
+			</div>
+		</>
+	);
 }

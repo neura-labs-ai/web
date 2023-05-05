@@ -2,7 +2,7 @@ import { Metadata } from "next/types";
 import { getServerSession } from "next-auth";
 import TopCards from "@/components/ui/cards/TopCards";
 import BarChart from "@/components/ui/charts/BarChart";
-import RecentOrders from "@/components/ui/charts/RecentOrders";
+import RecentPayments from "@/components/ui/charts/RecentPayments";
 
 type Props = {};
 
@@ -18,13 +18,13 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 }
 
 
-const page = async ({}: Props) => {
+const page = ({}: Props) => {
 	return (
 		<>
 			<TopCards />
 			<div className="p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
 				<BarChart />
-				<RecentOrders />
+				<RecentPayments />
 			</div>
 		</>
 	);
