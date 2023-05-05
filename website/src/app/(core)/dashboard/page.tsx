@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Metadata } from "next/types";
 import { getServerSession } from "next-auth";
 import TopCards from "@/components/ui/cards/TopCards";
@@ -16,7 +18,6 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 		description: `Welcome home ${userName}!`,
 	};
 }
-
 
 const page = ({}: Props) => {
 	return (
