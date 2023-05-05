@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import { Metadata } from "next/types";
 import { getServerSession } from "next-auth";
 import TopCards from "@/components/ui/cards/TopCards";
@@ -22,9 +20,11 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 const page = ({}: Props) => {
 	return (
 		<>
+			{/* @ts-ignore */}
 			<TopCards />
 			<div className="p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
 				<BarChart />
+				{/* @ts-ignore */}
 				<RecentPayments />
 			</div>
 		</>
