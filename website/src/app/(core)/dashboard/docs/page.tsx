@@ -1,4 +1,4 @@
-import ComingSoonButton from "@/components/ui/utils/ComingSoonButton";
+import ContentBody from "@/components/ui/ContentBody";
 import { FC } from "react";
 
 interface pageProps {}
@@ -6,9 +6,11 @@ interface pageProps {}
 const page: FC<pageProps> = ({}) => {
 	return (
 		<>
-			<ComingSoonButton />
+			<ContentBody>
+				Under construction | Documentation
+			</ContentBody>
 		</>
-	);
+	)
 };
 
 export default page;

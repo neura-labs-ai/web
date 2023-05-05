@@ -37,18 +37,10 @@ const BarChart: FC<BarChartProps> = ({}) => {
 			labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
 			datasets: [
 				{
-					label: "Good Sales",
-					data: [13127, 27201, 19490, 17938, 24032, 17842, 23005],
+					label: "API Requests",
+					data: [0, 2, 56, 8, 1, 14, 50],
 					borderColor: "rgb(53, 162, 235)",
-					backgroundColor: "rgb(34 197 94)",
-					color: "#666",
-				},
-				{
-					label: "Bad Sales",
-					data: [9127, 24201, 1990, 14938, 20182, 17042, 20575],
-					borderColor: "rgb(53, 162, 235)",
-					backgroundColor: "rgb(239 68 68)",
-					color: "#666",
+					backgroundColor: "#f472b6",
 				},
 			],
 		} as any);

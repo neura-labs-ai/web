@@ -2,7 +2,6 @@
 
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { FC } from "react";
 
 interface headerProps {}
