@@ -99,8 +99,8 @@ model Tokens {
   // If true, the model will not be shown on the web-app and considered deleted.
   tomestoned Boolean  @default(false)
 
-  authorId String @db.ObjectId
-  owner    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  userId String @db.ObjectId
+  owner    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([token])
   @@map("api-tokens")
