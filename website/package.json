@@ -41,8 +41,8 @@
 	"devDependencies": {
 		"@types/mongoose": "^5.11.97",
 		"@types/node": "18.15.11",
-		"@types/react": "18.0.31",
-		"@types/react-dom": "18.0.11",
+		"@types/react": "18.2.6",
+		"@types/react-dom": "18.2.4",
 		"autoprefixer": "^10.4.14",
 		"eslint": "8.37.0",
 		"eslint-config-next": "13.2.4",
