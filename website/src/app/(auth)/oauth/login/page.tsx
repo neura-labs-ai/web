@@ -43,7 +43,10 @@ const Login: FC<LoginProps> = () => {
 				callbackUrl: callbackUrl,
 			}).then(() => {
 				toast.success("You have successfully logged in.");
-			});
+			}).catch((error) => {
+				console.log(error)
+				toast.error("There was a problem logging in.");
+			})
 		} catch (error: any) {
 			toast.error("There was a problem logging in.");
 		} finally {
