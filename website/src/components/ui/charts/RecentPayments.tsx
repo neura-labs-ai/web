@@ -1,3 +1,5 @@
+"use server"
+
 import { prisma } from "@/lib/db";
 import { Payment } from "@prisma/client";
 import { ShoppingBag } from "lucide-react";

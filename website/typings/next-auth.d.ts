@@ -7,7 +7,6 @@ type UserId = string;
 declare module "next-auth/jwt" {
 	interface JWT {
 		id: UserId;
-		roles: UserRole[] | null | undefined;
 		bio: string | null | undefined;
 		username: string | null | undefined;
 	}
