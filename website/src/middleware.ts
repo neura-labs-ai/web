@@ -22,6 +22,5 @@ export const config = {
   matcher: [
     "/dashboard:path*",
     "/auth/logout",
-    // "/api/:path*",
   ],
 };

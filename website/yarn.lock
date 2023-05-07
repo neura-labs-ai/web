@@ -1801,7 +1801,7 @@ __metadata:
     eslint-config-next: 13.2.4
     lucide-react: ^0.214.0
     next: v13.4.1
-    next-auth: ^4.22.0
+    next-auth: ^4.22.1
     postcss: ^8.4.21
     prettier: ^2.8.7
     prisma: ^4.13.0
@@ -3684,7 +3684,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-auth@npm:^4.22.0":
+"next-auth@npm:^4.22.1":
   version: 4.22.1
   resolution: "next-auth@npm:4.22.1"
   dependencies:

@@ -44,22 +44,22 @@ export function isAuthenticated(session: Session | null): boolean {
  * @param role handled by prisma client
  * @returns
  */
-// export async function hasPermission(
-// 	session: Session | null,
-// 	role: UserRole
-// ): Promise<boolean> {
-// 	let exist = isAuthenticated(session);
+export async function hasPermission(
+	session: Session | null,
+	role: UserRole
+): Promise<boolean> {
+	let exist = isAuthenticated(session);
 
-// 	if (!exist) return false;
+	if (!exist) return false;
 
-// 	let user = await getUserFromDatabase(session?.user.email!);
+	let user = await getUserFromDatabase(session?.user.email!);
 
-// 	if (user?.roles.includes(role)) {
-// 		return true;
-// 	} else {
-// 		return false;
-// 	}
-// }
+	if (user?.roles.includes(role)) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 export function returnToLogin(): never {
 	redirect("/auth/login");

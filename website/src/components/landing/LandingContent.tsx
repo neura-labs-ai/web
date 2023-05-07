@@ -1,9 +1,4 @@
 import { SITE } from "@/lib/helpers/constants";
-import {
-	CloudArrowUpIcon,
-	LockClosedIcon,
-	ServerIcon,
-} from "@heroicons/react/20/solid";
 import { Bot, Languages, Shield } from "lucide-react";
 import Image from "next/image";
 

@@ -8,10 +8,6 @@ interface RecentPaymentsProps {
 }
 
 const RecentPayments = ({ payments }: RecentPaymentsProps) => {
-	let session = useSession().data;
-
-	if (!session || !session.user || !session.user.email) return null;
-
 	return (
 		<>
 			<div className="w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-zinc-800 overflow-scroll">
