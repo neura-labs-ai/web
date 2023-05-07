@@ -4,8 +4,6 @@ import { redirect } from "next/navigation";
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { User, UserRole } from "@prisma/client";
-import { NextRequestWithAuth } from "next-auth/middleware";
-import { NextResponse } from "next/server";
 import { LOCAL_STORAGE_KEYS } from "./helpers/constants";
 import { prisma } from "./db";
 
@@ -73,32 +71,6 @@ export async function getUserFromDatabase(email: string) {
 			email: email,
 		},
 	});
-}
-
-/**
- * A simple function to check if the user is allowed to routes on the web app.
- * It is handled by the middleware.ts file and the withAuth function.
- * @param req {NextRequestWithAuth} The request object
- * @param role {Role} The role to check against
- * @returns Nothing if the user is allowed, a NextResponse if the user is not allowed
- */
-export function notAllowedReply(req: NextRequestWithAuth, role: UserRole) {
-	if (req.nextauth.token?.roles) {
-		if (req.nextauth.token.roles.includes(role)) {
-			return NextResponse.next();
-		}
-	}
-
-	return NextResponse.json(
-		{
-			error: `Unauthorized access (${
-				req.nextauth.token?.roles?.map((r) => r).join(", ") ?? "Unknown"
-			})!`,
-		},
-		{
-			status: 401,
-		}
-	);
 }
 
 /**

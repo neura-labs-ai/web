@@ -1,19 +1,9 @@
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
-import { notAllowedReply } from "./lib/utils";
+import { NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(req: NextRequestWithAuth) {
-    // console.log(`Middleware: ${req.nextUrl.pathname}`);
-    // console.log("Token", req.nextauth.token);
-
-    // Protect the raw api routes from the user accessing them directly
-    // Later, i might implement a public api system using api keys for members but for now, this is fine
-    if (req.nextUrl.pathname === "/api") {
-      return notAllowedReply(req, "ADMIN");
-    }
-    if (req.nextUrl.pathname === "/api/search") {
-      return notAllowedReply(req, "ADMIN");
-    }
+    return NextResponse.next();
   },
   {
     callbacks: {
