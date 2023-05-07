@@ -329,7 +329,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:^4.12.0":
+"@prisma/client@npm:^4.13.0":
   version: 4.13.0
   resolution: "@prisma/client@npm:4.13.0"
   dependencies:
@@ -1777,7 +1777,7 @@ __metadata:
     "@headlessui/react": ^1.7.14
     "@heroicons/react": ^2.0.17
     "@next-auth/prisma-adapter": ^1.0.5
-    "@prisma/client": ^4.12.0
+    "@prisma/client": ^4.13.0
     "@radix-ui/react-alert-dialog": ^1.0.3
     "@radix-ui/react-avatar": ^1.0.2
     "@radix-ui/react-toast": ^1.1.3
@@ -1800,7 +1800,7 @@ __metadata:
     next-auth: ^4.22.0
     postcss: ^8.4.21
     prettier: ^2.8.7
-    prisma: ^4.12.0
+    prisma: ^4.13.0
     react: 18.2.0
     react-chartjs-2: ^5.2.0
     react-dom: 18.2.0
@@ -4347,7 +4347,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:^4.12.0":
+"prisma@npm:^4.13.0":
   version: 4.13.0
   resolution: "prisma@npm:4.13.0"
   dependencies:

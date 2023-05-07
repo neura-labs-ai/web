@@ -12,8 +12,6 @@ import {
 	Legend,
 	Colors,
 } from "chart.js";
-import { useSession } from "next-auth/react";
-import { getChartStatistics } from "./utils";
 
 ChartJS.register(
 	CategoryScale,
@@ -25,22 +23,17 @@ ChartJS.register(
 	Colors
 );
 
-interface BarChartProps {}
+interface BarChartProps {
+	tableData: number[]
+}
 
-const BarChart = ({}) => {
-	const session = useSession();
-
+const BarChart = ({ tableData }: BarChartProps) => {
 	const [chartData, setChartData] = useState({
 		datasets: [],
 	});
 	const [chartOptions, setChartOptions] = useState({});
-	const [tableData, setTableData] = useState([0, 0, 0, 0, 0, 0, 0]);
 
 	useEffect(() => {
-		getChartStatistics(session?.data?.user?.email!).then((data) => {
-			setTableData(data);
-		});
-
 		setChartData({
 			labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
 			datasets: [
