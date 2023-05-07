@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/db";
-import { Credits, Usage } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
 interface TopCardsProps {}
@@ -13,49 +12,22 @@ const TopCards = async ({}) => {
 		return null;
 	}
 
-	let [creditData, apiData] = await getCurrentData(userEmail);
+	let data = await getCurrentData(userEmail);
 
-	console.log(creditData, apiData);
+	console.dir(data, {
+		depth: Infinity,
+	});
 
-	if (!creditData && !apiData) {
-		// @ts-ignore
-		creditData = {
-			current_amount: 0,
-			used_amount: 0,
-		};
-		apiData = {
-			// @ts-ignore
-			usage: {
-				api_calls: 0,
-			},
-		};
-	}
-
-	if (!creditData) {
-		// @ts-ignore
-		creditData = {
-			current_amount: 0,
-			used_amount: 0,
-		} as Credits;
-	}
-
-	if (!apiData) {
-		// @ts-ignore
-		apiData = {
-			usage: {
-				api_calls: 0,
-			} as Usage,
-		};
-	}
+	if (!data) return null;
 
 	let credits = await getUserCredits(
-		creditData.current_amount ?? 0,
-		creditData.used_amount ?? 0
+		data?.credits?.current_amount ?? 0,
+		data?.credits?.used_amount ?? 0
 	);
 
 	let apiUsage = await getAPIUsage(
-		creditData.current_amount ?? 0,
-		apiData?.usage?.api_calls ?? 0
+		data?.credits?.current_amount ?? 0,
+		data?.stats?.usage?.api_calls ?? 0
 	);
 
 	const creditsPercentage = parseFloat(credits.percentage);
@@ -108,22 +80,15 @@ const TopCards = async ({}) => {
 export default TopCards;
 
 async function getCurrentData(email: string) {
-	return Promise.all([
-		prisma.credits.findFirst({
-			where: {
-				User: {
-					email,
-				},
-			},
-		}),
-		prisma.statistics.findFirst({
-			where: {
-				User: {
-					email,
-				},
-			},
-		}),
-	]);
+	return await prisma.user.findUnique({
+		where: {
+			email,
+		},
+		include: {
+			credits: true,
+			stats: true,
+		},
+	});
 }
 
 type Data = {

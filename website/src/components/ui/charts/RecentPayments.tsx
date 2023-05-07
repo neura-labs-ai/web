@@ -58,7 +58,7 @@ const RecentPayments = async ({}) => {
 										</p>
 									</div>
 									<p className="lg:flex md:hidden absolute right-6 text-sm">
-										{p.subscription_date.toISOString()}
+										{/* {p.subscription_date.toISOString()} */}
 									</p>
 								</li>
 							</Link>

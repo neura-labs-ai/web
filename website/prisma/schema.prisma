@@ -10,28 +10,29 @@ generator client {
 // Used for github oauth
 // see - https://api.github.com/users/GitHub for an example user.
 model User {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   username      String?
   bio           String?
   email         String
-  emailVerified DateTime?
+  emailVerified DateTime? 
   image         String
-  roles         UserRole[]   @default([USER])
-  telemetry     Boolean      @default(false)
+  roles         UserRole[] @default([USER])
+  telemetry     Boolean    @default(false)
   // If true, the model will not be shown on the web-app and considered deleted.
-  tomestoned    Boolean      @default(false)
-  credits       Credits[]
-  stats         Statistics[]
-  payments      Payment[]
+  tomestoned    Boolean    @default(false)
 
   // handled by authjs
   accounts Account[]
   sessions Session[]
 
-  token Tokens[]
-
+  token       Tokens[]
   userReports UserReport[]
+
+  credits   Credits?
+  stats        Statistics?
+
+  payments Payment[]
 
   @@unique([email])
   @@map("users")
@@ -100,7 +101,7 @@ model Tokens {
   tomestoned Boolean  @default(false)
 
   userId String @db.ObjectId
-  owner    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  owner  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([token])
   @@map("api-tokens")
@@ -111,8 +112,8 @@ model Credits {
   used_amount    Int    @default(0)
   current_amount Int    @default(0)
 
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String? @db.ObjectId
+  User   User?  @relation(fields: [userId], references: [id])
+  userId String @unique @db.ObjectId
 
   @@map("credits")
 }
@@ -122,8 +123,9 @@ model Statistics {
   created_at DateTime  @default(now())
   updated_at DateTime?
   usage      Usage?
-  User       User?     @relation(fields: [userId], references: [id])
-  userId     String?   @db.ObjectId
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String? @unique @db.ObjectId
 
   @@map("statistics")
 }
@@ -164,7 +166,7 @@ model SystemReport {
   title       String
   description String
   status      ReportStatus @default(InProgress)
-  createdAt   DateTime     @default(now())
+  createdAt   DateTime     @default(now()) @db.Date
 
   @@map("system-reports")
 }
@@ -174,7 +176,7 @@ model UserReport {
   title       String
   description String
   status      ReportStatus @default(InProgress)
-  createdAt   DateTime     @default(now())
+  createdAt   DateTime     @default(now()) @db.Date
 
   assignedToId String? @db.ObjectId
   assignedTo   User?   @relation(fields: [assignedToId], references: [id], onDelete: SetNull)
