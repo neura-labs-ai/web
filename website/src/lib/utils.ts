@@ -7,6 +7,7 @@ import { User, UserRole } from "@prisma/client";
 import { NextRequestWithAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 import { LOCAL_STORAGE_KEYS } from "./helpers/constants";
+import { prisma } from "./db";
 
 /**
  * Class Names function
@@ -45,22 +46,34 @@ export function isAuthenticated(session: Session | null): boolean {
  * @param role handled by prisma client
  * @returns
  */
-export function hasPermission(
+export async function hasPermission(
 	session: Session | null,
 	role: UserRole
-): boolean {
+): Promise<boolean> {
 	let exist = isAuthenticated(session);
 
 	if (!exist) return false;
 
-	return session?.user.roles?.includes(role) ?? false;
+	let user = await getUserFromDatabase(session?.user.email!);
+
+	if (user?.roles.includes(role)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 export function returnToLogin(): never {
 	redirect("/auth/login");
 }
 
-export async function getUserFromDatabase() {}
+export async function getUserFromDatabase(email: string) {
+	return await prisma.user.findUnique({
+		where: {
+			email: email,
+		},
+	});
+}
 
 /**
  * A simple function to check if the user is allowed to routes on the web app.
