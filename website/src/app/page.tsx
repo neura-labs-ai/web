@@ -11,7 +11,6 @@ const Page = () => {
     <div>
       <LandingHeader />
       <LandingHero />
-      {/* @ts-ignore */}
       <LandingStats />
       <LandingContent />
       <LandingTestimonials />

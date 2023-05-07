@@ -1,9 +1,11 @@
+"use server";
+
 import { prisma } from "@/lib/db";
 import { getServerSession } from "next-auth";
 
 interface TopCardsProps {}
 
-const TopCards = async ({}) => {
+export default async function TopCards() {
 	const session = await getServerSession();
 
 	const userEmail = session?.user.email;
@@ -13,10 +15,6 @@ const TopCards = async ({}) => {
 	}
 
 	let data = await getCurrentData(userEmail);
-
-	console.dir(data, {
-		depth: Infinity,
-	});
 
 	if (!data) return null;
 
@@ -75,12 +73,9 @@ const TopCards = async ({}) => {
 			</div>
 		</>
 	);
-};
-
-export default TopCards;
+}
 
 async function getCurrentData(email: string) {
-
 	// await prisma.payment.create({
 	// 	data: {
 	// 		subscription_id: "1",

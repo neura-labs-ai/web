@@ -17,18 +17,14 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 	};
 }
 
-const page = ({}: Props) => {
+export default function Dashboard({}: Props) {
 	return (
-		<>
-			{/* @ts-ignore */}
+		<>	
 			<TopCards />
 			<div className="p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
 				<BarChart />
-				{/* @ts-ignore */}
 				<RecentPayments />
 			</div>
 		</>
 	);
-};
-
-export default page;
+}

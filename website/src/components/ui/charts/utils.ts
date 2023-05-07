@@ -1,9 +1,9 @@
 "use server"
 
 import { prisma } from "@/lib/db";
+import { Payment } from "@prisma/client";
 
 export async function getChartStatistics(email: string): Promise<number[]> {
-	"use server";
 	let defaultData = [0, 0, 0, 0, 0, 0, 0];
 
 	let data = await prisma.statistics.findMany({
@@ -36,4 +36,17 @@ export async function getChartStatistics(email: string): Promise<number[]> {
 	}
 
 	return organizedData;
+}
+
+export async function getPayments(email: string): Promise<Payment[]> {
+	return await prisma.payment.findMany({
+		where: {
+			User: {
+				email,
+			},
+		},
+		orderBy: {
+			subscription_date: "desc",
+		},
+	});
 }
