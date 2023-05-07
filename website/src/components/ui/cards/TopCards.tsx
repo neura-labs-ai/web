@@ -1,10 +1,34 @@
-import { FC } from "react";
+import { prisma } from "@/lib/db";
+import { getServerSession } from "next-auth";
 
 interface TopCardsProps {}
 
 const TopCards = async ({}) => {
-	let credits = await getUserCredits(500, 3);
-	let apiUsage = await getAPIUsage(credits.amount.total, 27);
+	const session = await getServerSession();
+
+	const userEmail = session?.user.email;
+
+	if (!userEmail) {
+		return null;
+	}
+
+	let data = await getCurrentData(userEmail);
+
+	console.dir(data, {
+		depth: Infinity,
+	});
+
+	if (!data) return null;
+
+	let credits = await getUserCredits(
+		data?.credits?.current_amount ?? 0,
+		data?.credits?.used_amount ?? 0
+	);
+
+	let apiUsage = await getAPIUsage(
+		data?.credits?.current_amount ?? 0,
+		data?.stats?.usage?.api_calls ?? 0
+	);
 
 	const creditsPercentage = parseFloat(credits.percentage);
 	const apiUsagePercentage = parseFloat(apiUsage.percentage);
@@ -22,6 +46,7 @@ const TopCards = async ({}) => {
 			: apiUsagePercentage > 50
 			? "bg-yellow-300"
 			: "bg-green-300";
+
 	return (
 		<>
 			<div className="grid lg:grid-cols-5 gap-4 p-4">
@@ -30,7 +55,7 @@ const TopCards = async ({}) => {
 						<p className="text-2xl font-bold">
 							{credits.amount.used}/{credits.amount.total}
 						</p>
-						<span className="text-green-500 text-lg">Account Credits Used</span>
+						<span className="text-green-500 text-lg">Current Account Credits</span>
 					</div>
 					<p
 						className={`flex justify-center items-center p-2 rounded-lg text-black text-lg ${creditsPercentageClassName}`}>
@@ -54,6 +79,30 @@ const TopCards = async ({}) => {
 
 export default TopCards;
 
+async function getCurrentData(email: string) {
+
+	// await prisma.payment.create({
+	// 	data: {
+	// 		subscription_id: "1",
+	// 		subscription_date: new Date(),
+	// 		subscription_date_end: new Date(),
+	// 		active: true,
+	// 		subscription_cancelled: false,
+	// 		subscription_cancelled_date: new Date(),
+	// 		credits_purchased: 100,
+	// 	}
+	// })
+
+	return await prisma.user.findUnique({
+		where: {
+			email,
+		},
+		include: {
+			credits: true,
+			stats: true,
+		},
+	});
+}
 
 type Data = {
 	amount: {
@@ -64,22 +113,40 @@ type Data = {
 };
 
 async function getUserCredits(total: number, used: number): Promise<Data> {
+	if (total === 0) {
+		return {
+			amount: {
+				total: 0,
+				used: 0,
+			},
+			percentage: "0.00%",
+		};
+	}
 	const percentage = ((used / total) * 100).toFixed(2) + "%";
 	return {
 		amount: {
-			total: total,
-			used: used,
+			total,
+			used,
 		},
 		percentage: percentage,
 	};
 }
 
 async function getAPIUsage(total: number, used: number): Promise<Data> {
+	if (total === 0) {
+		return {
+			amount: {
+				total: 0,
+				used: 0,
+			},
+			percentage: "0.00%",
+		};
+	}
 	const percentage = ((used / total) * 100).toFixed(2) + "%";
 	return {
 		amount: {
-			total: total,
-			used: used,
+			total,
+			used,
 		},
 		percentage: percentage,
 	};

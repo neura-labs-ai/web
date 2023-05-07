@@ -10,8 +10,10 @@ import {
 	Title,
 	Tooltip,
 	Legend,
-    Colors,
+	Colors,
 } from "chart.js";
+import { useSession } from "next-auth/react";
+import { getChartStatistics } from "./utils";
 
 ChartJS.register(
 	CategoryScale,
@@ -20,25 +22,31 @@ ChartJS.register(
 	Title,
 	Tooltip,
 	Legend,
-    Colors
+	Colors
 );
 
 interface BarChartProps {}
 
-const BarChart: FC<BarChartProps> = ({}) => {
+const BarChart = ({}) => {
+	const session = useSession();
+
 	const [chartData, setChartData] = useState({
 		datasets: [],
 	});
-
 	const [chartOptions, setChartOptions] = useState({});
+	const [tableData, setTableData] = useState([0, 0, 0, 0, 0, 0, 0]);
 
 	useEffect(() => {
+		getChartStatistics(session?.data?.user?.email!).then((data) => {
+			setTableData(data);
+		});
+
 		setChartData({
 			labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
 			datasets: [
 				{
 					label: "API Requests",
-					data: [0, 2, 56, 8, 1, 14, 50],
+					data: tableData,
 					borderColor: "rgb(53, 162, 235)",
 					backgroundColor: "#f472b6",
 				},

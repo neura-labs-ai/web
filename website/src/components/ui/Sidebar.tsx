@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
-import { FileText, Gauge, Key, LayoutDashboard, UserCog } from "lucide-react";
+import { FileText, Gauge, Key, LayoutDashboard, LogOut, UserCog } from "lucide-react";
 
 interface SidebarProps {
 	children: React.ReactNode;
@@ -55,6 +55,12 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
 							<div className="p-3 inline-block cursor-pointer my-4 hover:bg-zinc-300 hover:text-black rounded-lg">
 								{/* Documentation link */}
 								<FileText size={24} />
+							</div>
+						</Link>
+						<Link href={"/oauth/logout"}>
+							<div className="p-3 inline-block cursor-pointer my-4 hover:bg-zinc-300 hover:text-black rounded-lg">
+								{/* Logout button link */}
+								<LogOut size={24} />
 							</div>
 						</Link>
 					</div>

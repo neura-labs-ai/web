@@ -2,7 +2,6 @@ import { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "../db";
-import { UserRole } from "@prisma/client";
 
 function GitHubAuthOptions() {
 	const clientId = process.env.GITHUB_CLIENT_ID;
@@ -43,7 +42,6 @@ export const authOptions: NextAuthOptions = {
 					email: profile.email,
 					image: profile.avatar_url,
 					bio: profile.bio,
-					roles: [UserRole.USER],
 				};
 			},
 		}),
@@ -52,22 +50,18 @@ export const authOptions: NextAuthOptions = {
 		async signIn({}) {
 			return true;
 		},
-		async jwt({ token, user, session }) {
+		async jwt({ token, user }) {
 		  if (user) {
 		    token.id = user.id;
 		    token.name = encodeURI(user.name!);
 		    token.email = user.email;
 		    token.picture = user.image;
-		    token.roles = user.roles;
 		    token.bio = user.bio;
 		  }
 
 		  return token;
 		},
 		async session({ session, token }) {
-			// console.log("session", session);
-			// console.log("token", token);
-
 			if (token) {
 				session.user.id = token.id;
 				session.user.name = token.name;
@@ -75,15 +69,19 @@ export const authOptions: NextAuthOptions = {
 				session.user.email = token.email;
 				session.user.image = token.picture;
 				session.user.bio = token.bio;
-				session.user.roles = token.roles;
 			}
-			return {
+
+			let s = {
 				...session,
 				user: {
 					...session.user,
 					...token,
 				},
 			};
+
+			// console.dir(s, { depth: Infinity })
+
+			return s;
 		},
 		redirect({ url, baseUrl }) {
 			// Allows relative callback URLs

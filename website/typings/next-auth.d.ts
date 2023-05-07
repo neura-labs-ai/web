@@ -47,11 +47,6 @@ declare module "next-auth" {
 		username?: string | null;
 
 		/**
-		 * The user's roles
-		 */
-		roles?: UserRole[] | null;
-
-		/**
 		 * The users bio content
 		 */
 		bio?: string | null;
