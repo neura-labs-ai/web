@@ -1,31 +1,23 @@
-import { prisma } from "@/lib/db";
-import { getServerSession } from "next-auth";
+import { Credits, Statistics, User } from "@prisma/client";
 
-interface TopCardsProps {}
+interface TopCardsProps {
+	data:
+		| (User & {
+				credits: Credits | null;
+				stats: Statistics | null;
+		  })
+		| null;
+}
 
-const TopCards = async ({}) => {
-	const session = await getServerSession();
-
-	const userEmail = session?.user.email;
-
-	if (!userEmail) {
-		return null;
-	}
-
-	let data = await getCurrentData(userEmail);
-
-	console.dir(data, {
-		depth: Infinity,
-	});
-
+export default function TopCards({ data }: TopCardsProps) {
 	if (!data) return null;
 
-	let credits = await getUserCredits(
+	let credits = getUserCredits(
 		data?.credits?.current_amount ?? 0,
 		data?.credits?.used_amount ?? 0
 	);
 
-	let apiUsage = await getAPIUsage(
+	let apiUsage = getAPIUsage(
 		data?.credits?.current_amount ?? 0,
 		data?.stats?.usage?.api_calls ?? 0
 	);
@@ -75,33 +67,6 @@ const TopCards = async ({}) => {
 			</div>
 		</>
 	);
-};
-
-export default TopCards;
-
-async function getCurrentData(email: string) {
-
-	// await prisma.payment.create({
-	// 	data: {
-	// 		subscription_id: "1",
-	// 		subscription_date: new Date(),
-	// 		subscription_date_end: new Date(),
-	// 		active: true,
-	// 		subscription_cancelled: false,
-	// 		subscription_cancelled_date: new Date(),
-	// 		credits_purchased: 100,
-	// 	}
-	// })
-
-	return await prisma.user.findUnique({
-		where: {
-			email,
-		},
-		include: {
-			credits: true,
-			stats: true,
-		},
-	});
 }
 
 type Data = {
@@ -112,7 +77,7 @@ type Data = {
 	percentage: string;
 };
 
-async function getUserCredits(total: number, used: number): Promise<Data> {
+function getUserCredits(total: number, used: number): Data {
 	if (total === 0) {
 		return {
 			amount: {
@@ -132,7 +97,7 @@ async function getUserCredits(total: number, used: number): Promise<Data> {
 	};
 }
 
-async function getAPIUsage(total: number, used: number): Promise<Data> {
+function getAPIUsage(total: number, used: number): Data {
 	if (total === 0) {
 		return {
 			amount: {

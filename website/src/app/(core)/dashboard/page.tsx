@@ -3,6 +3,8 @@ import { getServerSession } from "next-auth";
 import TopCards from "@/components/ui/cards/TopCards";
 import BarChart from "@/components/ui/charts/BarChart";
 import RecentPayments from "@/components/ui/charts/RecentPayments";
+import { redirect } from "next/navigation";
+import { getChartStatistics, getUserPayments, getUserStatsAndCredits } from "@/lib/utils";
 
 type Props = {};
 
@@ -17,18 +19,26 @@ export async function generateMetadata({}: Props): Promise<Metadata> {
 	};
 }
 
-const page = ({}: Props) => {
+export default async function Dashboard({}: Props) {
+	let session = await getServerSession();
+
+	let email = session?.user?.email;
+
+	if (!email) {
+		redirect("/oauth/login");
+	}
+
+	let userData = await getUserStatsAndCredits(email);
+	let userPayments = await getUserPayments(email);
+	let userTableData = await getChartStatistics(email);
+
 	return (
 		<>
-			{/* @ts-ignore */}
-			<TopCards />
+			<TopCards data={userData} />
 			<div className="p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
-				<BarChart />
-				{/* @ts-ignore */}
-				<RecentPayments />
+				<BarChart tableData={userTableData} />
+				<RecentPayments payments={userPayments} />
 			</div>
 		</>
 	);
-};
-
-export default page;
+}

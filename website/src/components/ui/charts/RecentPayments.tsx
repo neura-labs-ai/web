@@ -1,43 +1,16 @@
-"use server"
-
-import { prisma } from "@/lib/db";
 import { Payment } from "@prisma/client";
 import { ShoppingBag } from "lucide-react";
-import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-interface RecentPaymentsProps {}
-
-type Data = {
-	active: boolean;
-	subscription_id: string;
-	subscription_date: Date;
-	subscription_date_end: Date;
-	subscription_cancelled: Boolean;
-	subscription_cancelled_date: Date;
-	subscription_cancelled_reason: string;
-	credits_purchased: number;
-};
-
-async function getPayments(email: string): Promise<Payment[]> {
-	return await prisma.payment.findMany({
-		where: {
-			User: {
-				email,
-			},
-		},
-		orderBy: {
-			subscription_date: "desc",
-		},
-	});
+interface RecentPaymentsProps {
+	payments: Payment[];
 }
 
-const RecentPayments = async ({}) => {
-	let session = await getServerSession();
+const RecentPayments = ({ payments }: RecentPaymentsProps) => {
+	let session = useSession().data;
 
-	if(!session || !session.user || !session.user.email) return null
-
-	let payments = await getPayments(session.user.email);
+	if (!session || !session.user || !session.user.email) return null;
 
 	return (
 		<>
@@ -66,16 +39,12 @@ const RecentPayments = async ({}) => {
 							</Link>
 						))
 					) : (
-						<li
-							key={0}
-							className="bg-gray-500 rounded-lg my-3 p-2 flex items-center">
+						<li key={0} className="bg-gray-500 rounded-lg my-3 p-2 flex items-center">
 							<div className="bg-purple-100 rounded-lg p-3">
 								<ShoppingBag className="text-black" />
 							</div>
 							<div className="pl-4">
-								<p className="text-gray-800 font-bold">
-									No recent payments{" "}
-								</p>
+								<p className="text-gray-800 font-bold">No recent payments </p>
 							</div>
 						</li>
 					)}

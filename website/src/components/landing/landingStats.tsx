@@ -1,4 +1,8 @@
-import { EXTERNAL_API_URL } from "@/lib/helpers/constants";
+import { StatsResponse } from "@/lib/utils";
+
+interface LandingStatsProps {
+	data: StatsResponse;
+}
 
 // todo - fetch this data. This is just a placeholder
 const stats = [
@@ -9,41 +13,7 @@ const stats = [
 	{ id: 2, name: "Stars On GitHub", value: "4,000+" },
 ];
 
-type StatsResponse = {
-	customers: number;
-	api_calls: number;
-	github_stars: number;
-};
-
-async function getStats(): Promise<StatsResponse> {
-	// const res = await fetch(
-	// 	`${EXTERNAL_API_URL}/api/v1/stats`,
-	// 	{
-	// 		headers: {
-	// 			Authorization: `bypass`,
-	// 		},
-  //     next: {  
-  //       revalidate: 60 * 5,
-  //     }
-	// 	}
-	// );
-
-  // let json = await res.json();
-
-  // console.log(json)
-
-	// return json
-
-  // todo - fetch this data. This is just a placeholder
-  return {
-    customers: 0,
-    api_calls: 40,
-    github_stars: 2,
-  }
-}
-
-export default async function RootStats() {
-	const data = await getStats();
+export default function RootStats({ data }: LandingStatsProps) {
 
 	const stats = [
 		{

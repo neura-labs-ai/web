@@ -4,10 +4,10 @@ import Button from "@/components/ui/Button";
 import { FC, useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
-import { isAuthenticated } from "@/lib/utils";
 import { redirect, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { APP_ICON, ROOT_SUB_PAGES } from "@/lib/helpers/constants";
+import { isAuthenticated } from "@/lib/utils";
 
 interface LoginProps {}
 
@@ -16,6 +16,7 @@ const Login: FC<LoginProps> = () => {
 		ROOT_SUB_PAGES.DASHBOARD
 	);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+
 	const params = useSearchParams();
 	const session = useSession();
 
@@ -44,7 +45,7 @@ const Login: FC<LoginProps> = () => {
 			}).then(() => {
 				toast.success("You have successfully logged in.");
 			}).catch((error) => {
-				console.log(error)
+				// console.log(error)
 				toast.error("There was a problem logging in.");
 			})
 		} catch (error: any) {
