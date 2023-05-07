@@ -80,6 +80,19 @@ const TopCards = async ({}) => {
 export default TopCards;
 
 async function getCurrentData(email: string) {
+
+	// await prisma.payment.create({
+	// 	data: {
+	// 		subscription_id: "1",
+	// 		subscription_date: new Date(),
+	// 		subscription_date_end: new Date(),
+	// 		active: true,
+	// 		subscription_cancelled: false,
+	// 		subscription_cancelled_date: new Date(),
+	// 		credits_purchased: 100,
+	// 	}
+	// })
+
 	return await prisma.user.findUnique({
 		where: {
 			email,

@@ -45,7 +45,7 @@ const RecentPayments = async ({}) => {
 					{payments.length > 0 ? (
 						payments.map((p, id) => (
 							// @ts-ignore
-							<Link href={`/dashboard/payments/${id}`}>
+							<Link href={`/dashboard/payments/${p.subscription_id}`}>
 								<li
 									key={id}
 									className="bg-gray-500 hover:bg-zinc-400 rounded-lg my-3 p-2 flex items-center cursor-pointer">
@@ -58,7 +58,7 @@ const RecentPayments = async ({}) => {
 										</p>
 									</div>
 									<p className="lg:flex md:hidden absolute right-6 text-sm">
-										{/* {p.subscription_date.toISOString()} */}
+										{p.subscription_date.toISOString()}
 									</p>
 								</li>
 							</Link>
