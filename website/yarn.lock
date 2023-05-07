@@ -1795,7 +1795,7 @@ __metadata:
     clsx: ^1.2.1
     eslint: 8.37.0
     eslint-config-next: 13.2.4
-    lucide-react: ^0.129.0
+    lucide-react: ^0.214.0
     next: v13.4.1
     next-auth: ^4.22.0
     postcss: ^8.4.21
@@ -3338,12 +3338,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.129.0":
-  version: 0.129.0
-  resolution: "lucide-react@npm:0.129.0"
+"lucide-react@npm:^0.214.0":
+  version: 0.214.0
+  resolution: "lucide-react@npm:0.214.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0
-  checksum: 35e11f4c80ce90727c34f6608a17c3825c208989688c283a5268d845e86a985047167c7eb8e26f89c6ad7bba88a3faec862071805ebc0a034fb6b276e46d09a1
+  checksum: e2b84b1222bc11cc1c7c73b2f55e36bd3be339cefe7b7bee1663ea4372f354ec2f1fb6b5258831aa449408ad8de3f6292350957e7a9dfd10848fceb32846b210
   languageName: node
   linkType: hard
 
