@@ -6,7 +6,7 @@ import LandingTeam from "@/components/landing/LandingTeam";
 import LandingTestimonials from "@/components/landing/LandingTestimonials";
 import LandingStats from "@/components/landing/landingStats";
 
-import { getLandingStats } from "@/lib/utils";
+import { getLandingStats } from "@/lib/server-utils";
 
 const Page = async () => {
 	let stats = await getLandingStats();
