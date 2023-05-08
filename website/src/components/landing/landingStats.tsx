@@ -1,4 +1,4 @@
-import { StatsResponse } from "@/lib/utils";
+import { StatsResponse } from "@/lib/server-utils";
 
 interface LandingStatsProps {
 	data: StatsResponse;
