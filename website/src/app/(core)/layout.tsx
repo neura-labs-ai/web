@@ -1,6 +1,5 @@
 import Header from "@/components/ui/Header";
 import Sidebar from "@/components/ui/Sidebar";
-import { Toaster } from "@/components/ui/Toast";
 import React from "react";
 
 interface RootLayoutProps {
@@ -16,7 +15,6 @@ export default async function CoreLayout({ children }: RootLayoutProps) {
 					<Header />
 					<div className="min-h-screen">{children}</div>
 				</Sidebar>
-				<Toaster />
 			</body>
 		</html>
 	);

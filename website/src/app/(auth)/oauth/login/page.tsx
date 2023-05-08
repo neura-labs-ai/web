@@ -37,17 +37,19 @@ const Login: FC<LoginProps> = () => {
 		redirect(callbackUrl);
 	}
 
-	async function loginWithGitHub() {
+	function loginWithGitHub() {
 		setIsLoading(true);
 		try {
-			await signIn("github", {
+			signIn("github", {
 				callbackUrl: callbackUrl,
-			}).then(() => {
-				toast.success("You have successfully logged in.");
-			}).catch((error) => {
-				// console.log(error)
-				toast.error("There was a problem logging in.");
 			})
+				.then(() => {
+					toast.success("You have successfully logged in.");
+				})
+				.catch((error) => {
+					// console.log(error)
+					toast.error("There was a problem logging in.");
+				});
 		} catch (error: any) {
 			toast.error("There was a problem logging in.");
 		} finally {

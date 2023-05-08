@@ -4,7 +4,7 @@ import TopCards from "@/components/ui/cards/TopCards";
 import BarChart from "@/components/ui/charts/BarChart";
 import RecentPayments from "@/components/ui/charts/RecentPayments";
 import { redirect } from "next/navigation";
-import { getChartStatistics, getUserPayments, getUserStatsAndCredits } from "@/lib/utils";
+import { getUserStatsAndCredits, getUserPayments, getChartStatistics } from "@/lib/server-utils";
 
 type Props = {};
 

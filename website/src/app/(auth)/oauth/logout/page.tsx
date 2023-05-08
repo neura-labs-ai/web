@@ -12,10 +12,10 @@ interface LoginProps {}
 const Logout: FC<LoginProps> = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
-	async function logoutFromGitHub() {
+	function logoutFromGitHub() {
 		setIsLoading(true);
 		try {
-			await signOut({
+			signOut({
 				callbackUrl: "/",
 			}).then(() => {
 				toast.success("Logged out successfully.");

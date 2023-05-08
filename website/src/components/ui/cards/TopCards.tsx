@@ -1,12 +1,10 @@
-import { Credits, Statistics, User } from "@prisma/client";
+import { Credits, Statistics } from "@prisma/client";
 
 interface TopCardsProps {
-	data:
-		| (User & {
-				credits: Credits | null;
-				stats: Statistics | null;
-		  })
-		| null;
+	data: {
+		credits: Credits | null;
+		stats: Statistics | null;
+	} | null;
 }
 
 export default function TopCards({ data }: TopCardsProps) {
