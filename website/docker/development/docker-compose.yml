@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  neuralabs-web-development:
+    build:
+      context: ../../
+      dockerfile: docker/development/Dockerfile
+    image: neuralabs-web-development
+    ports:
+      - '3001:3000'
