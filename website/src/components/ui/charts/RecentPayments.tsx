@@ -1,6 +1,5 @@
 import { Payment } from "@prisma/client";
 import { ShoppingBag } from "lucide-react";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 interface RecentPaymentsProps {

@@ -49,14 +49,14 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
 									<UserCog size={24} />
 								</div>
 							</Link>
-						</span>
 
-						<Link href={"/dashboard/docs"}>
-							<div className="p-3 inline-block cursor-pointer my-4 hover:bg-zinc-300 hover:text-black rounded-lg">
-								{/* Documentation link */}
-								<FileText size={24} />
-							</div>
-						</Link>
+							<Link href={"/dashboard/docs"}>
+								<div className="p-3 inline-block cursor-pointer my-4 hover:bg-zinc-300 hover:text-black rounded-lg">
+									{/* Documentation link */}
+									<FileText size={24} />
+								</div>
+							</Link>
+						</span>
 						<Link href={"/oauth/logout"}>
 							<div className="p-3 inline-block cursor-pointer my-4 hover:bg-zinc-300 hover:text-black rounded-lg">
 								{/* Logout button link */}
