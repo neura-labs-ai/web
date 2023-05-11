@@ -12,16 +12,16 @@ import { User } from "@prisma/client";
  * @returns
  */
 export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs));
 }
 
 export function toPusherKey(key: string) {
-	return key.replace(/:/g, "__");
+  return key.replace(/:/g, "__");
 }
 
 export function chatHrefConstructor(id1: string, id2: string) {
-	const sortedIds = [id1, id2].sort();
-	return `${sortedIds[0]}--${sortedIds[1]}`;
+  const sortedIds = [id1, id2].sort();
+  return `${sortedIds[0]}--${sortedIds[1]}`;
 }
 
 /**
@@ -30,15 +30,15 @@ export function chatHrefConstructor(id1: string, id2: string) {
  * @returns {boolean} true if the session is authenticated, false otherwise
  */
 export function isAuthenticated(session: Session | null): boolean {
-	if (isNullOrUndefined(session)) {
-		return false;
-	}
+  if (isNullOrUndefined(session)) {
+    return false;
+  }
 
-	return !isNullOrUndefined(session.user);
+  return !isNullOrUndefined(session.user);
 }
 
 export function returnToLogin(): never {
-	redirect("/auth/login");
+  redirect("/auth/login");
 }
 
 /**
@@ -47,9 +47,9 @@ export function returnToLogin(): never {
  * @returns Nothing
  */
 export function delay(ms: number) {
-	return new Promise((resolve) => {
-		setTimeout(resolve, ms);
-	});
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 /**
@@ -58,7 +58,7 @@ export function delay(ms: number) {
  * @param cb The callback function to execute after the delay
  */
 export function delayWithCB(ms: number, cb: () => any) {
-	setTimeout(cb, ms);
+  setTimeout(cb, ms);
 }
 
 /**
@@ -67,16 +67,16 @@ export function delayWithCB(ms: number, cb: () => any) {
  * @param user
  */
 export function createOrValidateTelemetryState(user: User) {
-	const tel = localStorage.getItem(LOCAL_STORAGE_KEYS.TELEMETRY);
+  const tel = localStorage.getItem(LOCAL_STORAGE_KEYS.TELEMETRY);
 
-	if (tel) return;
+  if (tel) return;
 
-	localStorage.setItem(
-		LOCAL_STORAGE_KEYS.TELEMETRY,
-		JSON.stringify({
-			enabled: user.telemetry,
-		})
-	);
+  localStorage.setItem(
+    LOCAL_STORAGE_KEYS.TELEMETRY,
+    JSON.stringify({
+      enabled: user.telemetry,
+    })
+  );
 
-	return;
+  return;
 }

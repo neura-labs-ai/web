@@ -19,8 +19,5 @@ export default withAuth(
  * However, once a user is logged in we still want to hide the raw api routes from the user. So we need to handle them in the withAuth middleware.
  */
 export const config = {
-  matcher: [
-    "/dashboard:path*",
-    "/auth/logout",
-  ],
+  matcher: ["/dashboard:path*", "/auth/logout"],
 };

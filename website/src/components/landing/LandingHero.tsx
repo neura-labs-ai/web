@@ -5,7 +5,6 @@ import LandingHeader from "./LandingHeader";
 import { useSession } from "next-auth/react";
 
 export default function RootHero() {
-
   const session = useSession().data;
 
   return (
@@ -49,7 +48,9 @@ export default function RootHero() {
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
                   href={
-                    session?.user ? ROOT_SUB_PAGES.DASHBOARD : ROOT_SUB_PAGES.LOGIN
+                    session?.user
+                      ? ROOT_SUB_PAGES.DASHBOARD
+                      : ROOT_SUB_PAGES.LOGIN
                   }
                   className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-pink-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >

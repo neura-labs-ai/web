@@ -4,11 +4,11 @@ import { FC } from "react";
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
-	return (
-		<>
-			<ContentBody>Under construction | Settings</ContentBody>
-		</>
-	);
+  return (
+    <>
+      <ContentBody>Under construction | Settings</ContentBody>
+    </>
+  );
 };
 
 export default page;

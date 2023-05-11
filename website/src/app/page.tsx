@@ -9,18 +9,18 @@ import LandingStats from "@/components/landing/landingStats";
 import { getLandingStats } from "@/lib/server-utils";
 
 const Page = async () => {
-	let stats = await getLandingStats();
+  let stats = await getLandingStats();
 
-	return (
-		<div>
-			<LandingHeader />
-			<LandingHero />
-			<LandingStats data={stats} />
-			<LandingContent />
-			<LandingTestimonials />
-			<LandingTeam />
-		</div>
-	);
+  return (
+    <div>
+      <LandingHeader />
+      <LandingHero />
+      <LandingStats data={stats} />
+      <LandingContent />
+      <LandingTestimonials />
+      <LandingTeam />
+    </div>
+  );
 };
 
 export default Page;

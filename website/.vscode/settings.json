@@ -7,7 +7,9 @@
     "headlessui",
     "heroicons",
     "lucide",
+    "rehype",
     "tailwindcss",
+    "tailwindui",
     "tanstack"
   ]
 }
