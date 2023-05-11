@@ -3,8 +3,10 @@ import nextMDX from "@next/mdx";
 const withMDX = nextMDX({
 	extension: /\.mdx?$/,
 	options: {
+		format: "mdx",
 		remarkPlugins: [],
 		rehypePlugins: [],
+		// providerImportSource: "@mdx-js/react",
 	},
 });
 
