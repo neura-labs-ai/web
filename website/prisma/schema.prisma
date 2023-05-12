@@ -146,12 +146,12 @@ type Usage {
 model Payment {
   id                            String   @id @default(auto()) @map("_id") @db.ObjectId
   active                        Boolean  @default(true)
-  subscription_id               String
-  subscription_date             DateTime? @default(now())
-  subscription_date_end         DateTime?
-  subscription_cancelled        Boolean?  @default(false)
-  subscription_cancelled_date   DateTime?
-  subscription_cancelled_reason String?
+  payment_id               String
+  payment_date             DateTime? @default(now())
+  payment_date_end         DateTime?
+  payment_cancelled        Boolean?  @default(false)
+  payment_cancelled_date   DateTime?
+  payment_cancelled_reason String?
   credits_purchased             Int
 
   User   User?   @relation(fields: [userId], references: [id])
