@@ -13,8 +13,7 @@ export default function RootTeam() {
               Meet Our Team
             </h2>
             <p className="mt-6 text-lg leading-8 text-zinc-300">
-              Sure, here's an example team overview that showcases your beliefs
-              and values: At {SITE.NAME}, we're a team of passionate developers
+              At {SITE.NAME}, we're a team of passionate developers
               and AI enthusiasts who believe in the power of technology to
               transform the world. We're committed to providing developers with
               the tools they need to build amazing applications using the latest
