@@ -17,7 +17,7 @@ body {
             rgb(var(--background-end-rgb))
         )
         rgb(var(--background-start-rgb)); */
-    background-color: rgb(9 9 11);
+    /* background-color: rgb(9 9 11); */
     color: rgb(244 244 245);
     font-family: "Poor Story", "Heebo", sans-serif;
 }

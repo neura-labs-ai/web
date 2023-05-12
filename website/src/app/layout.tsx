@@ -8,27 +8,27 @@ import AuthProvider from "@/components/Providers/AuthProvider";
 import ErrorProvider from "@/components/Providers/ErrorProvider";
 
 export const metadata: Metadata = {
-	title: SITE.NAME,
-	description: SITE.META.DESCRIPTION,
-	keywords: SITE.META.KEYWORDS,
-	icons: {
-		icon: "/processor.svg",
-	}
+  title: SITE.NAME,
+  description: SITE.META.DESCRIPTION,
+  keywords: SITE.META.KEYWORDS,
+  icons: {
+    icon: "/processor.svg",
+  },
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<html lang="en">
-			<body>
-				<VercelAnalytics />
-				<ErrorProvider>
-					<AuthProvider>{children}</AuthProvider>
-				</ErrorProvider>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body>
+        <VercelAnalytics />
+        <ErrorProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ErrorProvider>
+      </body>
+    </html>
+  );
 }

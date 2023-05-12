@@ -1,15 +1,18 @@
-import LandingHeader from "@/components/landing/LandingHeader";
+import LandingHeaderWhite from "@/components/landing/LandingHeaderWhite";
+import ContentBody from "@/components/ui/ContentBody";
 import React from "react";
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<>
-			<LandingHeader />
-			<div className="mt-20">{children}</div>
-		</>
-	);
+  return (
+    <>
+      <LandingHeaderWhite />
+      <ContentBody>
+        <div className="py-20 text-black">{children}</div>
+      </ContentBody>
+    </>
+  );
 }

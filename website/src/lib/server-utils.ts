@@ -1,4 +1,4 @@
-/// ? These functions are ran only on the server side. 
+/// ? These functions are ran only on the server side.
 /// We need another file for this so server side code is not loaded into the client side js.
 
 import { Payment, UserRole } from "@prisma/client";
@@ -37,8 +37,7 @@ export async function getUserFromDatabase(email: string) {
 	});
 }
 
-
-/// 
+///
 export async function getUserStatsAndCredits(email: string) {
 	let data = await prisma.user.findUnique({
 		where: {
@@ -55,7 +54,7 @@ export async function getUserStatsAndCredits(email: string) {
 	return {
 		credits: data.credits,
 		stats: data.stats,
-	}
+	};
 }
 
 export async function getUserPayments(email: string): Promise<Payment[]> {
@@ -66,7 +65,7 @@ export async function getUserPayments(email: string): Promise<Payment[]> {
 			},
 		},
 		orderBy: {
-			subscription_date: "desc",
+			payment_date: "desc",
 		},
 	});
 }

@@ -11,6 +11,7 @@ import {
   ROOT_SUB_PAGES,
   APP_ICON,
 } from "@/lib/helpers/constants";
+import BackgroundFlow from "../ui/BackgroundFlow";
 
 const navigation = NAV_LINKS;
 
@@ -21,7 +22,8 @@ export default function RootHeader() {
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-50">
+      <BackgroundFlow />
+      <header className="absolute inset-x-0 top-0 z-50 bg-zinc-950">
         <nav
           className="flex items-center justify-between p-6 lg:px-8"
           aria-label="Global"
