@@ -1,27 +1,13 @@
-import nextMDX from "@next/mdx";
-
-const withMDX = nextMDX({
-	extension: /\.mdx?$/,
-	options: {
-		format: "mdx",
-		remarkPlugins: [],
-		rehypePlugins: [],
-		// providerImportSource: "@mdx-js/react",
-	},
-});
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 	experimental: {
-		mdxRs: true,
+		// mdxRs: true,
 		typedRoutes: true,
 	},
 	images: {
 		domains: [
 			"avatars.githubusercontent.com",
 			"tailwindui.com",
-			"images.unsplash.com",
 		],
 		disableStaticImages: false,
 		dangerouslyAllowSVG: true,
@@ -39,4 +25,4 @@ const nextConfig = {
 	},
 };
 
-export default withMDX(nextConfig);
+export default nextConfig;

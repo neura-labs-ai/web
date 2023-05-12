@@ -32,13 +32,14 @@ export const LOCAL_STORAGE_KEYS = {
 };
 
 export const ROOT_SUB_PAGES = {
-  DASHBOARD: "/dashboard",
-  ABOUT: "/about",
-  CONTACT: "/contact",
-  PRIVACY: "/privacy",
-  TERMS: "/terms",
-  CONTRIBUTE: "/contributing",
-  LOGIN: "/oauth/login",
+	DASHBOARD: "/dashboard",
+	ABOUT: "/about",
+	CONTACT: "/contact",
+	PRIVACY: "/privacy",
+	TERMS: "/terms",
+	CONTRIBUTE: "/contributing",
+	LOGIN: "/oauth/login",
+	DOCUMENTATION: "/docs-todo",
 };
 
 export const ROOT_SUB_PAGES_WITHOUT_LEADING_SLASH = Object.values(
@@ -49,7 +50,7 @@ export const APP_ICON = "/processor.svg";
 
 /** Links used for the navbar */
 export const NAV_LINKS = [
-  { name: "Documentation", href: `/docs` },
+  { name: "Documentation", href: `/docs-todo` },
   { name: "Research Goals", href: "/research-goals" },
   { name: "Community", href: "/community" },
   { name: "Company", href: "company" },

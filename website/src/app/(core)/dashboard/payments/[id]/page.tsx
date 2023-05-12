@@ -7,7 +7,7 @@ const page: FC<pageProps> = ({}) => {
   return (
     <>
       <ContentBody>
-        <div>Example Oder</div>
+        <div>Example Order</div>
       </ContentBody>
     </>
   );

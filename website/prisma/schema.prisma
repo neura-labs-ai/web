@@ -100,8 +100,8 @@ model Tokens {
   // If true, the model will not be shown on the web-app and considered deleted.
   tomestoned Boolean  @default(false)
 
-  userId String @db.ObjectId
-  owner  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user_id String @db.ObjectId
+  User  User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([token])
   @@map("api-tokens")
@@ -112,8 +112,8 @@ model Credits {
   used_amount    Int    @default(0)
   current_amount Int    @default(0)
 
-  User   User?  @relation(fields: [userId], references: [id])
-  userId String @unique @db.ObjectId
+  user_id String @unique @db.ObjectId
+  User   User?  @relation(fields: [user_id], references: [id])
 
   @@map("credits")
 }
@@ -124,8 +124,8 @@ model Statistics {
   updated_at DateTime?
   usage      Usage?
 
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String? @unique @db.ObjectId
+  User   User?   @relation(fields: [user_id], references: [id])
+  user_id String? @unique @db.ObjectId
 
   @@map("statistics")
 }
@@ -154,8 +154,8 @@ model Payment {
   payment_cancelled_reason String?
   credits_purchased             Int
 
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String? @db.ObjectId
+  User   User?   @relation(fields: [user_id], references: [id])
+  user_id String? @db.ObjectId
 
   @@map("payments")
 }
