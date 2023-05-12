@@ -29,7 +29,7 @@ const RecentPayments = ({ payments }: RecentPaymentsProps) => {
                     </p>
                   </div>
                   <p className="lg:flex md:hidden absolute right-6 text-sm">
-                    {p.subscription_date?.toISOString() ?? "N/A"}
+                    {p.payment_date?.toISOString() ?? "N/A"}
                   </p>
                 </li>
               </Link>
