@@ -57,7 +57,7 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
                 </div>
               </Link>
 
-              <Link href={"/dashboard/docs"}>
+              <Link href={"/dashboard"}>
                 <div className="p-3 inline-block cursor-pointer my-4 hover:bg-zinc-300 hover:text-black rounded-lg">
                   {/* Documentation link */}
                   <FileText size={24} />
