@@ -11,7 +11,7 @@ export default function RootLayout({
     <>
       <LandingHeaderWhite />
       <ContentBody>
-        <div className="py-20 text-black">{children}</div>
+        <div className="py-20">{children}</div>
       </ContentBody>
     </>
   );
