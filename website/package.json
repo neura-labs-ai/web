@@ -39,5 +39,9 @@
 		"vite": "^4.3.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"lucia-auth": "^1.5.0",
+		"lucide-svelte": "^0.216.0"
+	}
 }

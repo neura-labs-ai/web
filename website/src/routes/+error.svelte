@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	// import DocsLogoAnim from '$docs/components/DocsLogos/DocsLogoAnim.svelte';
+	import Logo from '$lib/components/ui/SkullAnimation.svelte';
 </script>
 
 {#if $page}
 	<div class="w-full h-full flex justify-center items-center">
 		<div class="text-center space-y-4">
-			<!-- <DocsLogoAnim /> -->
+			<Logo />
 			<h2 class="h2">
 				{$page.status}:{#if $page.error} {$page.error.message} {/if}
 			</h2>

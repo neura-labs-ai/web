@@ -1259,6 +1259,16 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+lucia-auth@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/lucia-auth/-/lucia-auth-1.5.0.tgz#4d433a35cca4d5fed7852074f23d617a645bf4f3"
+  integrity sha512-lLgLvyJcCjK+dYwJrgzPWGjT+YGgl7JF13TahXKozf/C3KkX/fFzOAUkY0h5xnm585lJE5BBrQIXAXa+rDzW6g==
+
+lucide-svelte@^0.216.0:
+  version "0.216.0"
+  resolved "https://registry.yarnpkg.com/lucide-svelte/-/lucide-svelte-0.216.0.tgz#fbd5896062f90a1bc3741ac41caec25e016afd92"
+  integrity sha512-e7uFIf3H1Tpoq+RRvAXLBCEe1YgZwOu1LEZY8lkdja3djJBHNsk2/Pgkec/ptT9nzU9oLK/D5lrVxtyvMua0BQ==
+
 magic-string@^0.27.0:
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.27.0.tgz#e4a3413b4bab6d98d2becffd48b4a257effdbbf3"
