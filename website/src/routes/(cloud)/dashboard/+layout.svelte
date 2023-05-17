@@ -7,7 +7,9 @@
 		Drawer,
 		LightSwitch
 	} from '@skeletonlabs/skeleton';
+
 	import Navigation from '$lib/components/SideNavigation.svelte';
+	import { page } from "$app/stores"
 	import { goto } from '$app/navigation';
 
 	function drawerOpen(): void {
@@ -43,7 +45,7 @@
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<LightSwitch />
-				<Avatar initials="EX" width="w-10" background="bg-primary-500" />
+				<Avatar src={$page.data.session?.user?.image ?? ""} width="w-10" background="bg-primary-500" />
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>

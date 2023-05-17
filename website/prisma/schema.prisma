@@ -1,47 +1,159 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
-model AuthUser {
-  id           String        @id @map("_id")
-  auth_session AuthSession[]
-  auth_key     AuthKey[]
-  // here you can add custom fields for your user
-  // e.g. name, email, username, roles, etc.
-
-  name String?
-  username String
-
-  @@map("auth_user")
+generator client {
+  provider = "prisma-client-js"
 }
 
-model AuthSession {
-  id             String   @id @map("_id")
-  user_id        String
-  active_expires BigInt
-  idle_expires   BigInt
-  auth_user      AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+// Used for github oauth
+// see - https://api.github.com/users/GitHub for an example user.
+model User {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  username      String?
+  bio           String?
+  email         String
+  emailVerified DateTime?
+  image         String
+  roles         UserRole[] @default([USER])
+  telemetry     Boolean    @default(false)
+  // If true, the model will not be shown on the web-app and considered deleted.
+  tomestoned    Boolean    @default(false)
 
-  @@index([user_id])
-  @@map("auth_session")
+  // handled by authjs
+  accounts Account[]
+  sessions Session[]
+
+  token   Tokens[]
+  credits Credits?
+  stats   Statistics?
+
+  payments Payment[]
+
+  @@unique([email])
+  @@map("users")
 }
 
-model AuthKey {
-  id              String   @id @map("_id")
-  hashed_password String?
-  user_id         String
-  primary_key     Boolean
-  expires         BigInt?
-  auth_user       AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+enum UserRole {
+  USER
+  CONTRIBUTOR
+  MODERATOR
+  ADMIN
+  SYSTEM
+  TEST
+}
 
-  @@index([user_id])
-  @@map("auth_key")
+// Used for github oauth by authjs - do not change this
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// Used for github oauth by authjs - do not change this
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionToken])
+  @@map("sessions")
+}
+
+// Used for github oauth by authjs - do not change this
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// API Tokens - Used for API access
+model Tokens {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  token      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  // If true, the model will not be shown on the web-app and considered deleted.
+  tomestoned Boolean  @default(false)
+
+  user_id String @db.ObjectId
+  User    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("api-tokens")
+}
+
+model Credits {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  used_amount    Int    @default(0)
+  current_amount Int    @default(0)
+
+  user_id String @unique @db.ObjectId
+  User    User?  @relation(fields: [user_id], references: [id])
+
+  @@map("credits")
+}
+
+model Statistics {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+  usage      Usage?
+
+  User    User?   @relation(fields: [user_id], references: [id])
+  user_id String? @unique @db.ObjectId
+
+  @@map("statistics")
+}
+
+type Usage {
+  api_calls         Int?
+  api_calls_monday  Int?
+  api_calls_tuesday Int?
+  api_calls_wed     Int?
+  api_calls_thurs   Int?
+  api_calls_fri     Int?
+  api_calls_sat     Int?
+  api_calls_sun     Int?
+  api_calls_success Int?
+  api_calls_fail    Int?
+}
+
+model Payment {
+  id                       String    @id @default(auto()) @map("_id") @db.ObjectId
+  active                   Boolean   @default(true)
+  payment_id               String
+  payment_date             DateTime? @default(now())
+  payment_date_end         DateTime?
+  payment_cancelled        Boolean?  @default(false)
+  payment_cancelled_date   DateTime?
+  payment_cancelled_reason String?
+  credits_purchased        Int
+
+  User    User?   @relation(fields: [user_id], references: [id])
+  user_id String? @db.ObjectId
+
+  @@map("payments")
 }
