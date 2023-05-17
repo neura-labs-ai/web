@@ -11,7 +11,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"postinstall": "npx prisma generate"
 	},
 	"devDependencies": {
 		"@floating-ui/dom": "^1.2.8",
@@ -41,7 +42,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@lucia-auth/adapter-prisma": "^2.0.0",
+		"@lucia-auth/sveltekit": "^0.6.11",
+		"@prisma/client": "^4.14.0",
 		"lucia-auth": "^1.5.0",
-		"lucide-svelte": "^0.216.0"
+		"lucide-svelte": "^0.216.0",
+		"prisma": "^4.14.0"
 	}
 }

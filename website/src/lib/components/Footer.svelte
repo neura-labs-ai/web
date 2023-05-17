@@ -10,8 +10,8 @@
 	<div class="w-full max-w-7xl mx-auto p-7 py-16 md:py-24 space-y-10">
 		<section class={cRow}>
 			<p>
-				<a class="anchor" href="https://github.com/skeletonlabs/skeleton/blob/master/LICENSE" target="_blank" rel="noreferrer">
-					MIT License
+				<a class="anchor" href="terms-of-service" rel="noreferrer">
+					Terms of Service
 				</a>
 				<span class="opacity-10 mx-2">|</span>
 				<a class="anchor" href={constants.SOCIALS.OWNER.GITHUB} target="_blank" rel="noreferrer">ThatGuyJamal </a>
