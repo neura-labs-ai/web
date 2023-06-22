@@ -86,45 +86,45 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tensorflow/tfjs-backend-cpu@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@tensorflow/tfjs-backend-cpu@npm:4.4.0"
+"@tensorflow/tfjs-backend-cpu@npm:4.8.0":
+  version: 4.8.0
+  resolution: "@tensorflow/tfjs-backend-cpu@npm:4.8.0"
   dependencies:
     "@types/seedrandom": ^2.4.28
     seedrandom: ^3.0.5
   peerDependencies:
-    "@tensorflow/tfjs-core": 4.4.0
-  checksum: e84eee75989ea7d2fcf7090a59021a44fbc9428cf4264cbaaaa0bba16664728a4edf5f229d5ee9c5e860c62b00d052b9e41204ca5b5b1a24cebf614f43deebe8
+    "@tensorflow/tfjs-core": 4.8.0
+  checksum: 25ec9bbc4de16c17a9d669d3a34374a336cf6ad46deca430f7552379ca7207e6973fda15de597d282994ba395f1b0a4883dd9264a096e9d270bf90d19b01150b
   languageName: node
   linkType: hard
 
-"@tensorflow/tfjs-backend-webgl@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@tensorflow/tfjs-backend-webgl@npm:4.4.0"
+"@tensorflow/tfjs-backend-webgl@npm:4.8.0":
+  version: 4.8.0
+  resolution: "@tensorflow/tfjs-backend-webgl@npm:4.8.0"
   dependencies:
-    "@tensorflow/tfjs-backend-cpu": 4.4.0
+    "@tensorflow/tfjs-backend-cpu": 4.8.0
     "@types/offscreencanvas": ~2019.3.0
     "@types/seedrandom": ^2.4.28
     "@types/webgl-ext": 0.0.30
     seedrandom: ^3.0.5
   peerDependencies:
-    "@tensorflow/tfjs-core": 4.4.0
-  checksum: c106a7a29cf71d115102e06ce2475ab2912b70bb4222239b9777c587498a96dc286587210c7d64ccf427baeb492917f6f81012361fd96f0a5ffc9ba31a3b48f5
+    "@tensorflow/tfjs-core": 4.8.0
+  checksum: a8a27fc73c617405ce96af67bab38ad81acd0a95693efacfa5211cc0abfcfe2112b9e2525f630d8d5fe0fea01cb3fe144c56ed003bdc9d4141fddd1200a907ee
   languageName: node
   linkType: hard
 
-"@tensorflow/tfjs-converter@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@tensorflow/tfjs-converter@npm:4.4.0"
+"@tensorflow/tfjs-converter@npm:4.8.0":
+  version: 4.8.0
+  resolution: "@tensorflow/tfjs-converter@npm:4.8.0"
   peerDependencies:
-    "@tensorflow/tfjs-core": 4.4.0
-  checksum: 5e0c71f53ed9ee48122f6580ae35ef3b82ed84caeab3ee5f6ea24d88f9761c01649d9fe5d2603558fa9c133bf0cc55e60b17db2e62ea1a38349e123418852fdf
+    "@tensorflow/tfjs-core": 4.8.0
+  checksum: 5e611a9f8c9f5e9bc35a7042c1a057ae6ea5b3d87dcdcdfcaf7f4e69c2357e49e2aeabc3a303ac6c392145b685d54576fa43f175512ee3e73c903de08262ea34
   languageName: node
   linkType: hard
 
-"@tensorflow/tfjs-core@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@tensorflow/tfjs-core@npm:4.4.0"
+"@tensorflow/tfjs-core@npm:4.8.0":
+  version: 4.8.0
+  resolution: "@tensorflow/tfjs-core@npm:4.8.0"
   dependencies:
     "@types/long": ^4.0.1
     "@types/offscreencanvas": ~2019.7.0
@@ -134,59 +134,59 @@ __metadata:
     long: 4.0.0
     node-fetch: ~2.6.1
     seedrandom: ^3.0.5
-  checksum: 89b1c7a726cf0d640bc0dcc7404fc29b3b8ee229de52ab0c58f665b9933958f9ec140684e4ceb868860cdf97b9e4fa70c5df679a81bfae7c77f3783ba71c02c2
+  checksum: 9b8d03b649b7c24e16cc9523bcc35fa717a4f6e6c18d9c34b80b4d014b235d43fa0d8fe18db1f6d02cccd5aa6544adce7827055654a23f223286f4d6c85989e3
   languageName: node
   linkType: hard
 
-"@tensorflow/tfjs-data@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@tensorflow/tfjs-data@npm:4.4.0"
+"@tensorflow/tfjs-data@npm:4.8.0":
+  version: 4.8.0
+  resolution: "@tensorflow/tfjs-data@npm:4.8.0"
   dependencies:
     "@types/node-fetch": ^2.1.2
     node-fetch: ~2.6.1
     string_decoder: ^1.3.0
   peerDependencies:
-    "@tensorflow/tfjs-core": 4.4.0
+    "@tensorflow/tfjs-core": 4.8.0
     seedrandom: ^3.0.5
-  checksum: 8fed0a176e355915165449e0477f4c3e4d210721abec92e52dcf88246ce6a4a8d3a6d6abbd2eb0a5a743b8efaea5b8025c02cf028c8b91046057bc2f8f7be321
+  checksum: ad37f161cac29d4e79fec5a0c61135aa85bca0fea134b944d5e68d01e03aeec5799502894e8c620041e3298d5e4d51de3125f080c7c73cf8f695695bc86e2767
   languageName: node
   linkType: hard
 
-"@tensorflow/tfjs-layers@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@tensorflow/tfjs-layers@npm:4.4.0"
+"@tensorflow/tfjs-layers@npm:4.8.0":
+  version: 4.8.0
+  resolution: "@tensorflow/tfjs-layers@npm:4.8.0"
   peerDependencies:
-    "@tensorflow/tfjs-core": 4.4.0
-  checksum: 5ab71d0a8e0a5369efd18b17593e941a52e3d37a38a3c01d2051031a54e2c67388006ea77a06cf1fdfc40ea5937727fe12e0acdb305dcaa576fd912656de84b2
+    "@tensorflow/tfjs-core": 4.8.0
+  checksum: c37836655e9def4f4789f077b5d2c7fadf292b2e47a8d99e115d815b7745ea89c0f647d94b0a6ca3e06c2d872550b7c908174a65496774e71849c960fa5f2750
   languageName: node
   linkType: hard
 
 "@tensorflow/tfjs-node@npm:^4.4.0":
-  version: 4.4.0
-  resolution: "@tensorflow/tfjs-node@npm:4.4.0"
+  version: 4.8.0
+  resolution: "@tensorflow/tfjs-node@npm:4.8.0"
   dependencies:
     "@mapbox/node-pre-gyp": 1.0.9
-    "@tensorflow/tfjs": 4.4.0
+    "@tensorflow/tfjs": 4.8.0
     adm-zip: ^0.5.2
     google-protobuf: ^3.9.2
     https-proxy-agent: ^2.2.1
     progress: ^2.0.0
     rimraf: ^2.6.2
     tar: ^4.4.6
-  checksum: 02175ec1ca4a597bc817f364b1aaee6702059cb979e09955b197d5405f34dde6f6de1b105ceea8a4910572123f533b530d4cb42ef08dd51efbfd25acdda661b6
+  checksum: 0443f1f022e325ddf5f0741ae2601249331b6f118057a7a1f841c9d8afe38b9b1257363de8e119e2b181fb1a2f31dc1dd42ec00101eb9ead4c5e72312568b9b1
   languageName: node
   linkType: hard
 
-"@tensorflow/tfjs@npm:4.4.0":
-  version: 4.4.0
-  resolution: "@tensorflow/tfjs@npm:4.4.0"
+"@tensorflow/tfjs@npm:4.8.0":
+  version: 4.8.0
+  resolution: "@tensorflow/tfjs@npm:4.8.0"
   dependencies:
-    "@tensorflow/tfjs-backend-cpu": 4.4.0
-    "@tensorflow/tfjs-backend-webgl": 4.4.0
-    "@tensorflow/tfjs-converter": 4.4.0
-    "@tensorflow/tfjs-core": 4.4.0
-    "@tensorflow/tfjs-data": 4.4.0
-    "@tensorflow/tfjs-layers": 4.4.0
+    "@tensorflow/tfjs-backend-cpu": 4.8.0
+    "@tensorflow/tfjs-backend-webgl": 4.8.0
+    "@tensorflow/tfjs-converter": 4.8.0
+    "@tensorflow/tfjs-core": 4.8.0
+    "@tensorflow/tfjs-data": 4.8.0
+    "@tensorflow/tfjs-layers": 4.8.0
     argparse: ^1.0.10
     chalk: ^4.1.0
     core-js: 3.29.1
@@ -194,7 +194,7 @@ __metadata:
     yargs: ^16.0.3
   bin:
     tfjs-custom-module: dist/tools/custom_module/cli.js
-  checksum: 4ea65bc77bd7d7dee2d53918ae1deac758df14d69226b3c337d20b3fd15ebeff72a9ebe55c5f514601a0e12791d51a992c4a87f0d1ddcb3e9ddcf4e3e4793f74
+  checksum: 27e58186176efcc3f7c39792170c6d73e9bd9c2f70b0a6970eb8b5b2117fa976fe829242acb0db9ced8dba648b413f8aaa9fb55c86ccb2b75131c1f8df4e897a
   languageName: node
   linkType: hard
 
